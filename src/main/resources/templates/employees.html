@@ -29,7 +29,7 @@
                     <td th:text="${employee.id}"></td>
                     <td th:text="${employee.firstName}"></td>
                     <td th:text="${employee.lastName}"></td>
-                    <td th:text="${employee.startDate}"></td>
+                    <td th:text="${#dates.format(employee.startDate, 'MM-dd-yyyy')}"></td>
                     <td th:text="${employee.title}"></td>
                     <td th:text="${employee.branch.name}"></td>
                     <td th:text="${employee.department.name}"></td>
