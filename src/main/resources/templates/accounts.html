@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang=en>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Accounts</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
+</head>
+
+<body>
+	<div id="accounts">
+		<div>
+			<h1 class="title_header">All Accounts</h1>
+		</div>
+		<div>
+			<a class="update_button" th:href="@{/accounts/new}">Create New Account</a>
+		</div>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Account ID</th>
+						<th>Available Balance</th>
+						<th>Pending Balance</th>
+						<th>Open Date</th>
+						<th>Last Activity Date</th>
+						<th>Customer ID</th>
+						<th>Branch name</th>
+						<th>Employee ID</th>
+						<th>Product</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="account: ${accounts}">
+						<td th:text="${account.id}"></td>
+						<td th:text="${#numbers.formatDecimal(account.availableBalance, 1, 2)}"></td>
+						<td th:text="${#numbers.formatDecimal(account.pendingBalance, 1, 2)}"></td>
+						<td th:text="${#dates.format(account.openDate, 'MM-dd-yyyy')}"></td>
+						<td th:text="${#dates.format(account.lastActivityDate, 'MM-dd-yyyy')}"></td>
+						<td th:text="${account.customer.id}"></td>
+						<td th:text="${account.branch.name}"></td>
+						<td th:text="${account.employee.id}"></td>
+						<td th:text="${account.product.name}"></td>
+						<td>
+							<div>
+								<a class="update_button" th:href="@{/accounts/update/{id}(id=${account.id})}">Update</a>
+								<a class="delete_button" th:href="@{/accounts/{id}(id=${account.id})}">Delete</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+</html>

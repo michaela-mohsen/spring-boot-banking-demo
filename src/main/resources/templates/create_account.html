@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang=en>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>New Account</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/semantic.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
+</head>
+
+<body>
+    <div id="new_account">
+        <form class="ui equal width form" th:action="@{/accounts}" th:object="${account}" method="POST">
+            <div class="ui labeled input field">
+                <div class="ui label" for="availableBalance">Available Balance: </div>
+                <input type="text" id="availableBalance" name="availableBalance" th:field="${account.availableBalance}"
+                    placeholder="Available Balance"><br>
+            </div><br>
+            <div class="ui labeled input field">
+                <div class="ui label" for="pendingBalance">Pending Balance:</div>
+                <input type="text" id="pending_balance" name="pending_balance" th:field="${account.pendingBalance}"
+                    placeholder="Pending Balance">
+            </div><br>
+            <div class="ui labeled input field">
+                <div class="ui label" for="openDate">Open Date:</div>
+                <input type="date" id="open_date" name="open_date" th:field="${account.openDate}"
+                    placeholder="Open Date">
+            </div><br>
+            <div class="ui labeled input field">
+                <div class="ui label" for="lastActivityDate">Last Activity Date:</div>
+                <input type="date" id="last_activity_date" name="last_activity_date"
+                    th:field="${account.lastActivityDate}" placeholder="Last Activity Date">
+            </div><br>
+            <div class="ui labeled input field">
+                <div class="ui label" for="status">Status:</div>
+                <input type="text" id="status" name="status" th:field="${account.status}" placeholder="Status">
+            </div><br>
+            <div class="ui labeled input field">
+                <div class="ui label" for="customerID">Customer ID:</div>
+                <input type="text" id="customer_id" name="customer_id" th:field="${account.customer.id}"
+                    placeholder="Customer ID">
+            </div><br>
+            <div class="ui labeled input field">
+                <div class="ui label" for="branch">Branch:</div>
+                <input list="branches" id="branch" name="branches" th:field="${account.branch.name}"
+                    placeholder="Branch name">
+                <datalist id="branches">
+                    <option value="Headquarters">
+                    <option value="Woburn Branch">
+                    <option value="Quincy Branch">
+                    <option value="South NH">
+                </datalist>
+            </div><br>
+            <div class="ui labeled input field">
+                <div class="ui label" for="employeeID">Employee ID:</div>
+                <input type="text" id="employee_id" name="employee_id" th:field="${account.employee.id}"
+                    placeholder="Employee ID">
+            </div><br>
+            <div class="ui labeled input field">
+                <div class="ui label" for="product">Product:</div>
+                <input list="products" name="product" id="product" th:field="${account.product.name}"
+                    placeholder="Product">
+                <datalist id="products">
+                    <option value="Auto Loan">
+                    <option value="Business Line of Credit">
+                    <option value="Certificate of Deposit">
+                    <option value="Checking Account">
+                    <option value="Money Market Account">
+                    <option value="Home Mortgage">
+                    <option value="Savings Account">
+                    <option value="Small Business Loan">
+                </datalist>
+            </div><br>
+            <button class="ui primary button" type="submit">Create</button>
+        </form>
+    </div>
+    <script type="text/javascript" th:src="@{/js/semantic.js}"></script>
+</body>
+
+</html>

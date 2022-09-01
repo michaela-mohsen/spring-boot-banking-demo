@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang=en>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Employees</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/semantic.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
+</head>
+
+<body>
+    <div id="employees">
+        <table class="ui padded table">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>First name</th>
+                    <th>Last Name</th>
+                    <th>Start Date</th>
+                    <th>Title</th>
+                    <th>Branch Location</th>
+                    <th>Department</th>
+                    <th>Superior</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="employee: ${employees}">
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.firstName}"></td>
+                    <td th:text="${employee.lastName}"></td>
+                    <td th:text="${employee.startDate}"></td>
+                    <td th:text="${employee.title}"></td>
+                    <td th:text="${employee.branch.name}"></td>
+                    <td th:text="${employee.department.name}"></td>
+                    <td th:text="${employee.superior}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

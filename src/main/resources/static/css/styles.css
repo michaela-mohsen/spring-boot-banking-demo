@@ -1,0 +1,108 @@
+/* 
+color palette 
+https://coolors.co/palette/cb997e-eddcd2-fff1e6-a5a58d-826e5a
+#CB997E - "antique brass" - pinkish beige
+#EDDCD2 - "champagne pink" - soft pink
+#FFF1E6 - "linen" - lighter pink
+#A5A58D - "artichoke" - greyish green
+#826E5A - "french bistre" - dark brown
+*/
+
+/* global characteristics */
+body {
+    font-family: 'Source Sans Pro', serif;
+}
+
+.title_header {
+    color:#826E5A;
+    font-size: 48px;
+    text-align:center;
+}
+
+/* table characteristics */
+table {
+    border: 1px solid;
+    border-collapse: collapse;
+    border-color: #FFF1E6;
+}
+
+td {
+    font-size: 18px;
+    color:#826E5A;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid;
+}
+
+th {
+    background-color: #CB997E;
+    color: white;
+    font-size: 20px;
+}
+
+tr:nth-child(even) {
+    background-color:#FFF1E6;
+}
+
+/* update and delete buttons characteristics */
+
+a.update_button:link, a.update_button:visited {
+    background-color:#A5A58D;
+    color: white;
+    border-radius: 8px;
+    padding: 14px 25px;
+    text-align:center;
+    text-decoration:none;
+    display:inline-block;
+    margin-bottom: 5px;
+}
+
+a.update_button:hover, a.update_button:active {
+    background-color:white;
+    color:#A5A58D;
+    border: 2px solid #A5A58D;
+    display:inline-block;
+}
+
+a.delete_button:link, a.delete_button:visited {
+    background-color:red;
+    color: white;
+    border-radius: 8px;
+    padding: 14px 25px;
+    text-align:center;
+    text-decoration:none;
+    display:inline-block;
+}
+
+a.delete_button:hover, a.delete_button:active {
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+    display:inline-block;
+}
+
+/* update form characteristics */
+
+input[type=text], input[type=datetime] {
+	width:50%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+}
+
+input[type=button] {
+    background-color:#A5A58D;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 10px;
+    cursor: pointer;
+}
+
+form {
+    display:inline-block;
+}
