@@ -34,7 +34,10 @@
         </nav>
     </header>
     <div id="new_account">
-        <form class="form-horizontal" th:action="@{/accounts}" th:object="${account}" method="POST">
+        <form class="form-horizontal m-2 pt-3" th:action="@{/accounts}" th:object="${account}" method="POST">
+            <h2 class="text-center">Create New Account</h2>
+            <div class="divider"></div>
+            <br>
             <div class="form-group">
                 <div class="col-3 col-sm-12">
                     <label class="form-label" for="availableBalance">Available Balance: </label>
@@ -143,11 +146,9 @@
                 </div>
             </div>
             <br>
-            <button class="ui primary button" type="submit">Create</button>
+            <button class="btn btn-primary btn-block" type="submit">Create</button>
+        </form>
     </div>
-    </form>
-    </div>
-    <script type="text/javascript" th:src="@{/js/semantic.js}"></script>
 </body>
 
 </html>
