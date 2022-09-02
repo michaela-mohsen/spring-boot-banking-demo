@@ -40,20 +40,22 @@
                     <label class="form-label" for="availableBalance">Available Balance: </label>
                 </div>
                 <div class="col-9 col-sm-12">
-                    <input class="form-input" type="text" id="availableBalance" name="availableBalance"
+                    <input class="form-input" type="number" id="availableBalance" name="availableBalance"
                         th:field="${account.availableBalance}" placeholder="Available Balance">
                 </div>
-                <br>
+            </div>
 
+            <div class="form-group">
                 <div class="col-3 col-sm-12">
                     <label class="form-label" for="pendingBalance">Pending Balance:</label>
                 </div>
                 <div class="col-9 col-sm-12">
-                    <input class="form-input" type="text" id="pending_balance" name="pending_balance"
+                    <input class="form-input" type="number" id="pending_balance" name="pending_balance"
                         th:field="${account.pendingBalance}" placeholder="Pending Balance">
                 </div>
-                <br>
+            </div>
 
+            <div class="form-group">
                 <div class="col-3 col-sm-12">
                     <label class="form-label" for="openDate">Open Date:</label>
                 </div>
@@ -61,8 +63,8 @@
                     <input class="form-input" type="date" id="open_date" name="open_date" th:field="${account.openDate}"
                         placeholder="Open Date">
                 </div>
-                <br>
-
+            </div>
+            <div class="form-group">
                 <div class="col-3 col-sm-12">
                     <label class="form-label" for="lastActivityDate">Last Activity Date:</label>
                 </div>
@@ -70,8 +72,8 @@
                     <input class="form-input" type="date" id="last_activity_date" name="last_activity_date"
                         th:field="${account.lastActivityDate}" placeholder="Last Activity Date">
                 </div>
-                <br>
-
+            </div>
+            <div class="form-group">
                 <div class="col-3 col-sm-12">
                     <label class="form-label" for="status">Status:</label>
                 </div>
@@ -79,8 +81,8 @@
                     <input class="form-input" type="text" id="status" name="status" th:field="${account.status}"
                         placeholder="Status">
                 </div>
-                <br>
-
+            </div>
+            <div class="form-group">
                 <div class="col-3 col-sm-12">
                     <label class="form-label" for="customerID">Customer ID:</label>
                 </div>
@@ -88,20 +90,31 @@
                     <input class="form-input" type="text" id="customer_id" name="customer_id"
                         th:field="${account.customer.id}" placeholder="Customer ID">
                 </div>
-                <br>
-
-                <div class="ui labeled input field">
-                    <div class="ui label" for="branch">Branch:</div>
-                    <input list="branches" id="branch" name="branches" th:field="${account.branch.name}"
-                        placeholder="Branch name">
-                    <datalist id="branches">
-                        <option value="Headquarters">
-                        <option value="Woburn Branch">
-                        <option value="Quincy Branch">
-                        <option value="South NH">
-                    </datalist>
-                </div><br>
-
+            </div>
+            <div class="form-group">
+                <div class="col-3 col-sm-12">
+                    <label class="form-label" for="branch">Branch:</label>
+                </div>
+                <div class="col-9 col-sm-12">
+                    <label class="form-radio">
+                        <input type="radio" name="branch" title="headquarters">
+                        <em class="form-icon"></em>Headquarters
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" name="branch" title="woburn branch">
+                        <em class="form-icon"></em>Woburn
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" name="branch" title="quincy branch">
+                        <em class="form-icon"></em>Quincy
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" name="branch" title="south nh branch">
+                        <em class="form-icon"></em>South NH
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-3 col-sm-12">
                     <label class="form-label" for="employeeID">Employee ID:</label>
                 </div>
@@ -109,12 +122,14 @@
                     <input class="form-input" type="text" id="employee_id" name="employee_id"
                         th:field="${account.employee.id}" placeholder="Employee ID">
                 </div>
-                <br>
-
-                <div class="ui labeled input field">
-                    <div class="ui label" for="product">Product:</div>
-                    <input list="products" name="product" id="product" th:field="${account.product.name}"
-                        placeholder="Product">
+            </div>
+            <div class="form-group">
+                <div class="col-3 col-sm-12">
+                    <label class="form-label" for="product">Product:</label>
+                </div>
+                <div class="col-9 col-sm-12">
+                    <input class="form-input" list="products" name="product" id="product"
+                        th:field="${account.product.name}" placeholder="Product">
                     <datalist id="products">
                         <option value="Auto Loan">
                         <option value="Business Line of Credit">
@@ -125,10 +140,12 @@
                         <option value="Savings Account">
                         <option value="Small Business Loan">
                     </datalist>
-                </div><br>
-                <button class="ui primary button" type="submit">Create</button>
+                </div>
             </div>
-        </form>
+            <br>
+            <button class="ui primary button" type="submit">Create</button>
+    </div>
+    </form>
     </div>
     <script type="text/javascript" th:src="@{/js/semantic.js}"></script>
 </body>
