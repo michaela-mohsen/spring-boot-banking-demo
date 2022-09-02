@@ -44,6 +44,7 @@
                         th:field="${account.availableBalance}" placeholder="Available Balance">
                 </div>
                 <br>
+
                 <div class="col-3 col-sm-12">
                     <label class="form-label" for="pendingBalance">Pending Balance:</label>
                 </div>
@@ -53,25 +54,42 @@
                 </div>
                 <br>
 
-                <div class="ui labeled input field">
-                    <div class="ui label" for="openDate">Open Date:</div>
-                    <input type="date" id="open_date" name="open_date" th:field="${account.openDate}"
+                <div class="col-3 col-sm-12">
+                    <label class="form-label" for="openDate">Open Date:</label>
+                </div>
+                <div class="col-9 col-sm-12">
+                    <input class="form-input" type="date" id="open_date" name="open_date" th:field="${account.openDate}"
                         placeholder="Open Date">
-                </div><br>
-                <div class="ui labeled input field">
-                    <div class="ui label" for="lastActivityDate">Last Activity Date:</div>
-                    <input type="date" id="last_activity_date" name="last_activity_date"
+                </div>
+                <br>
+
+                <div class="col-3 col-sm-12">
+                    <label class="form-label" for="lastActivityDate">Last Activity Date:</label>
+                </div>
+                <div class="col-9 col-sm-12">
+                    <input class="form-input" type="date" id="last_activity_date" name="last_activity_date"
                         th:field="${account.lastActivityDate}" placeholder="Last Activity Date">
-                </div><br>
-                <div class="ui labeled input field">
-                    <div class="ui label" for="status">Status:</div>
-                    <input type="text" id="status" name="status" th:field="${account.status}" placeholder="Status">
-                </div><br>
-                <div class="ui labeled input field">
-                    <div class="ui label" for="customerID">Customer ID:</div>
-                    <input type="text" id="customer_id" name="customer_id" th:field="${account.customer.id}"
-                        placeholder="Customer ID">
-                </div><br>
+                </div>
+                <br>
+
+                <div class="col-3 col-sm-12">
+                    <label class="form-label" for="status">Status:</label>
+                </div>
+                <div class="col-9 col-sm-12">
+                    <input class="form-input" type="text" id="status" name="status" th:field="${account.status}"
+                        placeholder="Status">
+                </div>
+                <br>
+
+                <div class="col-3 col-sm-12">
+                    <label class="form-label" for="customerID">Customer ID:</label>
+                </div>
+                <div class="col-9 col-sm-12">
+                    <input class="form-input" type="text" id="customer_id" name="customer_id"
+                        th:field="${account.customer.id}" placeholder="Customer ID">
+                </div>
+                <br>
+
                 <div class="ui labeled input field">
                     <div class="ui label" for="branch">Branch:</div>
                     <input list="branches" id="branch" name="branches" th:field="${account.branch.name}"
@@ -83,11 +101,16 @@
                         <option value="South NH">
                     </datalist>
                 </div><br>
-                <div class="ui labeled input field">
-                    <div class="ui label" for="employeeID">Employee ID:</div>
-                    <input type="text" id="employee_id" name="employee_id" th:field="${account.employee.id}"
-                        placeholder="Employee ID">
-                </div><br>
+
+                <div class="col-3 col-sm-12">
+                    <label class="form-label" for="employeeID">Employee ID:</label>
+                </div>
+                <div class="col-9 col-sm-12">
+                    <input class="form-input" type="text" id="employee_id" name="employee_id"
+                        th:field="${account.employee.id}" placeholder="Employee ID">
+                </div>
+                <br>
+
                 <div class="ui labeled input field">
                     <div class="ui label" for="product">Product:</div>
                     <input list="products" name="product" id="product" th:field="${account.product.name}"
