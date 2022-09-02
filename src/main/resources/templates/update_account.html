@@ -5,79 +5,141 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Update Account</title>
-	<link type="text/css" rel="stylesheet" th:href="@{/css/semantic.css}" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
 </head>
 
 <body>
+	<header>
+		<nav class="bg-secondary navbar-center">
+			<ul class="tab tab-block">
+				<li class="tab-item">
+					<a class="text-primary" th:href="@{/accounts}">Accounts</a>
+				</li>
+				<li class="tab-item">
+					<a class="text-primary" th:href="@{/transactions}">Transactions</a>
+				</li>
+				<li class="tab-item">
+					<a class="text-primary" th:href="@{/employees}">Employees</a>
+				</li>
+				<li class="tab-item">
+					<a class="text-primary" th:href="@{/customers}">Customers</a>
+				</li>
+				<li class="tab-item">
+					<a class="text-primary" th:href="@{/products}">Products</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
 	<div id="update_account">
-		<form class="ui equal width form" th:action="@{/accounts/{id} (id=${account.id})}" th:object="${account}"
+		<form class="form-horizontal m-2 pt-3" th:action="@{/accounts/{id} (id=${account.id})}" th:object="${account}"
 			method="POST">
-			<div class="ui labeled input disabled field">
-				<div class="ui label" for="accountID"> Account ID: </div>
-				<input type="text" id="account_id" name="account_id" th:field="${account.id}" placeholder="Account ID"
-					readonly>
-			</div><br>
-			<div class="ui labeled input field">
-				<div class="ui label" for="availableBalance">Available Balance: </div>
-				<input type="text" id="availableBalance" name="availableBalance" th:field="${account.availableBalance}"
-					placeholder="Available Balance"><br>
-			</div><br>
-			<div class="ui labeled input field">
-				<div class="ui label" for="pendingBalance">Pending Balance:</div>
-				<input type="text" id="pending_balance" name="pending_balance" th:field="${account.pendingBalance}"
-					placeholder="Pending Balance">
-			</div><br>
-			<div class="ui labeled input disabled field">
-				<div class="ui label" for="openDate">Open Date:</div>
-				<input type="date" id="open_date" name="open_date" th:field="${account.openDate}"
-					placeholder="Open Date" readonly>
-			</div><br>
-			<div class="ui labeled input field">
-				<div class="ui label" for="lastActivityDate">Last Activity Date:</div>
-				<input type="date" id="last_activity_date" name="last_activity_date"
-					th:field="${account.lastActivityDate}" placeholder="Last Activity Date">
-			</div><br>
-			<div class="ui labeled input disabled field">
-				<div class="ui label" for="customerID">Customer ID:</div>
-				<input type="text" id="customer_id" name="customer_id" th:field="${account.customer.id}"
-					placeholder="Customer ID" readonly>
-			</div><br>
-			<div class="ui labeled input disabled field">
-				<div class="ui label" for="branch">Branch:</div>
-				<input list="branches" id="branches" name="branches" th:field="${account.branch.name}"
-					placeholder="Branch name" readonly>
-				<datalist>
-					<option value="Headquarters"></option>
-					<option value="Woburn Branch"></option>
-					<option value="Quincy Branch"></option>
-					<option value="South NH"></option>
-				</datalist>
-			</div><br>
-			<div class="ui labeled input disabled field">
-				<div class="ui label" for="employeeID">Employee ID:</div>
-				<input type="text" id="employee_id" name="employee_id" th:field="${account.employee.id}"
-					placeholder="Employee ID" readonly>
-			</div><br>
-			<div class="ui labeled input disabled field">
-				<div class="ui label" for="product">Product:</div>
-				<input list="products" name="product" id="product" th:field="${account.product.name}" readonly
-					placeholder="Product">
-				<datalist id="products">
-					<option value="Auto Loan">
-					<option value="Business Line of Credit">
-					<option value="Certificate of Deposit">
-					<option value="Checking Account">
-					<option value="Money Market Account">
-					<option value="Home Mortgage">
-					<option value="Savings Account">
-					<option value="Small Business Loan">
-				</datalist>
-			</div><br>
-			<button class="ui primary button" type="submit">Update</button>
+			<h2 class="text-center">Update Existing Account</h2>
+			<div class="divider"></div>
+			<br>
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+					<label class="form-label" for="accountID"> Account ID: </label>
+				</div>
+				<div class="col-9 col-sm-12">
+					<input class="form-input disabled" type="text" id="account_id" name="account_id"
+						th:field="${account.id}" placeholder="Account ID" readonly>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+					<label class="form-label" for="availableBalance">Available Balance: </label>
+				</div>
+				<div class="col-9 col-sm-12">
+					<input class="form-input" type="number" id="availableBalance" name="availableBalance"
+						th:field="${account.availableBalance}" placeholder="Available Balance">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+					<label class="form-label" for="pendingBalance">Pending Balance:</label>
+				</div>
+				<div class="col-9 col-sm-12">
+					<input class="form-input" type="number" id="pending_balance" name="pending_balance"
+						th:field="${account.pendingBalance}" placeholder="Pending Balance">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+					<label class="form-label" for="openDate">Open Date:</label>
+				</div>
+				<div class="col-9 col-sm-12">
+					<input class="form-input disabled" type="date" id="open_date" name="open_date"
+						th:field="${account.openDate}" placeholder="Open Date" readonly>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+					<label class="form-label" for="lastActivityDate">Last Activity Date:</label>
+				</div>
+				<div class="col-9 col-sm-12">
+					<input class="form-input" type="date" id="last_activity_date" name="last_activity_date"
+						th:field="${account.lastActivityDate}" placeholder="Last Activity Date">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+					<label class="form-label" for="customerID">Customer ID:</label>
+				</div>
+				<div class="col-9 col-sm-12">
+					<input class="form-input disabled" type="text" id="customer_id" name="customer_id"
+						th:field="${account.customer.id}" placeholder="Customer ID" readonly>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+					<label class="form-label" for="branch">Branch:</label>
+				</div>
+				<div class="col-9 col-sm-12">
+					<input class="form-input disabled" list="branches" id="branches" name="branches"
+						th:field="${account.branch.name}" placeholder="Branch name" readonly>
+					<datalist>
+						<option value="Headquarters"></option>
+						<option value="Woburn Branch"></option>
+						<option value="Quincy Branch"></option>
+						<option value="South NH"></option>
+					</datalist>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+					<label class="form-label" for="employeeID">Employee ID:</label>
+				</div>
+				<div class="col-9 col-sm-12">
+					<input class="form-input disabled" type="text" id="employee_id" name="employee_id"
+						th:field="${account.employee.id}" placeholder="Employee ID" readonly>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+					<label class="form-label" for="product">Product:</label>
+				</div>
+				<div class="col-9 col-sm-12">
+					<input class="form-input disabled" list="products" name="product" id="product"
+						th:field="${account.product.name}" readonly placeholder="Product">
+					<datalist id="products">
+						<option value="Auto Loan">
+						<option value="Business Line of Credit">
+						<option value="Certificate of Deposit">
+						<option value="Checking Account">
+						<option value="Money Market Account">
+						<option value="Home Mortgage">
+						<option value="Savings Account">
+						<option value="Small Business Loan">
+					</datalist>
+				</div>
+			</div>
+			<button class="btn btn-primary btn-block" type="submit">Update</button>
 		</form>
 	</div>
-	<script type="text/javascript" th:src="@{/js/semantic.js}"></script>
 </body>
 
 </html>
