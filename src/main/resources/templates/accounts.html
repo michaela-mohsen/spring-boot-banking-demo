@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Accounts</title>
-	<link type="text/css" rel="stylesheet" th:href="@{/css/styles.css}">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
@@ -14,7 +13,7 @@
 
 <body>
 	<header>
-		<nav class="bg-secondary">
+		<nav class="bg-secondary navbar-center">
 			<ul class="tab tab-block">
 				<li class="tab-item active">
 					<a class="text-primary" th:href="@{/accounts}">Accounts</a>
@@ -39,7 +38,7 @@
 			<h1 class="title_header">All Accounts</h1>
 		</div>
 		<div>
-			<a class="update_button" th:href="@{/accounts/new}">Create New Account</a>
+			<a class="btn" th:href="@{/accounts/new}">Create New Account</a>
 		</div>
 		<div>
 			<table>
@@ -71,8 +70,8 @@
 						<td class="text-center" th:text="${account.product.name}"></td>
 						<td>
 							<div>
-								<a class="update_button" th:href="@{/accounts/update/{id}(id=${account.id})}">Update</a>
-								<a class="delete_button" th:href="@{/accounts/{id}(id=${account.id})}">Delete</a>
+								<a class="btn" th:href="@{/accounts/update/{id}(id=${account.id})}">Update</a>
+								<a class="btn btn-error" th:href="@{/accounts/{id}(id=${account.id})}">Delete</a>
 							</div>
 						</td>
 					</tr>
