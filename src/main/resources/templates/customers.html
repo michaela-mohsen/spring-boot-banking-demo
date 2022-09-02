@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang=en>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Customers</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="bg-secondary navbar-center">
+            <ul class="tab tab-block">
+                <li class="tab-item active">
+                    <a class="text-primary" th:href="@{/accounts}">Accounts</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/transactions}">Transactions</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/employees}">Employees</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/customers}">Customers</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/products}">Products</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div id="businesses">
+        <div>
+            <h1 class="title_header">Customers</h1>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr class="text-center">
+                        <th>Customer ID</th>
+                        <th>Incorporation Date</th>
+                        <th>Business Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="business: ${businesses}">
+                        <td class="text-center" th:text="${business.customer.id}"></td>
+                        <td class="text-center" th:text="${business.incorpDate}"></td>
+                        <td class="text-center" th:text="${business.name}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="individuals">
+        <table>
+            <thead>
+                <tr class="text-center">
+                    <th>Customer ID</th>
+                    <th>Birth Date</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="individual: ${individuals}">
+                    <td class="text-center" th:text="${individual.customer.id}"></td>
+                    <td class="text-center" th:text="${individual.birthDate}"></td>
+                    <td class="text-center" th:text="${individual.firstName}"></td>
+                    <td class="text-center" th:text="${individual.lastName}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

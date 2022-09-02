@@ -30,7 +30,8 @@ public class Individual {
 	private String firstName;
 
 	@Column
-	@NotNull String lastName;
+	@NotNull
+	String lastName;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
@@ -57,28 +58,28 @@ public class Individual {
 		this.id = id;
 	}
 
-	public Date getIncorpDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
 
-	public void setIncorpDate(Date incorpDate) {
-		this.birthDate = incorpDate;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
-	public String getName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setName(String name) {
-		this.firstName = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getState() {
+	public String getLastName() {
 		return lastName;
 	}
 
-	public void setState(String state) {
-		this.lastName = state;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public Customer getCustomer() {
