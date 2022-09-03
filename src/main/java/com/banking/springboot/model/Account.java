@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "accounts")
 public class Account {
@@ -28,10 +30,12 @@ public class Account {
 
 	@Column
 	@NotNull
+	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date lastActivityDate;
 
 	@Column
 	@NotNull
+	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date openDate;
 
 	@Column

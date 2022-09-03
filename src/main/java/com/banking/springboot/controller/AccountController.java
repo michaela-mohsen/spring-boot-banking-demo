@@ -1,5 +1,7 @@
 package com.banking.springboot.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +33,7 @@ public class AccountController {
 	@GetMapping("/accounts/new")
 	public String createAccount(Model model) {
 		Account account = new Account();
+		model.addAttribute("localDate", LocalDate.now());
 		model.addAttribute("account", account);
 		return "create_account";
 	}
@@ -43,6 +46,7 @@ public class AccountController {
 
 	@GetMapping("/accounts/update/{id}")
 	public String updateAccountForm(@PathVariable Long id, Model model) {
+		model.addAttribute("localDate", LocalDate.now());
 		model.addAttribute("account", accountService.getAccountById(id));
 		return "update_account";
 	}
