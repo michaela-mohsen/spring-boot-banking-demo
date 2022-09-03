@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "individuals")
 public class Individual {
@@ -23,6 +25,7 @@ public class Individual {
 
 	@Column
 	@NotNull
+	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date birthDate;
 
 	@Column

@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "transactions")
 public class Transaction {
@@ -27,14 +29,17 @@ public class Transaction {
 
 	@Column
 	@NotNull
+	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date fundsAvailableDate;
 
 	@Column
 	@NotNull
+	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date date;
 
 	@Column
-	@NotNull String type;
+	@NotNull
+	String type;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "account_id")
