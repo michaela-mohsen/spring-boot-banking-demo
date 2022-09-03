@@ -97,14 +97,22 @@
 					<label class="form-label" for="branch">Branch:</label>
 				</div>
 				<div class="col-9 col-sm-12">
-					<input class="form-input disabled" list="branches" id="branches" name="branches"
-						th:field="${account.branch.name}" placeholder="Branch name" readonly>
-					<datalist>
-						<option value="Headquarters"></option>
-						<option value="Woburn Branch"></option>
-						<option value="Quincy Branch"></option>
-						<option value="South NH"></option>
-					</datalist>
+					<label class="form-radio">
+						<input type="radio" name="branch" th:field="*{branch.id}" value="1" disabled>
+						<em class="form-icon"></em>Headquarters
+					</label>
+					<label class="form-radio">
+						<input type="radio" name="branch" th:field="*{branch.id}" value="2" disabled>
+						<em class="form-icon"></em>Woburn
+					</label>
+					<label class="form-radio">
+						<input type="radio" name="branch" th:field="*{branch.id}" value="3" disabled>
+						<em class="form-icon"></em>Quincy
+					</label>
+					<label class="form-radio">
+						<input type="radio" name="branch" th:field="*{branch.id}" value="4" disabled>
+						<em class="form-icon"></em>South NH
+					</label>
 				</div>
 			</div>
 			<div class="form-group">
@@ -122,18 +130,18 @@
 					<label class="form-label" for="product">Product:</label>
 				</div>
 				<div class="col-9 col-sm-12">
-					<input class="form-input disabled" list="products" name="product" id="product"
-						th:field="${account.product.name}" readonly placeholder="Product">
-					<datalist id="products">
-						<option value="Auto Loan">
-						<option value="Business Line of Credit">
-						<option value="Certificate of Deposit">
-						<option value="Checking Account">
-						<option value="Money Market Account">
-						<option value="Home Mortgage">
-						<option value="Savings Account">
-						<option value="Small Business Loan">
-					</datalist>
+					<select class="form-select disabled" title="products" id="productList" placeholder="Product"
+						th:field="*{product.id}">
+						<option value="0">Select a product</option>
+						<option value="1">Auto Loan</option>
+						<option value="2">Business Line of Credit</option>
+						<option value="3">Certificate of Deposit</option>
+						<option value="4">Checking Account</option>
+						<option value="5">Money Market Account</option>
+						<option value="6">Home Mortgage</option>
+						<option value="7">Savings Account</option>
+						<option value="8">Small Business Loan</option>
+					</select>
 				</div>
 			</div>
 			<button class="btn btn-primary btn-block" type="submit">Update</button>
