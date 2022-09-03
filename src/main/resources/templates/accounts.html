@@ -41,7 +41,7 @@
 			<a class="btn" th:href="@{/accounts/new}">Create New Account</a>
 		</div>
 		<div>
-			<table>
+			<table class="table">
 				<thead>
 					<tr class="text-center">
 						<th>Account ID</th>
@@ -57,19 +57,19 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="account: ${accounts}">
-						<td class="text-center" th:text="${account.id}"></td>
-						<td class="text-center" th:text="${#numbers.formatDecimal(account.availableBalance, 1, 2)}">
+					<tr class="text-center" th:each="account: ${accounts}">
+						<td th:text="${account.id}"></td>
+						<td th:text="${#numbers.formatDecimal(account.availableBalance, 1, 2)}">
 						</td>
-						<td class="text-center" th:text="${#numbers.formatDecimal(account.pendingBalance, 1, 2)}"></td>
-						<td class="text-center" th:text="${#dates.format(account.openDate, 'MM-dd-yyyy')}"></td>
-						<td class="text-center" th:text="${#dates.format(account.lastActivityDate, 'MM-dd-yyyy')}"></td>
-						<td class="text-center" th:text="${account.customer.id}"></td>
-						<td class="text-center" th:text="${account.branch.name}"></td>
-						<td class="text-center" th:text="${account.employee.id}"></td>
-						<td class="text-center" th:text="${account.product.name}"></td>
+						<td th:text="${#numbers.formatDecimal(account.pendingBalance, 1, 2)}"></td>
+						<td th:text="${#dates.format(account.openDate, 'MM-dd-yyyy')}"></td>
+						<td th:text="${#dates.format(account.lastActivityDate, 'MM-dd-yyyy')}"></td>
+						<td th:text="${account.customer.id}"></td>
+						<td th:text="${account.branch.name}"></td>
+						<td th:text="${account.employee.id}"></td>
+						<td th:text="${account.product.name}"></td>
 						<td>
-							<div>
+							<div class="btn-group">
 								<a class="btn" th:href="@{/accounts/update/{id}(id=${account.id})}">Update</a>
 								<a class="btn btn-error" th:href="@{/accounts/{id}(id=${account.id})}">Delete</a>
 							</div>
