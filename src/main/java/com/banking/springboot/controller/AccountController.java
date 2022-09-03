@@ -40,7 +40,7 @@ public class AccountController {
 		accountService.saveAccount(account);
 		return "redirect:/accounts";
 	}
-	
+
 	@GetMapping("/accounts/update/{id}")
 	public String updateAccountForm(@PathVariable Long id, Model model) {
 		model.addAttribute("account", accountService.getAccountById(id));
