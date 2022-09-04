@@ -77,6 +77,18 @@
 					</tr>
 				</tbody>
 			</table>
+			<br>
+			<div class="divider"></div>
+			<div th:if="${totalPages > 1}" class="text-center">
+				<ul class="pagination">
+					<li class="page-item column col-sm-12">
+						<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+							<a th:if="${currentPage != i}" th:href="@{'/accounts/' + ${i}}">[[${i}]]</a>
+							<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+						</span>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 
