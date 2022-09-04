@@ -1,7 +1,9 @@
 package com.banking.springboot.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +28,7 @@ public class AccountController {
 
 	@GetMapping("/accounts")
 	public String listAccounts(Model model) {
-		model.addAttribute("accounts", accountService.getAllAccounts());
-		return "accounts";
+		return findPaginated(1, model);
 	}
 
 	@GetMapping("/accounts/new")
@@ -72,6 +73,19 @@ public class AccountController {
 	public String deleteAccount(@PathVariable Long id) {
 		accountService.deleteAccountById(id);
 		return "redirect:/accounts";
+	}
+
+	@GetMapping("/accounts/{pageNo}")
+	public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+		int pageSize = 10;
+
+		Page<Account> page = accountService.findPaginated(pageNo, pageSize);
+		List<Account> listAccounts = page.getContent();
+		model.addAttribute("currentPage", pageNo);
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("listTransactions", listAccounts);
+		return "accounts";
 	}
 
 }
