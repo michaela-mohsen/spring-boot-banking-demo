@@ -3,6 +3,9 @@ package com.banking.springboot.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.banking.springboot.model.Account;
@@ -43,6 +46,12 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Account saveAccount(Account account) {
 		return accountRepository.save(account);
+	}
+
+	@Override
+	public Page<Account> findPaginated(int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return this.accountRepository.findAll(pageable);
 	}
 
 }
