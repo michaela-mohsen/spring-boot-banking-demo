@@ -2,6 +2,7 @@ package com.banking.springboot.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.banking.springboot.model.Account;
@@ -17,5 +18,7 @@ public interface AccountService {
 	void deleteAccountById(Long id);
 
 	Account saveAccount(Account account);
+
+	Page<Account> findPaginated(int pageNo, int pageSize);
 
 }
