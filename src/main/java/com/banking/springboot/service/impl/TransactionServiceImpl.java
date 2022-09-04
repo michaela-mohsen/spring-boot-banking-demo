@@ -3,6 +3,9 @@ package com.banking.springboot.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.banking.springboot.model.Transaction;
@@ -14,7 +17,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 	@Autowired
 	private TransactionRepository transactionRepository;
-	
+
 	public TransactionServiceImpl(TransactionRepository transactionRepository) {
 		super();
 		this.transactionRepository = transactionRepository;
@@ -32,7 +35,13 @@ public class TransactionServiceImpl implements TransactionService {
 
 	@Override
 	public void deleteTransactionById(Long id) {
-		transactionRepository.deleteById(id);		
+		transactionRepository.deleteById(id);
+	}
+
+	@Override
+	public Page<Transaction> findPaginated(int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return this.transactionRepository.findAll(pageable);
 	}
 
 }
