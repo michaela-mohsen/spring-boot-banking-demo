@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang=en>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Transactions</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="bg-secondary navbar-center">
+            <ul class="tab tab-block">
+                <li class="tab-item active">
+                    <a class="text-primary" th:href="@{/accounts}">Accounts</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/transactions}">Transactions</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/employees}">Employees</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/customers}">Customers</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/products}">Products</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div id="transactions">
+        <h1 class="text-center">Transactions</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Account ID</th>
+                    <th>Customer ID</th>
+                    <th>Amount</th>
+                    <th>Pending Balance</th>
+                    <th>Transaction Date</th>
+                    <th>Funds Available Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="transaction : ${listTransactions}">
+                    <td th:text="${transaction.account.id}"></td>
+                    <td th:text="${transaction.customer.id}"></td>
+                    <td th:text="${transaction.amount}"></td>
+                    <td th:text="${transaction.account.pendingBalance}"></td>
+                    <td th:text="${transaction.date}"></td>
+                    <td th:text="${transaction.fundsAvailableDate}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
