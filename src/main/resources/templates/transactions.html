@@ -50,10 +50,10 @@
                 <tr th:each="transaction : ${listTransactions}">
                     <td th:text="${transaction.account.id}"></td>
                     <td th:text="${transaction.account.customer.id}"></td>
-                    <td th:text="${transaction.amount}"></td>
-                    <td th:text="${transaction.account.pendingBalance}"></td>
-                    <td th:text="${transaction.date}"></td>
-                    <td th:text="${transaction.fundsAvailableDate}"></td>
+                    <td th:text="${#numbers.formatDecimal(transaction.amount, 1, 2)}"></td>
+                    <td th:text="${#numbers.formatDecimal(transaction.account.pendingBalance, 1, 2)}"></td>
+                    <td th:text="${#dates.format(transaction.date, 'MM-dd-yyyy')}"></td>
+                    <td th:text="${#dates.format(transaction.fundsAvailableDate, 'MM-dd-yyyy')}"></td>
                 </tr>
             </tbody>
         </table>
