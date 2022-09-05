@@ -84,7 +84,7 @@ public class AccountController {
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
-		model.addAttribute("listTransactions", listAccounts);
+		model.addAttribute("listAccounts", listAccounts);
 		return "accounts";
 	}
 
