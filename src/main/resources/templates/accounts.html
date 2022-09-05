@@ -57,7 +57,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="text-center" th:each="account: ${accounts}">
+					<tr class="text-center" th:each="account: ${listAccounts}">
 						<td th:text="${account.id}"></td>
 						<td th:text="${#numbers.formatDecimal(account.availableBalance, 1, 2)}">
 						</td>
