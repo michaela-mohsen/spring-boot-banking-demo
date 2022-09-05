@@ -19,6 +19,6 @@ public interface AccountService {
 
 	Account saveAccount(Account account);
 
-	Page<Account> findPaginated(int pageNo, int pageSize);
+	Page<Account> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 
 }
