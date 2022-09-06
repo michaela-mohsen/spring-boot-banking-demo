@@ -44,15 +44,29 @@
 			<table class="table">
 				<thead>
 					<tr class="text-center">
-						<th>Account ID</th>
+						<th>
+							<a
+								th:href="@{'/accounts/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">Account
+								ID</a>
+						</th>
 						<th>Available Balance</th>
 						<th>Pending Balance</th>
 						<th>Open Date</th>
 						<th>Last Activity Date</th>
-						<th>Customer ID</th>
-						<th>Branch name</th>
-						<th>Employee ID</th>
-						<th>Product</th>
+						<th>
+							<a
+								th:href="@{'/accounts/' + ${currentPage} + '?sortField=customer&sortDir=' + ${reverseSortDir}}">Customer
+								ID</a>
+						</th>
+						<th><a
+								th:href="@{'/accounts/' + ${currentPage} + '?sortField=branch&sortDir=' + ${reverseSortDir}}">Branch
+								Name</a></th>
+						<th><a
+								th:href="@{'/accounts/' + ${currentPage} + '?sortField=employee&sortDir=' + ${reverseSortDir}}">Employee
+								ID</a></th>
+						<th><a
+								th:href="@{'/accounts/' + ${currentPage} + '?sortField=product&sortDir=' + ${reverseSortDir}}">Product
+							</a></th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -83,7 +97,8 @@
 				<ul class="pagination">
 					<li class="page-item column col-sm-12">
 						<span th:each="i: ${#numbers.sequence(1, totalPages)}">
-							<a th:if="${currentPage != i}" th:href="@{'/accounts/' + ${i}}">[[${i}]]</a>
+							<a th:if="${currentPage != i}"
+								th:href="@{'/accounts/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
 							<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
 						</span>
 					</li>

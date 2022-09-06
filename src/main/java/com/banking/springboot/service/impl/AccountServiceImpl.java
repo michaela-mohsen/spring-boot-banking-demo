@@ -12,6 +12,8 @@ import com.banking.springboot.model.Account;
 import com.banking.springboot.repository.AccountRepository;
 import com.banking.springboot.service.AccountService;
 
+import org.springframework.data.domain.Sort;
+
 @Service
 public class AccountServiceImpl implements AccountService {
 
@@ -49,8 +51,11 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Page<Account> findPaginated(int pageNo, int pageSize) {
-		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+	public Page<Account> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
+				: Sort.by(sortField).descending();
+
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
 		return this.accountRepository.findAll(pageable);
 	}
 
