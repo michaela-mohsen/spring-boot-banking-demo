@@ -16,5 +16,5 @@ public interface TransactionService {
 
 	void deleteTransactionById(Long id);
 
-	Page<Transaction> findPaginated(int pageNo, int pageSize);
+	Page<Transaction> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

@@ -38,11 +38,16 @@
         <table class="table text-center">
             <thead>
                 <tr>
-                    <th>Account ID</th>
+                    <th><a
+                            th:href="@{'/transactions/' + ${currentPage} + '?sortField=account&sortDir=' + ${reverseSortDir}}">Account
+                            ID</a></th>
                     <th>Customer ID</th>
                     <th>Amount</th>
                     <th>Pending Balance</th>
-                    <th>Transaction Date</th>
+                    <th><a
+                            th:href="@{'/transactions/' + ${currentPage} + '?sortField=date&sortDir=' + ${reverseSortDir}}">Transaction
+                            Date
+                        </a></th>
                     <th>Funds Available Date</th>
                 </tr>
             </thead>
@@ -63,7 +68,8 @@
             <ul class="pagination">
                 <li class="page-item column col-sm-12">
                     <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                        <a th:if="${currentPage != i}" th:href="@{'/transactions/' + ${i}}">[[${i}]]</a>
+                        <a th:if="${currentPage != i}"
+                            th:href="@{'/transactions/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
                         <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
                     </span>
                 </li>
