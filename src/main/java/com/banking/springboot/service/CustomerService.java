@@ -23,5 +23,9 @@ public interface CustomerService {
 
 	List<Individual> getAllIndividuals();
 
+	Individual saveIndividual(Individual individual);
+
 	List<Business> getAllBusinesses();
+
+	Business saveBusiness(Business business);
 }

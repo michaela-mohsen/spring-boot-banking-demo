@@ -67,4 +67,14 @@ public class CustomerServiceImpl implements CustomerService {
 		return businessRepository.findAll();
 	}
 
+	@Override
+	public Individual saveIndividual(Individual individual) {
+		return individualRepository.save(individual);
+	}
+
+	@Override
+	public Business saveBusiness(Business business) {
+		return businessRepository.save(business);
+	}
+
 }
