@@ -3,6 +3,8 @@ package com.banking.springboot.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.banking.springboot.model.Business;
@@ -38,5 +40,24 @@ public class CustomerController {
         Business business = new Business();
         model.addAttribute("business", business);
         return "create_business";
+    }
+
+    @GetMapping("/customers/new")
+    public String createCustomer(Model model) {
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
+        return "create_customer";
+    }
+
+    @PostMapping("/customers/individuals")
+    public String saveIndividual(@ModelAttribute("individual") Individual individual) {
+        customerService.saveIndividual(individual);
+        return "redirect:/customers";
+    }
+
+    @PostMapping("/customers/businesses")
+    public String saveBusiness(@ModelAttribute("business") Business business) {
+        customerService.saveBusiness(business);
+        return "redirect:/customers";
     }
 }
