@@ -50,6 +50,17 @@ public class CustomerController {
         return "create_customer";
     }
 
+    @GetMapping("/customers/save")
+    public String saveNewCustomer(Model model) {
+        Individual individual = new Individual();
+        Business business = new Business();
+        Customer customer = new Customer();
+        model.addAttribute("individual", individual);
+        model.addAttribute("business", business);
+        model.addAttribute("customer", customer);
+        return "save_customer";
+    }
+
     @PostMapping("/customers/individuals")
     public String saveIndividual(@ModelAttribute("individual") Individual individual) {
         customerService.saveIndividual(individual);
@@ -60,5 +71,11 @@ public class CustomerController {
     public String saveBusiness(@ModelAttribute("business") Business business) {
         customerService.saveBusiness(business);
         return "redirect:/customers";
+    }
+
+    @PostMapping("/customers/save")
+    public String saveCustomer(@ModelAttribute("customer") Customer customer) {
+        customerService.saveCustomer(customer);
+        return "redirect:/customers/save";
     }
 }
