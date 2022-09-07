@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang=en>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Customers</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="bg-secondary navbar-center">
+            <ul class="tab tab-block">
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/accounts}">Accounts</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/transactions}">Transactions</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/employees}">Employees</a>
+                </li>
+                <li class="tab-item active">
+                    <a class="text-primary" th:href="@{/customers}">Customers</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/products}">Products</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div>
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a th:href="@{/customers/new}">Create Customer</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/customers/save}">Individual or Business</a>
+            </li>
+        </ul>
+        <p>The new customer with id <strong th:text="${customer.id}"></strong> has been saved.</p>
+        <p>Next, choose to make an <a th:href="@{/customers/individuals/new}">individual profile</a> or a <a
+                th:href="@{/customers/businesses/new}">business profile</a>.</p>
+    </div>
+</body>
+
+</html>

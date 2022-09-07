@@ -33,10 +33,20 @@
             </ul>
         </nav>
     </header>
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a th:href="@{/customers/new}">Create Customer</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a th:href="@{/customers/save}">Individual or Business</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a th:href="@{/customers/individuals/new}">New Individual</a>
+        </li>
+    </ul>
     <div id="new_individual">
-        <form class="form-horizontal m-2 pt-3" th:action="@{/customers/individuals}" th:object="${individual}"
-            method="POST">
-            <h2 class="text-center">Create New Account</h2>
+        <form class="form-horizontal m-2 pt-3" th:action="@{/customers}" th:object="${individual}" method="POST">
+            <h2 class="text-center">Create New Individual</h2>
             <div class="divider"></div>
             <br>
             <div class="form-group">

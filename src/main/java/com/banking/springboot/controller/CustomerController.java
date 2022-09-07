@@ -50,32 +50,20 @@ public class CustomerController {
         return "create_customer";
     }
 
-    @GetMapping("/customers/save")
-    public String saveNewCustomer(Model model) {
-        Individual individual = new Individual();
-        Business business = new Business();
-        Customer customer = new Customer();
+    @PostMapping("/customers")
+    public String saveIndividual(@ModelAttribute("individual") Individual individual,
+            @ModelAttribute("business") Business business, Model model) {
         model.addAttribute("individual", individual);
         model.addAttribute("business", business);
-        model.addAttribute("customer", customer);
-        return "save_customer";
-    }
-
-    @PostMapping("/customers/individuals")
-    public String saveIndividual(@ModelAttribute("individual") Individual individual) {
         customerService.saveIndividual(individual);
-        return "redirect:/customers";
-    }
-
-    @PostMapping("/customers/businesses")
-    public String saveBusiness(@ModelAttribute("business") Business business) {
         customerService.saveBusiness(business);
         return "redirect:/customers";
     }
 
     @PostMapping("/customers/save")
-    public String saveCustomer(@ModelAttribute("customer") Customer customer) {
+    public String saveCustomer(@ModelAttribute("customer") Customer customer, Model model) {
         customerService.saveCustomer(customer);
-        return "redirect:/customers/save";
+        model.addAttribute("customer", customer);
+        return "save_customer";
     }
 }

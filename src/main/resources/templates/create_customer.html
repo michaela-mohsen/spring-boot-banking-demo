@@ -33,6 +33,11 @@
             </ul>
         </nav>
     </header>
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a th:href="@{/customers/new}">Create Customer</a>
+        </li>
+    </ul>
     <div id="new_customer">
         <form class="form-horizontal m-2 pt-3" th:action="@{/customers/save}" th:object="${customer}" method="POST">
             <h2 class="text-center">Create New Customer</h2>
