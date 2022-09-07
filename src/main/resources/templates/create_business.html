@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang=en>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Customers</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="bg-secondary navbar-center">
+            <ul class="tab tab-block">
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/accounts}">Accounts</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/transactions}">Transactions</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/employees}">Employees</a>
+                </li>
+                <li class="tab-item active">
+                    <a class="text-primary" th:href="@{/customers}">Customers</a>
+                </li>
+                <li class="tab-item">
+                    <a class="text-primary" th:href="@{/products}">Products</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a th:href="@{/customers/new}">Create Customer</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a th:href="@{/customers/save}">Individual or Business</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a th:href="@{/customers/businesses/new}">Create New Business</a>
+        </li>
+    </ul>
+    <div id="new_business">
+        <form class="form-horizontal m-2 pt-3" th:action="@{/customers}" th:object="${business}" method="POST">
+            <h2 class="text-center">Create New Business</h2>
+            <div class="divider"></div>
+            <br>
+            <div class="form-group">
+                <div class="col-3 col-sm-12">
+                    <label class="form-label" for="firstName">Incorporation Date </label>
+                </div>
+                <div class="col-9 col-sm-12">
+                    <input class="form-input" type="date" id="incorpDate" name="incorpDate"
+                        th:field="${business.incorpDate}" placeholder="Incorporation Date">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-3 col-sm-12">
+                    <label class="form-label" for="name">Business name: </label>
+                </div>
+                <div class="col-9 col-sm-12">
+                    <input class="form-input" type="text" id="name" name="name" th:field="${business.name}"
+                        placeholder="Business name">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-3 col-sm-12">
+                    <label class="form-label" for="customer">Customer ID: </label>
+                </div>
+                <div class="col-9 col-sm-12">
+                    <input class="form-input" type="number" id="customer" name="customer"
+                        th:field="${business.customer.id}" placeholder="Customer ID">
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-primary btn-block" type="submit">Create</button>
+        </form>
+    </div>
