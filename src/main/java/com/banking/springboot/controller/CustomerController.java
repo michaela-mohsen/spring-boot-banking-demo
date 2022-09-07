@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.banking.springboot.model.Business;
+import com.banking.springboot.model.Customer;
 import com.banking.springboot.model.Individual;
 import com.banking.springboot.service.impl.CustomerServiceImpl;
 
