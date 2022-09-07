@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.banking.springboot.model.Business;
+import com.banking.springboot.model.Individual;
 import com.banking.springboot.service.impl.CustomerServiceImpl;
 
 @Controller
@@ -22,5 +24,19 @@ public class CustomerController {
         model.addAttribute("individuals", customerService.getAllIndividuals());
         model.addAttribute("businesses", customerService.getAllBusinesses());
         return "customers";
+    }
+
+    @GetMapping("/customers/individuals/new")
+    public String createIndividual(Model model) {
+        Individual individual = new Individual();
+        model.addAttribute("individual", individual);
+        return "create_individual";
+    }
+
+    @GetMapping("/customers/businesses/new")
+    public String createBusiness(Model model) {
+        Business business = new Business();
+        model.addAttribute("business", business);
+        return "create_business";
     }
 }
