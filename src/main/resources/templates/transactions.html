@@ -35,9 +35,9 @@
     </header>
     <div id="transactions">
         <h1 class="text-center">Transactions</h1>
-        <table class="table text-center">
+        <table class="table text-center table-striped table-hover table-scroll">
             <thead>
-                <tr>
+                <tr class="text-center text-upercase">
                     <th><a
                             th:href="@{'/transactions/' + ${currentPage} + '?sortField=account&sortDir=' + ${reverseSortDir}}">Account
                             ID</a></th>
@@ -52,7 +52,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="transaction : ${listTransactions}">
+                <tr class="text-center" th:each="transaction : ${listTransactions}">
                     <td th:text="${transaction.account.id}"></td>
                     <td th:text="${transaction.account.customer.id}"></td>
                     <td th:text="${#numbers.formatDecimal(transaction.amount, 1, 2)}"></td>
