@@ -1,9 +1,7 @@
 package com.banking.springboot.controller;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.banking.springboot.model.Account;
 import com.banking.springboot.service.impl.AccountServiceImpl;
@@ -29,7 +26,8 @@ public class AccountController {
 
 	@GetMapping("/accounts")
 	public String listAccounts(Model model) {
-		return findPaginated(1, "id", "asc", model);
+		model.addAttribute("accounts", accountService.getAllAccounts());
+		return "accounts";
 	}
 
 	@GetMapping("/accounts/new")
@@ -74,23 +72,6 @@ public class AccountController {
 	public String deleteAccount(@PathVariable Long id) {
 		accountService.deleteAccountById(id);
 		return "redirect:/accounts";
-	}
-
-	@GetMapping("/accounts/{pageNo}")
-	public String findPaginated(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
-			@RequestParam("sortDir") String sortDir, Model model) {
-		int pageSize = 10;
-
-		Page<Account> page = accountService.findPaginated(pageNo, pageSize, sortField, sortDir);
-		List<Account> listAccounts = page.getContent();
-		model.addAttribute("currentPage", pageNo);
-		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("totalItems", page.getTotalElements());
-		model.addAttribute("sortField", sortField);
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-		model.addAttribute("listAccounts", listAccounts);
-		return "accounts";
 	}
 
 }
