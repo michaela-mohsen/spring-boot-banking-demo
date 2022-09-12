@@ -7,7 +7,7 @@ COPY src /build/src/
 RUN mvn clean package
 COPY target/spring-boot-banking-demo-${VERSION}.jar target/application.jar
 
-FROM openjdk:11-jdk-slim
+FROM amazoncorretto:8-al2-jdk
 WORKDIR /app/
 
 COPY --from=BUILDER /build/target/application.jar /app/
