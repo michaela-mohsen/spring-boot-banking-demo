@@ -40,6 +40,29 @@
     </div>
     <div class="divider"></div>
 
+    <div>
+        <div class="chip">
+            <a th:href="@{'/employees/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}"
+                role="button">Last Name</a>
+        </div>
+        <div class="chip">
+            <a th:href="@{'/employees/' + ${currentPage} + '?sortField=title&sortDir=' + ${reverseSortDir}}"
+                role="button">Title</a>
+        </div>
+        <div class="chip">
+            <a th:href="@{'/employees/' + ${currentPage} + '?sortField=branch&sortDir=' + ${reverseSortDir}}"
+                role="button">Branch</a>
+        </div>
+        <div class="chip">
+            <a th:href="@{'/employees/' + ${currentPage} + '?sortField=startDate&sortDir=' + ${reverseSortDir}}"
+                role="button">Start Date</a>
+        </div>
+        <div class="chip">
+            <a th:href="@{'/employees/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}}"
+                role="button">Reset</a>
+        </div>
+    </div>
+
     <div class="container">
         <div class="columns">
             <div class="card column col-6" th:each="employee: ${listEmployees}">
