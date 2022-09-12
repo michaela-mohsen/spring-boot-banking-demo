@@ -37,23 +37,163 @@
 		<input type="radio" id="tag-0" class="filter-tag" name="filter-radio" hidden checked>
 		<input type="radio" id="tag-1" class="filter-tag" name="filter-radio" hidden>
 		<input type="radio" id="tag-2" class="filter-tag" name="filter-radio" hidden>
+		<input type="radio" id="tag-3" class="filter-tag" name="filter-radio" hidden>
+		<input type="radio" id="tag-4" class="filter-tag" name="filter-radio" hidden>
+		<input type="radio" id="tag-5" class="filter-tag" name="filter-radio" hidden>
+		<input type="radio" id="tag-6" class="filter-tag" name="filter-radio" hidden>
 
 		<div class="filter-nav">
-			<label class="chip" for="tag-0">All</label>
-			<label class="chip" for="tag-1">Action</label>
-			<label class="chip" for="tag-2">Roleplaying</label>
+			<label class="chip" for="tag-0">All Products</label>
+			<label class="chip" for="tag-1">Business Line of Credit</label>
+			<label class="chip" for="tag-2">Certificate of Deposit</label>
+			<label class="chip" for="tag-3">Checking Account</label>
+			<label class="chip" for="tag-4">Money Market Account</label>
+			<label class="chip" for="tag-5">Savings Account</label>
+			<label class="chip" for="tag-6">Small Business Loan</label>
 		</div>
 
-		<div class="filter-body">
-			<div class="filter-item card" data-tag="tag-1">
-				<!-- Filter item content -->
+		<div class="filter-body" th:each="account: ${listAccounts}">
+			<div class="filter-item card" data-tag="tag-1" th:if="${account.product.id} eq '2'">
+				<div class="card-header">
+					<div class="card-title text-bold" th:text="${account.id}">Account ID</div>
+					<div class="card-subtitle text-gray" th:text="'Customer ID: ' + ${account.customer.id}">Customer ID
+					</div>
+				</div>
+				<div class="card-body">
+					<span th:text="${#numbers.formatDecimal(account.availableBalance, 1, 2)}">
+					</span>
+					<span th:text="${#numbers.formatDecimal(account.pendingBalance, 1, 2)}"></span>
+					<span th:text="${#dates.format(account.openDate, 'MM-dd-yyyy')}"></span>
+					<span th:text="${#dates.format(account.lastActivityDate, 'MM-dd-yyyy')}"></span>
+					<span th:text="${account.branch.name}"></span>
+					<span th:text="${account.employee.id}"></span>
+					<span th:text="${account.product.name}"></span>
+				</div>
+				<div class="card-footer">
+					<div class="btn-group">
+						<a class="btn" th:href="@{/accounts/update/{id}(id=${account.id})}">Update</a>
+						<a class="btn btn-error" th:href="@{/accounts/{id}(id=${account.id})}">Delete</a>
+					</div>
+				</div>
 			</div>
-			<div class="filter-item card" data-tag="tag-2">
-				<!-- Filter item content -->
+			<div class="filter-item card" data-tag="tag-2" th:if="${account.product.id} eq '3'">
+				<div class="card-header">
+					<div class="card-title text-bold" th:text="${account.id}">Account ID</div>
+					<div class="card-subtitle text-gray" th:text="'Customer ID: ' + ${account.customer.id}">Customer ID
+					</div>
+				</div>
+				<div class="card-body">
+					<span th:text="${#numbers.formatDecimal(account.availableBalance, 1, 2)}">
+					</span>
+					<span th:text="${#numbers.formatDecimal(account.pendingBalance, 1, 2)}"></span>
+					<span th:text="${#dates.format(account.openDate, 'MM-dd-yyyy')}"></span>
+					<span th:text="${#dates.format(account.lastActivityDate, 'MM-dd-yyyy')}"></span>
+					<span th:text="${account.branch.name}"></span>
+					<span th:text="${account.employee.id}"></span>
+					<span th:text="${account.product.name}"></span>
+				</div>
+				<div class="card-footer">
+					<div class="btn-group">
+						<a class="btn" th:href="@{/accounts/update/{id}(id=${account.id})}">Update</a>
+						<a class="btn btn-error" th:href="@{/accounts/{id}(id=${account.id})}">Delete</a>
+					</div>
+				</div>
 			</div>
-			<!-- Filter items -->
+			<div class="filter-item card" data-tag="tag-3" th:if="${account.product.id} eq '4'">
+				<div class="card-header">
+					<div class="card-title text-bold" th:text="${account.id}">Account ID</div>
+					<div class="card-subtitle text-gray" th:text="'Customer ID: ' + ${account.customer.id}">Customer ID
+					</div>
+				</div>
+				<div class="card-body">
+					<span th:text="${#numbers.formatDecimal(account.availableBalance, 1, 2)}">
+					</span>
+					<span th:text="${#numbers.formatDecimal(account.pendingBalance, 1, 2)}"></span>
+					<span th:text="${#dates.format(account.openDate, 'MM-dd-yyyy')}"></span>
+					<span th:text="${#dates.format(account.lastActivityDate, 'MM-dd-yyyy')}"></span>
+					<span th:text="${account.branch.name}"></span>
+					<span th:text="${account.employee.id}"></span>
+					<span th:text="${account.product.name}"></span>
+				</div>
+				<div class="card-footer">
+					<div class="btn-group">
+						<a class="btn" th:href="@{/accounts/update/{id}(id=${account.id})}">Update</a>
+						<a class="btn btn-error" th:href="@{/accounts/{id}(id=${account.id})}">Delete</a>
+					</div>
+				</div>
+			</div>
+			<div class="filter-item card" data-tag="tag-4" th:if="${account.product.id} eq '5'">
+				<div class="card-header">
+					<div class="card-title text-bold" th:text="${account.id}">Account ID</div>
+					<div class="card-subtitle text-gray" th:text="'Customer ID: ' + ${account.customer.id}">Customer ID
+					</div>
+				</div>
+				<div class="card-body">
+					<span th:text="${#numbers.formatDecimal(account.availableBalance, 1, 2)}">
+					</span>
+					<span th:text="${#numbers.formatDecimal(account.pendingBalance, 1, 2)}"></span>
+					<span th:text="${#dates.format(account.openDate, 'MM-dd-yyyy')}"></span>
+					<span th:text="${#dates.format(account.lastActivityDate, 'MM-dd-yyyy')}"></span>
+					<span th:text="${account.branch.name}"></span>
+					<span th:text="${account.employee.id}"></span>
+					<span th:text="${account.product.name}"></span>
+				</div>
+				<div class="card-footer">
+					<div class="btn-group">
+						<a class="btn" th:href="@{/accounts/update/{id}(id=${account.id})}">Update</a>
+						<a class="btn btn-error" th:href="@{/accounts/{id}(id=${account.id})}">Delete</a>
+					</div>
+				</div>
+			</div>
+			<div class="filter-item card" data-tag="tag-5" th:if="${account.product.id} eq '7'">
+				<div class="card-header">
+					<div class="card-title text-bold" th:text="${account.id}">Account ID</div>
+					<div class="card-subtitle text-gray" th:text="'Customer ID: ' + ${account.customer.id}">Customer ID
+					</div>
+				</div>
+				<div class="card-body">
+					<span th:text="${#numbers.formatDecimal(account.availableBalance, 1, 2)}">
+					</span>
+					<span th:text="${#numbers.formatDecimal(account.pendingBalance, 1, 2)}"></span>
+					<span th:text="${#dates.format(account.openDate, 'MM-dd-yyyy')}"></span>
+					<span th:text="${#dates.format(account.lastActivityDate, 'MM-dd-yyyy')}"></span>
+					<span th:text="${account.branch.name}"></span>
+					<span th:text="${account.employee.id}"></span>
+					<span th:text="${account.product.name}"></span>
+				</div>
+				<div class="card-footer">
+					<div class="btn-group">
+						<a class="btn" th:href="@{/accounts/update/{id}(id=${account.id})}">Update</a>
+						<a class="btn btn-error" th:href="@{/accounts/{id}(id=${account.id})}">Delete</a>
+					</div>
+				</div>
+			</div>
+			<div class="filter-item card" data-tag="tag-6" th:if="${account.product.id} eq '8'">
+				<div class="card-header">
+					<div class="card-title text-bold" th:text="${account.id}">Account ID</div>
+					<div class="card-subtitle text-gray" th:text="'Customer ID: ' + ${account.customer.id}">Customer ID
+					</div>
+				</div>
+				<div class="card-body">
+					<span th:text="${#numbers.formatDecimal(account.availableBalance, 1, 2)}">
+					</span>
+					<span th:text="${#numbers.formatDecimal(account.pendingBalance, 1, 2)}"></span>
+					<span th:text="${#dates.format(account.openDate, 'MM-dd-yyyy')}"></span>
+					<span th:text="${#dates.format(account.lastActivityDate, 'MM-dd-yyyy')}"></span>
+					<span th:text="${account.branch.name}"></span>
+					<span th:text="${account.employee.id}"></span>
+					<span th:text="${account.product.name}"></span>
+				</div>
+				<div class="card-footer">
+					<div class="btn-group">
+						<a class="btn" th:href="@{/accounts/update/{id}(id=${account.id})}">Update</a>
+						<a class="btn btn-error" th:href="@{/accounts/{id}(id=${account.id})}">Delete</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+
 	<div id="accounts">
 		<div>
 			<h1 class="text-center">All Accounts</h1>
