@@ -1,6 +1,7 @@
 package com.banking.springboot.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,9 @@ public class AccountController {
 
 	@GetMapping("/accounts")
 	public String listAccounts(Model model) {
-		model.addAttribute("accounts", accountService.getAllAccounts());
+
+		List<Account> accounts = accountService.getAllAccounts();
+		model.addAttribute("accounts", accounts);
 		return "accounts";
 	}
 
