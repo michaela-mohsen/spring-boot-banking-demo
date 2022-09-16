@@ -29,7 +29,7 @@ public class Business {
 	@NotNull
 	private String name;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "customer_id")
 	@NotNull
 	private Customer customer;

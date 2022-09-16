@@ -33,7 +33,7 @@ public class Individual {
 	@NotNull
 	String lastName;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "customer_id")
 	@NotNull
 	private Customer customer;

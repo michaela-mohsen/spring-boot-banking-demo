@@ -1,7 +1,6 @@
 package com.banking.springboot.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "accounts")
@@ -30,13 +27,11 @@ public class Account {
 
 	@Column
 	@NotNull
-	@DateTimeFormat(pattern = "MM-dd-yyyy")
-	private Date lastActivityDate;
+	private String lastActivityDate;
 
 	@Column
 	@NotNull
-	@DateTimeFormat(pattern = "MM-dd-yyyy")
-	private Date openDate;
+	private String openDate;
 
 	@Column
 	@NotNull
@@ -70,7 +65,7 @@ public class Account {
 		super();
 	}
 
-	public Account(@NotNull BigDecimal availableBalance, Date lastActivityDate, Date openDate,
+	public Account(@NotNull BigDecimal availableBalance, @NotNull String lastActivityDate, @NotNull String openDate,
 			@NotNull BigDecimal pendingBalance,
 			String status, Customer customer, Branch branch, Employee employee, Product product) {
 		super();
@@ -101,19 +96,19 @@ public class Account {
 		this.availableBalance = availableBalance;
 	}
 
-	public Date getLastActivityDate() {
+	public @NotNull String getLastActivityDate() {
 		return lastActivityDate;
 	}
 
-	public void setLastActivityDate(Date lastActivityDate) {
+	public void setLastActivityDate(@NotNull String lastActivityDate) {
 		this.lastActivityDate = lastActivityDate;
 	}
 
-	public Date getOpenDate() {
+	public @NotNull String getOpenDate() {
 		return openDate;
 	}
 
-	public void setOpenDate(Date openDate) {
+	public void setOpenDate(@NotNull String openDate) {
 		this.openDate = openDate;
 	}
 
