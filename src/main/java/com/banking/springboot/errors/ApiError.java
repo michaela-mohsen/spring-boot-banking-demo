@@ -1,5 +1,6 @@
 package com.banking.springboot.errors;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -10,16 +11,41 @@ public class ApiError {
     private List<String> errors;
 
     public ApiError(HttpStatus status, String message, List<String> errors) {
+        super();
         this.status = status;
         this.message = message;
         this.errors = errors;
     }
 
-    public ApiError(HttpStatus badRequest, String localizedMessage, String error) {
+    public void setStatus(HttpStatus status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public List<String> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(List<String> errors) {
+        this.errors = errors;
+    }
+
+    public ApiError(HttpStatus status, String message, String error) {
+        super();
+        this.status = status;
+        this.message = message;
+        errors = Arrays.asList(error);
     }
 
     public HttpStatus getStatus() {
-        return null;
+        return status;
     }
 
 }
