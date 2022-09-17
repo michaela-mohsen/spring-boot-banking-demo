@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.banking.springboot.model.Account;
+import com.banking.springboot.model.Customer;
 import com.banking.springboot.repository.AccountRepository;
 import com.banking.springboot.service.AccountService;
 
@@ -44,6 +45,11 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Account saveAccount(Account account) {
 		return accountRepository.save(account);
+	}
+
+	@Override
+	public List<Account> getAccountByCustomer(Customer customer) {
+		return accountRepository.findAccountByCustomerId(customer);
 	}
 
 }
