@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.banking.springboot.model.Account;
-import com.banking.springboot.model.Customer;
 
 @Component
 public interface AccountService {
@@ -18,7 +17,5 @@ public interface AccountService {
 	void deleteAccountById(Long id);
 
 	Account saveAccount(Account account);
-
-	List<Account> getAccountByCustomer(Customer customer);
 
 }

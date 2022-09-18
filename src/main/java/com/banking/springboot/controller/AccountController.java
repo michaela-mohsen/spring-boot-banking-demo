@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.banking.springboot.model.Account;
-import com.banking.springboot.model.Customer;
 import com.banking.springboot.service.impl.AccountServiceImpl;
 
 @Controller
@@ -76,13 +75,6 @@ public class AccountController {
 	public String deleteAccount(@PathVariable Long id) {
 		accountService.deleteAccountById(id);
 		return "redirect:/accounts";
-	}
-
-	@GetMapping("/accounts/customer/{customer}")
-	public String getAccountsByCustomerId(@PathVariable("customer") Customer customer, Model model) {
-		List<Account> caccounts = accountService.getAccountByCustomer(customer);
-		model.addAttribute("accounts", caccounts);
-		return "customer_accounts";
 	}
 
 }
