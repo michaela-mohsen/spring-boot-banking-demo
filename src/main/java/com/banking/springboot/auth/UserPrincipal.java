@@ -26,9 +26,7 @@ public class UserPrincipal implements UserDetails {
             return Collections.emptySet();
         }
         Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();
-        authGroups.forEach(group -> {
-            grantedAuthorities.add(new SimpleGrantedAuthority(group.getGroup()));
-        });
+        authGroups.forEach(group -> grantedAuthorities.add(new SimpleGrantedAuthority(group.getAuthGroup())));
         return grantedAuthorities;
     }
 

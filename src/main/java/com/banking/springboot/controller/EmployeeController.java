@@ -3,6 +3,7 @@ package com.banking.springboot.controller;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,11 +24,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public String listEmployees(Model model) {
         return findPaginated(1, "id", "asc", model);
     }
 
     @GetMapping("/employees/{pageNo}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
             @RequestParam("sortDir") String sortDir, Model model) {
         int pageSize = 10;

@@ -3,6 +3,7 @@ package com.banking.springboot.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class AccountController {
 	}
 
 	@GetMapping("/accounts")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public String listAccounts(Model model) {
 
 		List<Account> accounts = accountService.getAllAccounts();
@@ -34,6 +36,7 @@ public class AccountController {
 	}
 
 	@GetMapping("/accounts/new")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String createAccount(Model model) {
 		Account account = new Account();
 		model.addAttribute("localDate", LocalDate.now());
@@ -42,12 +45,14 @@ public class AccountController {
 	}
 
 	@PostMapping("/accounts")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String saveAccount(@ModelAttribute("account") Account account) {
 		accountService.saveAccount(account);
 		return "redirect:/accounts";
 	}
 
 	@GetMapping("/accounts/update/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String updateAccountForm(@PathVariable Long id, Model model) {
 		model.addAttribute("localDate", LocalDate.now());
 		model.addAttribute("account", accountService.getAccountById(id));
@@ -55,6 +60,7 @@ public class AccountController {
 	}
 
 	@PostMapping("/accounts/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String updateAccount(@PathVariable Long id, @ModelAttribute("account") Account account, Model model) {
 		Account existingAccount = accountService.getAccountById(id);
 		existingAccount.setId(account.getId());
@@ -72,6 +78,7 @@ public class AccountController {
 	}
 
 	@GetMapping("/accounts/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String deleteAccount(@PathVariable Long id) {
 		accountService.deleteAccountById(id);
 		return "redirect:/accounts";

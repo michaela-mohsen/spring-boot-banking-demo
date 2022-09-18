@@ -20,7 +20,7 @@ public class AuthGroup {
     private String username;
 
     @Column
-    private String group;
+    private String authUserGroup;
 
     public long getId() {
         return id;
@@ -38,23 +38,17 @@ public class AuthGroup {
         this.username = username;
     }
 
-    public String getGroup() {
-        return group;
+    public String getAuthGroup() {
+        return authUserGroup;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
-    }
-
-    public AuthGroup(long id, String username, String group) {
-        this.id = id;
-        this.username = username;
-        this.group = group;
+    public void setAuthGroup(String authGroup) {
+        this.authUserGroup = authGroup;
     }
 
     @Override
     public String toString() {
-        return "AuthGroup [group=" + group + ", id=" + id + ", username=" + username + "]";
+        return "AuthGroup [authGroup=" + authUserGroup + ", id=" + id + ", username=" + username + "]";
     }
 
 }
