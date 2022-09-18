@@ -55,7 +55,8 @@
             </thead>
             <tbody>
                 <tr class="text-center" th:each="individual: ${individuals}">
-                    <td class="text-center" th:text="${individual.customer.id}"></td>
+                    <td class="text-center"><a th:href="@{/accounts/customer/{customer}}"
+                            th:text="${individual.customer.id}"></a></td>
                     <td class="text-center" th:text="${#dates.format(individual.birthDate, 'MM-dd-yyyy')}"></td>
                     <td class="text-center" th:text="${individual.firstName}"></td>
                     <td class="text-center" th:text="${individual.lastName}"></td>

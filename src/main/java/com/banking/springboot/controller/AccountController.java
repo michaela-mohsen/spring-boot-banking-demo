@@ -78,10 +78,10 @@ public class AccountController {
 		return "redirect:/accounts";
 	}
 
-	@GetMapping("/accounts/{customer}")
+	@GetMapping("/accounts/customer/{customer}")
 	public String getAccountsByCustomerId(@PathVariable("customer") Customer customer, Model model) {
-		List<Account> accounts = accountService.getAccountByCustomer(customer);
-		model.addAttribute("accounts", accounts);
+		List<Account> caccounts = accountService.getAccountByCustomer(customer);
+		model.addAttribute("accounts", caccounts);
 		return "customer_accounts";
 	}
 
