@@ -1,7 +1,5 @@
 package com.banking.springboot.auth;
 
-import java.util.List;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,11 +9,9 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final AuthGroupRepository authGroupRepository;
 
-    public CustomUserDetailsService(UserRepository userRepository, AuthGroupRepository authGroupRepository) {
+    public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.authGroupRepository = authGroupRepository;
     }
 
     @Override
@@ -24,12 +20,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (null == user) {
             throw new UsernameNotFoundException("Cannot find username: " + username);
         }
-        List<AuthGroup> authGroups = this.authGroupRepository.findByUsername(username);
-        return new UserPrincipal(user, authGroups);
+        return user;
     }
 
-    public void createUser(User user) {
-        userRepository.save(user);
+    public void createUser(UserDetails user) {
+        userRepository.save(((User) user));
     }
 
 }
