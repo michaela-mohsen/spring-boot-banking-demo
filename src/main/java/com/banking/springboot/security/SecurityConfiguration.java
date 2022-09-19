@@ -20,7 +20,7 @@ import com.banking.springboot.auth.CustomUserDetailsService;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration {
 
-    @Bean
+	@Bean
     public DaoAuthenticationProvider authenticationProvider(CustomUserDetailsService userDetailsService) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
@@ -28,8 +28,8 @@ public class SecurityConfiguration {
         provider.setAuthoritiesMapper(authoritiesMapper());
         return provider;
     }
-
-    @Bean
+	
+	@Bean
     public GrantedAuthoritiesMapper authoritiesMapper() {
         SimpleAuthorityMapper authorityMapper = new SimpleAuthorityMapper();
         authorityMapper.setConvertToUpperCase(true);
@@ -37,7 +37,7 @@ public class SecurityConfiguration {
         return authorityMapper;
     }
 
-    @Bean
+	@Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().antMatchers("/", "/index", "/css/*", "/js/*").permitAll()
                 .anyRequest().authenticated()
@@ -52,8 +52,8 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-    public void configure(AuthenticationManagerBuilder auth, CustomUserDetailsService userDetailsService) {
+	public void configure(AuthenticationManagerBuilder auth, CustomUserDetailsService userDetailsService) {
         auth.authenticationProvider(authenticationProvider(userDetailsService));
     }
-
+	
 }

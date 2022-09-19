@@ -12,7 +12,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserPrincipal implements UserDetails {
 
-    private User user;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 9156485509248882938L;
+	
+	private User user;
     private List<AuthGroup> authGroups;
 
     public UserPrincipal() {
