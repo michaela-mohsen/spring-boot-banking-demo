@@ -15,6 +15,9 @@ public class UserPrincipal implements UserDetails {
     private User user;
     private List<AuthGroup> authGroups;
 
+    public UserPrincipal() {
+    }
+
     public UserPrincipal(User user, List<AuthGroup> authGroups) {
         this.user = user;
         this.authGroups = authGroups;
