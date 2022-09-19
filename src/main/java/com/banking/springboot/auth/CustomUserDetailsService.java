@@ -28,4 +28,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new UserPrincipal(user, authGroups);
     }
 
+    public void createUser(User user) {
+        userRepository.save(user);
+    }
+
 }
