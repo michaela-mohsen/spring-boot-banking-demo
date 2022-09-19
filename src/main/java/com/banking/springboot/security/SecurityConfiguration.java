@@ -1,9 +1,11 @@
 package com.banking.springboot.security;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,7 +22,10 @@ import com.banking.springboot.auth.CustomUserDetailsService;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration {
 
-	@Bean
+    @Autowired
+    DataSource dataSource;
+
+    @Bean
     public DaoAuthenticationProvider authenticationProvider(CustomUserDetailsService userDetailsService) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
@@ -28,8 +33,8 @@ public class SecurityConfiguration {
         provider.setAuthoritiesMapper(authoritiesMapper());
         return provider;
     }
-	
-	@Bean
+
+    @Bean
     public GrantedAuthoritiesMapper authoritiesMapper() {
         SimpleAuthorityMapper authorityMapper = new SimpleAuthorityMapper();
         authorityMapper.setConvertToUpperCase(true);
@@ -37,13 +42,13 @@ public class SecurityConfiguration {
         return authorityMapper;
     }
 
-	@Bean
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().antMatchers("/", "/index", "/css/*", "/js/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll()
+                .loginPage("/login").defaultSuccessUrl("/accounts").permitAll()
                 .and()
                 .logout().invalidateHttpSession(true).clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -51,9 +56,4 @@ public class SecurityConfiguration {
 
         return http.build();
     }
-
-	public void configure(AuthenticationManagerBuilder auth, CustomUserDetailsService userDetailsService) {
-        auth.authenticationProvider(authenticationProvider(userDetailsService));
-    }
-	
 }
