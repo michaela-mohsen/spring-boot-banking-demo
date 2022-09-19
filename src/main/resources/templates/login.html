@@ -16,9 +16,9 @@
 
 <body>
     <div layout:fragment="content">
-        <div class="container main-content">
+        <div class="container">
             <h3>Employee Login</h3>
-            <form class="form-horizontal m-2 pt-3" th:action="@{/login}" th:object="${user}" method="post">
+            <form class="form-horizontal m-2 pt-3" th:action="@{/login}" method="post">
                 <div th:if="${param.error}">
                     <div class="alert alert-danger">
                         Invalid username or password.
@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-9 col-sm-12">
                         <input type="text" id="username" name="username" class="form-input" placeholder="Username"
-                            autofocus="autofocus" th:field="${user.username}">
+                            autofocus="autofocus">
                     </div>
                 </div>
                 <div class="form-group">
@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-9 col-sm-12">
                         <input type="password" id="password" name="password" class="form-input" placeholder="Password"
-                            autofocus="autofocus" th:field="${user.password}">
+                            autofocus="autofocus">
                     </div>
                 </div>
                 <div class="form-group">
