@@ -6,10 +6,12 @@ import java.util.List;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.banking.springboot.model.Account;
@@ -59,7 +61,7 @@ public class AccountController {
 		return "update_account";
 	}
 
-	@PostMapping("/accounts/{id}")
+	@PutMapping("/accounts/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String updateAccount(@PathVariable Long id, @ModelAttribute("account") Account account, Model model) {
 		Account existingAccount = accountService.getAccountById(id);
@@ -77,7 +79,7 @@ public class AccountController {
 		return "redirect:/accounts";
 	}
 
-	@GetMapping("/accounts/{id}")
+	@DeleteMapping("/accounts/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String deleteAccount(@PathVariable Long id) {
 		accountService.deleteAccountById(id);

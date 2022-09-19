@@ -1,11 +1,9 @@
 package com.banking.springboot.security;
 
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,9 +19,6 @@ import com.banking.springboot.auth.CustomUserDetailsService;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration {
-
-    @Autowired
-    DataSource dataSource;
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider(CustomUserDetailsService userDetailsService) {
@@ -55,5 +50,9 @@ public class SecurityConfiguration {
                 .logoutSuccessUrl("/logout-success").permitAll();
 
         return http.build();
+    }
+
+    public void configure(AuthenticationManagerBuilder auth, CustomUserDetailsService userDetailsService) {
+        auth.authenticationProvider(authenticationProvider(userDetailsService));
     }
 }
