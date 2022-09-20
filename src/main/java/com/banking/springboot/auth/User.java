@@ -1,5 +1,6 @@
 package com.banking.springboot.auth;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.Column;
@@ -10,11 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
+
+    String rolePrefix = "ROLE_";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,6 +33,9 @@ public class User implements UserDetails {
 
     @Column
     private boolean accountNonLocked;
+
+    @Column
+    private String role;
 
     public String getUsername() {
         return username;
@@ -62,10 +69,19 @@ public class User implements UserDetails {
         this.accountNonLocked = accountNonLocked;
     }
 
-    public User(String username, String password, boolean accountNonLocked) {
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public User(String username, String password, boolean accountNonLocked, String role) {
         this.username = username;
         this.password = password;
         this.accountNonLocked = accountNonLocked;
+        this.role = role;
     }
 
     @Override
@@ -75,7 +91,9 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "read");
+        List<GrantedAuthority> list = new ArrayList<>();
+        list.add(new SimpleGrantedAuthority(rolePrefix + role));
+        return list;
     }
 
     @Override

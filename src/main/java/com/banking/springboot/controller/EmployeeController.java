@@ -24,13 +24,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public String listEmployees(Model model) {
         return findPaginated(1, "id", "asc", model);
     }
 
     @GetMapping("/employees/{pageNo}")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
             @RequestParam("sortDir") String sortDir, Model model) {
         int pageSize = 10;

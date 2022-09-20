@@ -25,7 +25,7 @@ public class TransactionController {
     }
 
     @GetMapping("/transactions/{pageNo}")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
             @RequestParam("sortDir") String sortDir,
             Model model) {
@@ -45,7 +45,7 @@ public class TransactionController {
     }
 
     @GetMapping("/transactions")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public String listAllTransactions(Model model) {
         return findPaginated(1, "id", "asc", model);
     }

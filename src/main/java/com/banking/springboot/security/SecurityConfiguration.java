@@ -24,12 +24,12 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/", "/index", "/css/*", "/js/*", "/register**")
+        http.csrf().disable().authorizeRequests().antMatchers("/", "/css/*", "/js/*", "/register**")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").defaultSuccessUrl("/accounts").permitAll()
+                .loginPage("/login").defaultSuccessUrl("/home").permitAll()
                 .and()
                 .logout().invalidateHttpSession(true).clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
