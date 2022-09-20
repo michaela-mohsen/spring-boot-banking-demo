@@ -27,6 +27,7 @@ public class AccountController {
 		this.accountService = accountService;
 	}
 
+	// get all accounts
 	@GetMapping("/accounts")
 	public String listAccounts(Model model) {
 
@@ -35,6 +36,7 @@ public class AccountController {
 		return "accounts";
 	}
 
+	// create a new account object
 	@GetMapping("/accounts/new")
 	public String createAccount(Model model) {
 		Account account = new Account();
@@ -43,12 +45,14 @@ public class AccountController {
 		return "create_account";
 	}
 
+	// save new or updated account object
 	@PostMapping("/accounts")
 	public String saveAccount(@ModelAttribute("account") Account account) {
 		accountService.saveAccount(account);
 		return "redirect:/accounts";
 	}
 
+	// update an account object form
 	@GetMapping("/accounts/update/{id}")
 	public String updateAccountForm(@PathVariable Long id, Model model) {
 		model.addAttribute("localDate", LocalDate.now());
@@ -56,9 +60,13 @@ public class AccountController {
 		return "update_account";
 	}
 
+	// update an account object
 	@PutMapping("/accounts/{id}")
 	public String updateAccount(@PathVariable Long id, @ModelAttribute("account") Account account, Model model) {
+		// get a specific account
 		Account existingAccount = accountService.getAccountById(id);
+
+		// set properties
 		existingAccount.setId(account.getId());
 		existingAccount.setAvailableBalance(account.getAvailableBalance());
 		existingAccount.setPendingBalance(account.getPendingBalance());
@@ -69,10 +77,12 @@ public class AccountController {
 		existingAccount.setEmployee(account.getEmployee());
 		existingAccount.setProduct(account.getProduct());
 
+		// save updated account object
 		accountService.updateAccount(existingAccount);
 		return "redirect:/accounts";
 	}
 
+	// delete an account object
 	@DeleteMapping("/accounts/{id}")
 	public String deleteAccount(@PathVariable Long id) {
 		accountService.deleteAccountById(id);

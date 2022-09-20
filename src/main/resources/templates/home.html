@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
 
-<head th:fragment="head-fragment">
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
@@ -16,9 +16,89 @@
 
 <body>
     <h1>You have been logged in.</h1>
-    <form th:action="@{/logout}" method="post">
-        <button title="log out" type="submit" value="Logout">Logout</button>
-    </form>
+    <div class="accordion">
+        <input id="accordion-1" type="radio" name="accordion-radio" hidden="" checked="">
+        <label class="accordion-header c-hand text-primary" for="accordion-1"><em
+                class="icon icon-arrow-right mr-1"></em>Accounts</label>
+        <div class="accordion-body">
+            <ul class="menu menu-nav">
+                <li class="menu-item">
+                    <a th:href="@{/accounts}" class="text-gray">All Accounts</a>
+                </li>
+                <li class="menu-item">
+                    <a th:href="@{/accounts/new}" class="text-gray">Create New Account</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="accordion">
+        <input id="accordion-2" type="radio" name="accordion-radio" hidden="" checked="">
+        <label class="accordion-header c-hand text-primary" for="accordion-2"><em
+                class="icon icon-arrow-right mr-1"></em>Transactions</label>
+        <div class="accordion-body">
+            <ul class="menu menu-nav">
+                <li class="menu-item">
+                    <a th:href="@{/transactions}" class="text-gray">All Transactions</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="accordion">
+        <input id="accordion-3" type="radio" name="accordion-radio" hidden="">
+        <label class="accordion-header c-hand text-primary" for="accordion-3"><em
+                class="icon icon-arrow-right mr-1"></em>Customers</label>
+        <div class="accordion-body">
+            <ul class="menu menu-nav">
+                <li class="menu-item">
+                    <a th:href="@{/customers}" class="text-gray">All Customers</a>
+                </li>
+                <li class="menu-item">
+                    <a th:href="@{/customers/new}" class="text-gray">Create New Customer</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="accordion">
+        <input id="accordion-4" type="radio" name="accordion-radio" hidden="">
+        <label class="accordion-header c-hand text-primary" for="accordion-4"><em
+                class="icon icon-arrow-right mr-1"></em>Employees</label>
+        <div class="accordion-body">
+            <ul class="menu menu-nav">
+                <li class="menu-item">
+                    <a th:href="@{/employees}" class="text-gray">All Employees</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="accordion">
+        <input id="accordion-5" type="radio" name="accordion-radio" hidden="">
+        <label class="accordion-header c-hand text-primary" for="accordion-5"><em
+                class="icon icon-arrow-right mr-1"></em>Customers</label>
+        <div class="accordion-body">
+            <ul class="menu menu-nav">
+                <li class="menu-item">
+                    <a th:href="@{/customers}" class="text-gray">All Customers</a>
+                </li>
+                <li class="menu-item">
+                    <a th:href="@{/customers/new}" class="text-gray">Create New Customer</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="accordion">
+        <input id="accordion-6" type="radio" name="accordion-radio" hidden="">
+        <label class="accordion-header c-hand text-primary" for="accordion-6"><em
+                class="icon icon-arrow-right mr-1"></em>Products</label>
+        <div class="accordion-body">
+            <ul class="menu menu-nav">
+                <li class="menu-item">
+                    <a th:href="@{/products}" class="text-gray">All Products</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
 </body>
 
 </html>
