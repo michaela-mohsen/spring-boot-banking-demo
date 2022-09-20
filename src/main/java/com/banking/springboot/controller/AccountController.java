@@ -3,7 +3,6 @@ package com.banking.springboot.controller;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +29,6 @@ public class AccountController {
 
 	// get all accounts
 	@GetMapping("/accounts")
-	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	public String listAccounts(Model model) {
 
 		List<Account> accounts = accountService.getAllAccounts();
@@ -40,7 +38,6 @@ public class AccountController {
 
 	// create a new account object
 	@GetMapping("/accounts/new")
-	@PreAuthorize("hasRole('ADMIN')")
 	public String createAccount(Model model) {
 		Account account = new Account();
 		model.addAttribute("localDate", LocalDate.now());
@@ -50,7 +47,6 @@ public class AccountController {
 
 	// save new or updated account object
 	@PostMapping("/accounts")
-	@PreAuthorize("hasRole('ADMIN')")
 	public String saveAccount(@ModelAttribute("account") Account account) {
 		accountService.saveAccount(account);
 		return "redirect:/accounts";
@@ -58,7 +54,6 @@ public class AccountController {
 
 	// update an account object form
 	@GetMapping("/accounts/update/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
 	public String updateAccountForm(@PathVariable Long id, Model model) {
 		model.addAttribute("localDate", LocalDate.now());
 		model.addAttribute("account", accountService.getAccountById(id));
@@ -67,7 +62,6 @@ public class AccountController {
 
 	// update an account object
 	@PutMapping("/accounts/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
 	public String updateAccount(@PathVariable Long id, @ModelAttribute("account") Account account, Model model) {
 		// get a specific account
 		Account existingAccount = accountService.getAccountById(id);
@@ -90,7 +84,6 @@ public class AccountController {
 
 	// delete an account object
 	@DeleteMapping("/accounts/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteAccount(@PathVariable Long id) {
 		accountService.deleteAccountById(id);
 		return "redirect:/accounts";

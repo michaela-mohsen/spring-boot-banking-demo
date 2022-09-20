@@ -30,6 +30,9 @@
                 <li class="tab-item">
                     <a class="text-primary" th:href="@{/products}">Products</a>
                 </li>
+                <li class="tab-item" sec:authorize="isAuthenticated()">
+                    <a class="text-primary" th:href="@{/logout}">Logout</a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -46,6 +49,7 @@
         <p>Next, choose to make an <a th:href="@{/customers/individuals/new}">individual profile</a> or a <a
                 th:href="@{/customers/businesses/new}">business profile</a>.</p>
     </div>
+    <footer th:insert="fragments/general.html :: footer"></footer>
 </body>
 
 </html>

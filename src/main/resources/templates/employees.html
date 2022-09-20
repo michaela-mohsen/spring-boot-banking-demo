@@ -32,6 +32,9 @@
                 <li class="tab-item">
                     <a class="text-primary" th:href="@{/products}">Products</a>
                 </li>
+                <li class="tab-item" sec:authorize="isAuthenticated()">
+                    <a class="text-primary" th:href="@{/logout}">Logout</a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -102,7 +105,7 @@
             </li>
         </ul>
     </div>
-    </div>
+    <footer th:insert="fragments/general.html :: footer"></footer>
 </body>
 
 </html>
