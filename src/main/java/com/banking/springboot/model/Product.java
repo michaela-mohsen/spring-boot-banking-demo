@@ -16,7 +16,8 @@ import javax.validation.constraints.NotNull;
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private Long id;
 
 	@Column
@@ -27,7 +28,7 @@ public class Product {
 	@NotNull
 	private String name;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "product_type")
 	@NotNull
 	private ProductType productType;

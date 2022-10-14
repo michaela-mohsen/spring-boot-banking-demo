@@ -3,6 +3,7 @@ package com.banking.springboot.auth;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +19,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "users")
 public class User implements UserDetails {
 
-    String rolePrefix = "ROLE_";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -821184638093135201L;
+
+	String rolePrefix = "ROLE_";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 

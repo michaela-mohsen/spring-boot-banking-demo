@@ -5,10 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.banking.springboot.model.Business;
 import com.banking.springboot.model.Customer;
 import com.banking.springboot.model.Individual;
-import com.banking.springboot.repository.BusinessRepository;
 import com.banking.springboot.repository.CustomerRepository;
 import com.banking.springboot.repository.IndividualRepository;
 import com.banking.springboot.service.CustomerService;
@@ -22,14 +20,10 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private IndividualRepository individualRepository;
 
-	@Autowired
-	private BusinessRepository businessRepository;
 
-	public CustomerServiceImpl(CustomerRepository customerRepository, IndividualRepository individualRepository,
-			BusinessRepository businessRepository) {
+	public CustomerServiceImpl(CustomerRepository customerRepository, IndividualRepository individualRepository) {
 		this.customerRepository = customerRepository;
 		this.individualRepository = individualRepository;
-		this.businessRepository = businessRepository;
 	}
 
 	@Override
@@ -62,19 +56,11 @@ public class CustomerServiceImpl implements CustomerService {
 		return individualRepository.findAll();
 	}
 
-	@Override
-	public List<Business> getAllBusinesses() {
-		return businessRepository.findAll();
-	}
 
 	@Override
 	public Individual saveIndividual(Individual individual) {
 		return individualRepository.save(individual);
 	}
 
-	@Override
-	public Business saveBusiness(Business business) {
-		return businessRepository.save(business);
-	}
 
 }

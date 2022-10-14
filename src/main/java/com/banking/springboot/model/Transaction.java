@@ -20,7 +20,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Transaction {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private Long id;
 
 	@Column
@@ -41,7 +42,7 @@ public class Transaction {
 	@NotNull
 	String type;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "account_id")
 	@NotNull
 	private Account account;

@@ -18,7 +18,8 @@ import javax.validation.constraints.NotNull;
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private Long id;
 
 	@Column
@@ -37,12 +38,12 @@ public class Employee {
 	@NotNull
 	private String title;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "assigned_branch_id")
 	@NotNull
 	private Branch branch;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "dept_id")
 	@NotNull
 	private Department department;

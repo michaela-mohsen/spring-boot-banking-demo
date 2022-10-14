@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Customers</title>
+    <title>New Customer</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
@@ -40,46 +40,52 @@
         <li class="breadcrumb-item">
             <a th:href="@{/customers/new}">Create Customer</a>
         </li>
-        <li class="breadcrumb-item">
-            <a th:href="@{/customers/save}">Individual or Business</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a th:href="@{/customers/businesses/new}">Create New Business</a>
-        </li>
     </ul>
-    <div id="new_business">
-        <form class="form-horizontal m-2 pt-3" th:action="@{/customers}" th:object="${business}" method="POST">
-            <h2 class="text-center">Create New Business</h2>
+    <div id="new_customer">
+        <form class="form-horizontal m-2 pt-3" th:action="@{/customers/save}" th:object="${customer}" method="POST">
+            <h2 class="text-center">Create New Customer</h2>
             <div class="divider"></div>
             <br>
             <div class="form-group">
                 <div class="col-3 col-sm-12">
-                    <label class="form-label" for="firstName">Incorporation Date </label>
+                    <label class="form-label" for="address">Address: </label>
                 </div>
                 <div class="col-9 col-sm-12">
-                    <input class="form-input" type="date" id="incorpDate" name="incorpDate"
-                        th:field="${business.incorpDate}" placeholder="Incorporation Date">
+                    <input class="form-input" type="text" id="address" name="address" th:field="${customer.address}"
+                        placeholder="Address">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-3 col-sm-12">
-                    <label class="form-label" for="name">Business name: </label>
+                    <label class="form-label" for="city">City: </label>
                 </div>
                 <div class="col-9 col-sm-12">
-                    <input class="form-input" type="text" id="name" name="name" th:field="${business.name}"
-                        placeholder="Business name">
+                    <input class="form-input" type="text" id="city" name="city" th:field="${customer.city}"
+                        placeholder="City">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-3 col-sm-12">
-                    <label class="form-label" for="customer">Customer ID: </label>
+                    <label class="form-label" for="state">State: </label>
                 </div>
                 <div class="col-9 col-sm-12">
-                    <input class="form-input" type="number" id="customer" name="customer"
-                        th:field="${business.customer.id}" placeholder="Customer ID">
+                    <input class="form-input" type="text" id="state" name="state" th:field="${customer.state}"
+                        placeholder="State">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-3 col-sm-12">
+                    <label class="form-label" for="zipCode">Zip Code: </label>
+                </div>
+                <div class="col-9 col-sm-12">
+                    <input class="form-input" type="text" id="zipCode" name="zipCode" th:field="${customer.zipCode}"
+                        placeholder="Zip Code">
                 </div>
             </div>
             <br>
             <button class="btn btn-primary btn-block" type="submit">Create</button>
-        </form>
+           </form>
     </div>
+</body>
+
+</html>

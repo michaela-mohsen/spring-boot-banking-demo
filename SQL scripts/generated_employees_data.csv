@@ -1,0 +1,19 @@
+"id";"first_name";"last_name";"start_date";"superior";"title";"dept_id";"assigned_branch_id"
+1;"Michael";"Smith";"2001-06-22";0;"President";3;1
+2;"Susan";"Barker";"2002-09-12";1;"Vice President";3;1
+3;"Robert";"Tyler";"2000-02-09";1;"Treasurer";3;1
+4;"Susan";"Hawthorne";"2002-04-24";3;"Operations Manager";1;1
+5;"John";"Gooding";"2003-11-14";4;"Loan Manager";2;1
+6;"Helen";"Fleming";"2004-03-17";4;"Head Teller";1;1
+7;"Chris";"Tucker";"2004-09-15";6;"Teller";1;1
+8;"Sarah";"Parker";"2002-12-02";6;"Teller";1;1
+9;"Jane";"Grossman";"2002-05-03";6;"Teller";1;1
+10;"Paula";"Roberts";"2002-07-27";4;"Head Teller";1;2
+11;"Thomas";"Ziegler";"2000-10-23";10;"Teller";1;2
+12;"Samantha";"Jameson";"2003-01-08";10;"Teller";1;2
+13;"John";"Blake";"2000-05-11";4;"Head Teller";1;3
+14;"Cindy";"Mason";"2002-08-09";13;"Teller";1;3
+15;"Frank";"Portman";"2003-04-01";13;"Teller";1;3
+16;"Theresa";"Markham";"2001-03-15";4;"Head Teller";1;4
+17;"Beth";"Fowler";"2002-06-29";16;"Teller";1;4
+18;"Rick";"Tulman";"2002-12-12";16;"Teller";1;4

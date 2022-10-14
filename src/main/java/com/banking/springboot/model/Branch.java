@@ -13,7 +13,8 @@ import javax.validation.constraints.NotNull;
 public class Branch {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private Long id;
 
 	@Column

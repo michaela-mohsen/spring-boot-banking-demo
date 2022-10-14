@@ -13,7 +13,8 @@ import javax.validation.constraints.NotNull;
 public class Customer {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private Long id;
 	
 	@Column
@@ -30,28 +31,18 @@ public class Customer {
 	
 	@Column
 	@NotNull
-	private String zipCode;
-	
-	@Column
-	@NotNull
-	private char customerType;
-	
-	@Column
-	@NotNull
-	private String fedId;
+	private String zipCode;	
 
 	public Customer() {
 		super();
 	}
 
-	public Customer(String address, String city, String state, String zipCode, char customerType, String fedId) {
+	public Customer(String address, String city, String state, String zipCode) {
 		super();
 		this.address = address;
 		this.city = city;
 		this.state = state;
 		this.zipCode = zipCode;
-		this.customerType = customerType;
-		this.fedId = fedId;
 	}
 
 	public Long getId() {
@@ -94,26 +85,11 @@ public class Customer {
 		this.zipCode = zipCode;
 	}
 
-	public char getCustomerType() {
-		return customerType;
-	}
-
-	public void setCustomerType(char customerType) {
-		this.customerType = customerType;
-	}
-
-	public String getFedId() {
-		return fedId;
-	}
-
-	public void setFedId(String fedId) {
-		this.fedId = fedId;
-	}
-
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", address=" + address + ", city=" + city + ", state=" + state + ", zipCode="
-				+ zipCode + ", customerType=" + customerType + ", fedId=" + fedId + "]";
+				+ zipCode + "]";
 	}
 
+	
 }

@@ -1,0 +1,9 @@
+"name";"id";"product_code";"product_type"
+"Auto Loan";1;"AUT";3
+"Business Line of Credit";2;"BUS";3
+"Certificate of Deposit";3;"CD";1
+"Checking Account";4;"CHK";1
+"Money Market Account";5;"MM";1
+"Home Mortgage";6;"MRT";3
+"Savings Account";7;"SAV";1
+"Small Business Loan";8;"SBL";3

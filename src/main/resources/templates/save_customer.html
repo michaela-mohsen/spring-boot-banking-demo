@@ -42,12 +42,11 @@
                 <a th:href="@{/customers/new}">Create Customer</a>
             </li>
             <li class="breadcrumb-item">
-                <a th:href="@{/customers/save}">Individual or Business</a>
+                <a th:href="@{/customers/save}">Individual Information</a>
             </li>
         </ul>
         <p>The new customer with id <strong th:text="${customer.id}"></strong> has been saved.</p>
-        <p>Next, choose to make an <a th:href="@{/customers/individuals/new}">individual profile</a> or a <a
-                th:href="@{/customers/businesses/new}">business profile</a>.</p>
+        <p>Next, continue to create an <a th:href="@{/customers/individuals/new}">individual profile</a> and addition individual information.</p>
     </div>
     <footer th:insert="fragments/general.html :: footer"></footer>
 </body>

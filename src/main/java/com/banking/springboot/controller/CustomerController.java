@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.banking.springboot.model.Business;
 import com.banking.springboot.model.Customer;
 import com.banking.springboot.model.Individual;
 import com.banking.springboot.service.impl.CustomerServiceImpl;
@@ -27,7 +26,6 @@ public class CustomerController {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public String listCustomers(Model model) {
         model.addAttribute("individuals", customerService.getAllIndividuals());
-        model.addAttribute("businesses", customerService.getAllBusinesses());
         return "customers";
     }
 
@@ -37,14 +35,6 @@ public class CustomerController {
         Individual individual = new Individual();
         model.addAttribute("individual", individual);
         return "create_individual";
-    }
-
-    @GetMapping("/customers/businesses/new")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String createBusiness(Model model) {
-        Business business = new Business();
-        model.addAttribute("business", business);
-        return "create_business";
     }
 
     @GetMapping("/customers/new")
@@ -57,12 +47,9 @@ public class CustomerController {
 
     @PostMapping("/customers")
     @PreAuthorize("hasRole('ADMIN')")
-    public String saveIndividual(@ModelAttribute("individual") Individual individual,
-            @ModelAttribute("business") Business business, Model model) {
+    public String saveIndividual(@ModelAttribute("individual") Individual individual, Model model) {
         model.addAttribute("individual", individual);
-        model.addAttribute("business", business);
         customerService.saveIndividual(individual);
-        customerService.saveBusiness(business);
         return "redirect:/customers";
     }
 

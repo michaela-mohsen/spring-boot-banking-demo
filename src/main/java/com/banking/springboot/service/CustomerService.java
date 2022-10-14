@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.banking.springboot.model.Business;
 import com.banking.springboot.model.Customer;
 import com.banking.springboot.model.Individual;
 
@@ -24,8 +23,4 @@ public interface CustomerService {
 	List<Individual> getAllIndividuals();
 
 	Individual saveIndividual(Individual individual);
-
-	List<Business> getAllBusinesses();
-
-	Business saveBusiness(Business business);
 }
