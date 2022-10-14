@@ -26,7 +26,7 @@ public class Transaction {
 
 	@Column
 	@NotNull
-	private float amount;
+	private double amount;
 
 	@Column
 	@NotNull
@@ -51,7 +51,7 @@ public class Transaction {
 		super();
 	}
 
-	public Transaction(float amount, Date fundsAvailableDate, Date date, String type, Account account) {
+	public Transaction(double amount, Date fundsAvailableDate, Date date, String type, Account account) {
 		super();
 		this.amount = amount;
 		this.fundsAvailableDate = fundsAvailableDate;
@@ -68,11 +68,11 @@ public class Transaction {
 		this.id = id;
 	}
 
-	public float getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(float amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 

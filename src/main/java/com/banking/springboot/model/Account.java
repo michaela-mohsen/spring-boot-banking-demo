@@ -1,7 +1,5 @@
 package com.banking.springboot.model;
 
-import java.math.BigDecimal;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +22,7 @@ public class Account {
 
 	@Column
 	@NotNull
-	private BigDecimal availableBalance;
+	private double availableBalance;
 
 	@Column
 	@NotNull
@@ -36,7 +34,7 @@ public class Account {
 
 	@Column
 	@NotNull
-	private BigDecimal pendingBalance;
+	private double pendingBalance;
 
 	@Column
 	@NotNull
@@ -66,8 +64,8 @@ public class Account {
 		super();
 	}
 
-	public Account(@NotNull BigDecimal availableBalance, @NotNull String lastActivityDate, @NotNull String openDate,
-			@NotNull BigDecimal pendingBalance,
+	public Account(@NotNull double availableBalance, @NotNull String lastActivityDate, @NotNull String openDate,
+			@NotNull double pendingBalance,
 			String status, Customer customer, Branch branch, Employee employee, Product product) {
 		super();
 		this.availableBalance = availableBalance;
@@ -89,11 +87,11 @@ public class Account {
 		this.id = id;
 	}
 
-	public BigDecimal getAvailableBalance() {
+	public double getAvailableBalance() {
 		return availableBalance;
 	}
 
-	public void setAvailableBalance(BigDecimal availableBalance) {
+	public void setAvailableBalance(double availableBalance) {
 		this.availableBalance = availableBalance;
 	}
 
@@ -113,11 +111,11 @@ public class Account {
 		this.openDate = openDate;
 	}
 
-	public BigDecimal getPendingBalance() {
+	public double getPendingBalance() {
 		return pendingBalance;
 	}
 
-	public void setPendingBalance(BigDecimal pendingBalance) {
+	public void setPendingBalance(double pendingBalance) {
 		this.pendingBalance = pendingBalance;
 	}
 
