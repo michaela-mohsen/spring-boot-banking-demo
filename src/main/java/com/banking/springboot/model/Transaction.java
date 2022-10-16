@@ -1,6 +1,6 @@
 package com.banking.springboot.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "transactions")
@@ -30,12 +28,10 @@ public class Transaction {
 
 	@Column
 	@NotNull
-	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date fundsAvailableDate;
 
 	@Column
 	@NotNull
-	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date date;
 
 	@Column
@@ -104,8 +100,12 @@ public class Transaction {
 		return account;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setAccount(Account existingAccount) {
+		this.account = existingAccount;
+		existingAccount.setId(account.getId());
+		existingAccount.setAvailableBalance(account.getAvailableBalance());
+		existingAccount.setLastActivityDate(account.getLastActivityDate());
+		existingAccount.setPendingBalance(account.getPendingBalance());
 	}
 
 	@Override

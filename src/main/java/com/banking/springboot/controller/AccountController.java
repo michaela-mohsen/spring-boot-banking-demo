@@ -5,12 +5,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.banking.springboot.model.Account;
@@ -61,7 +59,7 @@ public class AccountController {
 	}
 
 	// update an account object
-	@PutMapping("/accounts/{id}")
+	@PostMapping("/accounts/{id}")
 	public String updateAccount(@PathVariable Long id, @ModelAttribute("account") Account account, Model model) {
 		// get a specific account
 		Account existingAccount = accountService.getAccountById(id);
@@ -83,7 +81,7 @@ public class AccountController {
 	}
 
 	// delete an account object
-	@DeleteMapping("/accounts/{id}")
+	@GetMapping("/accounts/{id}")
 	public String deleteAccount(@PathVariable Long id) {
 		accountService.deleteAccountById(id);
 		return "redirect:/accounts";

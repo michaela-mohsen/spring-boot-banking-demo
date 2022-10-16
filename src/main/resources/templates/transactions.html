@@ -47,6 +47,7 @@
                     <th>Customer ID</th>
                     <th>Amount</th>
                     <th>Pending Balance</th>
+                    <th>Available Balance</th>
                     <th><a
                             th:href="@{'/transactions/' + ${currentPage} + '?sortField=date&sortDir=' + ${reverseSortDir}}">Transaction
                             Date
@@ -60,6 +61,7 @@
                     <td th:text="${transaction.account.customer.id}"></td>
                     <td th:text="${#numbers.formatCurrency(transaction.amount)}"></td>
                     <td th:text="${#numbers.formatCurrency(transaction.account.pendingBalance)}"></td>
+                    <td th:text="${#numbers.formatCurrency(transaction.account.availableBalance)}"></td>
                     <td th:text="${#dates.format(transaction.date, 'MM-dd-yyyy')}"></td>
                     <td th:text="${#dates.format(transaction.fundsAvailableDate, 'MM-dd-yyyy')}"></td>
                 </tr>
