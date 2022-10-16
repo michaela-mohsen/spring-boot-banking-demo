@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "transactions")
 public class Transaction {
@@ -41,6 +43,7 @@ public class Transaction {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "account_id")
 	@NotNull
+	@JsonBackReference
 	private Account account;
 
 	public Transaction() {
@@ -102,10 +105,6 @@ public class Transaction {
 
 	public void setAccount(Account existingAccount) {
 		this.account = existingAccount;
-		existingAccount.setId(account.getId());
-		existingAccount.setAvailableBalance(account.getAvailableBalance());
-		existingAccount.setLastActivityDate(account.getLastActivityDate());
-		existingAccount.setPendingBalance(account.getPendingBalance());
 	}
 
 	@Override
