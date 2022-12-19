@@ -60,7 +60,7 @@ public class LoginController {
         User user = new User();
         user.setUsername(body.get("username"));
         user.setPassword(passwordEncoder.encode(body.get("password")));
-        user.setRole(body.get("role"));
+        user.setRole("EMPLOYEE");
         userDetailsService.createUser(user);
     }
 
