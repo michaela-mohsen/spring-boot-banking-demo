@@ -1,5 +1,6 @@
 package com.banking.springboot.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -30,19 +33,19 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Long id;
+	private Integer id;
 
 	@Column
 	@NotNull
 	private double availableBalance;
 
 	@Column
-	@NotNull
-	private String lastActivityDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date lastActivityDate;
 
 	@Column
 	@NotNull
-	private String openDate;
+	private Date openDate;
 
 	@Column
 	@NotNull

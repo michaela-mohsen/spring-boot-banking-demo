@@ -31,7 +31,7 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Long id;
+	private Integer id;
 
 	@Column
 	@NotNull
@@ -40,6 +40,10 @@ public class Employee {
 	@Column
 	@NotNull
 	private String lastName;
+
+	@Column
+	@NotNull
+	private String email;
 
 	@Column
 	@NotNull

@@ -12,14 +12,23 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "individuals")
 public class Individual {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Long id;
+	private Integer id;
 
 	@Column
 	@NotNull
@@ -37,64 +46,5 @@ public class Individual {
 	@JoinColumn(name = "customer_id")
 	@NotNull
 	private Customer customer;
-
-	public Individual() {
-		super();
-	}
-
-	public Individual(Date birthDate, String firstName, String lastName, Customer customer) {
-		super();
-		this.birthDate = birthDate;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.customer = customer;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	@Override
-	public String toString() {
-		return "Individual [id=" + id + ", birthDate=" + birthDate + ", firstName=" + firstName + ", lastName="
-				+ lastName
-				+ ", customer=" + customer + "]";
-	}
 
 }

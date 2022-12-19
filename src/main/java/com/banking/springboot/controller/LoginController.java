@@ -103,7 +103,15 @@ public class LoginController {
             Employee existingEmployee = employeeRepository.findEmployeeByEmail(user.getEmail());
 
             if (existingEmployee != null) {
-
+                existingEmployee.setUser(user);
+                employeeRepository.save(existingEmployee);
+            } else {
+                Employee newEmployee = new Employee();
+                newEmployee.setFirstName(user.getFirstName());
+                newEmployee.setLastName(user.getLastName());
+                newEmployee.setEmail(user.getEmail());
+                newEmployee.setUser(user);
+                employeeRepository.save(newEmployee);
             }
             return "redirect:/register?success";
         } else {
