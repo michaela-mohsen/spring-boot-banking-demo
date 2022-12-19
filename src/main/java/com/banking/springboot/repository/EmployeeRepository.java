@@ -8,4 +8,8 @@ import com.banking.springboot.model.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
+    Employee findEmployeeById(Integer id);
+
+    Employee findEmployeeByEmail(String email);
+
 }

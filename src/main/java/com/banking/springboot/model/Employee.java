@@ -13,7 +13,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.banking.springboot.auth.User;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "employees")
 public class Employee {
 
@@ -39,104 +50,17 @@ public class Employee {
 	private String title;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "assigned_branch_id")
+	@JoinColumn(name = "branch_id")
 	@NotNull
 	private Branch branch;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "dept_id")
+	@JoinColumn(name = "department_id")
 	@NotNull
 	private Department department;
 
-	@Column
-	@NotNull
-	private Long superior;
-
-	public Employee() {
-		super();
-	}
-
-	public Employee(String firstName, String lastName, Date startDate, String title, Branch branch,
-			Department department, Long superior) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.startDate = startDate;
-		this.title = title;
-		this.branch = branch;
-		this.department = department;
-		this.superior = superior;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public Branch getBranch() {
-		return branch;
-	}
-
-	public void setBranch(Branch branch) {
-		this.branch = branch;
-	}
-
-	public Department getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
-
-	public Long getSuperior() {
-		return superior;
-	}
-
-	public void setSuperior(Long superior) {
-		this.superior = superior;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", startDate=" + startDate
-				+ ", title=" + title + ", branch=" + branch + ", department=" + department + ", superior=" + superior
-				+ "]";
-	}
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "user_id")
+	private User user;
 
 }

@@ -11,7 +11,9 @@ import com.banking.springboot.model.Employee;
 public interface EmployeeService {
 	List<Employee> getAllEmployees();
 
-	Employee getEmployeeById(Long id);
+	Employee getEmployeeById(Integer id);
+
+	Employee getEmployeeByEmail(String email);
 
 	Employee saveEmployee(Employee employee);
 

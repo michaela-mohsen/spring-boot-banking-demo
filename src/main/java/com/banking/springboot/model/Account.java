@@ -14,7 +14,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "accounts")
 public class Account {
 
@@ -65,120 +74,5 @@ public class Account {
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.MERGE)
 	private List<Transaction> transactions;
-
-	public Account() {
-		super();
-	}
-
-	public Account(@NotNull double availableBalance, @NotNull String lastActivityDate, @NotNull String openDate,
-			@NotNull double pendingBalance,
-			String status, Customer customer, Branch branch, Employee employee, Product product) {
-		super();
-		this.availableBalance = availableBalance;
-		this.lastActivityDate = lastActivityDate;
-		this.openDate = openDate;
-		this.pendingBalance = pendingBalance;
-		this.status = status;
-		this.customer = customer;
-		this.branch = branch;
-		this.employee = employee;
-		this.product = product;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public double getAvailableBalance() {
-		return availableBalance;
-	}
-
-	public void setAvailableBalance(double availableBalance) {
-		this.availableBalance = availableBalance;
-	}
-
-	public @NotNull String getLastActivityDate() {
-		return lastActivityDate;
-	}
-
-	public void setLastActivityDate(@NotNull String lastActivityDate) {
-		this.lastActivityDate = lastActivityDate;
-	}
-
-	public @NotNull String getOpenDate() {
-		return openDate;
-	}
-
-	public void setOpenDate(@NotNull String openDate) {
-		this.openDate = openDate;
-	}
-
-	public double getPendingBalance() {
-		return pendingBalance;
-	}
-
-	public void setPendingBalance(double pendingBalance) {
-		this.pendingBalance = pendingBalance;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public Branch getBranch() {
-		return branch;
-	}
-
-	public void setBranch(Branch branch) {
-		this.branch = branch;
-	}
-
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public List<Transaction> getTransactions() {
-		return transactions;
-	}
-
-	public void setTransactions(List<Transaction> transactions) {
-		this.transactions = transactions;
-	}
-
-	@Override
-	public String toString() {
-		return "Account [id=" + id + ", availableBalance=" + availableBalance + ", lastActivityDate=" + lastActivityDate
-				+ ", openDate=" + openDate + ", pendingBalance="
-				+ pendingBalance + ", status=" + status + ", customer=" + customer + ", branch=" + branch
-				+ ", employee=" + employee + ", product=" + product + "]";
-	}
 
 }

@@ -20,6 +20,8 @@ import com.banking.springboot.auth.User;
 import com.banking.springboot.auth.UserRepository;
 import com.banking.springboot.auth.UserRole;
 import com.banking.springboot.auth.UserRoleRepository;
+import com.banking.springboot.model.Employee;
+import com.banking.springboot.repository.EmployeeRepository;
 
 @Controller
 @RequestMapping
@@ -30,6 +32,9 @@ public class LoginController {
 
     @Autowired
     private UserRoleRepository userRoleRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -94,6 +99,12 @@ public class LoginController {
             ur.setRoleName("USER");
             ur.setUserId(user.getId());
             userRoleRepository.save(ur);
+
+            Employee existingEmployee = employeeRepository.findEmployeeByEmail(user.getEmail());
+
+            if (existingEmployee != null) {
+
+            }
             return "redirect:/register?success";
         } else {
             model.addAttribute("bindingResult", bindingResult);

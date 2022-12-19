@@ -30,11 +30,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employee getEmployeeById(Long id) {
-		return employeeRepository.findById(id).get();
-	}
-
-	@Override
 	public Employee saveEmployee(Employee employee) {
 		return employeeRepository.save(employee);
 	}
@@ -46,6 +41,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
 		return this.employeeRepository.findAll(pageable);
+	}
+
+	public Employee getEmployeeByEmail(String email) {
+		return employeeRepository.findEmployeeByEmail(email);
+	}
+
+	@Override
+	public Employee getEmployeeById(Integer id) {
+		return employeeRepository.findEmployeeById(id);
 	}
 
 }

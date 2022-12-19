@@ -32,7 +32,7 @@ public class SecurityConfiguration {
                 .and()
                 .logout().invalidateHttpSession(true).clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/logout-success").permitAll()
+                .logoutSuccessUrl("/login?logout").deleteCookies("JSESSIONID").permitAll()
                 .and().rememberMe().key("uniqueAndSecret");
 
         return http.build();
