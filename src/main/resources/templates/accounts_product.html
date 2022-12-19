@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<title>Accounts</title>
+		<title th:text="'Accounts By Product: ' + ${account.product.name}">
+			Accounts By Product
+		</title>
 		<link
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro" />
@@ -93,7 +95,10 @@
 					>
 				</li>
 			</ul>
-			<div class="column col-4 col-sm-12 mb-2" th:each="account: ${accounts}">
+
+			<div
+				class="column col-4 col-sm-12 mb-2"
+				th:each="account: ${accountsByProduct}">
 				<div class="panel column">
 					<div class="panel-header text-center">
 						<div class="panel-title h5" th:text="${account.id}"></div>

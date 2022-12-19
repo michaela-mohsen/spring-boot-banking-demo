@@ -18,4 +18,6 @@ public interface AccountService {
 
 	Account saveAccount(Account account);
 
+	List<Account> getAccountByProduct(Long id);
+
 }

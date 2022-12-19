@@ -3,6 +3,7 @@ package com.banking.springboot.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.banking.springboot.model.Account;
+import com.banking.springboot.model.Product;
 import com.banking.springboot.service.impl.AccountServiceImpl;
 
 @Controller
@@ -32,6 +34,15 @@ public class AccountController {
 		List<Account> accounts = accountService.getAllAccounts();
 		model.addAttribute("accounts", accounts);
 		return "accounts";
+	}
+
+	@GetMapping("/accounts/product/{product}")
+	public String listAccountsByProduct(Model model, @Param("product") Long product, Account account) {
+
+		List<Account> accountsByProduct = accountService.getAccountByProduct(product);
+		model.addAttribute("accounts", accountsByProduct);
+		model.addAttribute("product", product);
+		return "accounts_product";
 	}
 
 	// create a new account object
