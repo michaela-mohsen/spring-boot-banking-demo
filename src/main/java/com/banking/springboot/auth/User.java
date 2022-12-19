@@ -1,8 +1,6 @@
 package com.banking.springboot.auth;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,116 +8,57 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users")
-public class User implements UserDetails {
-
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -821184638093135201L;
-
-	String rolePrefix = "ROLE_";
-
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Long id;
+    private Integer id;
 
-    @Column(nullable = false, unique = true)
-    private String username;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column
+    private String email;
 
     @Column
     private String password;
 
-    @Column
-    private boolean accountNonLocked;
+    @Column(name = "create_date", nullable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
 
     @Column
-    private String role;
+    private String address;
 
-    public String getUsername() {
-        return username;
-    }
+    @Column
+    private String city;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    @Column
+    private String state;
 
-    public String getPassword() {
-        return password;
-    }
+    @Column
+    private String zip;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    @Column
+    private String phone;
 
-    public User() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setAccountNonLocked(boolean accountNonLocked) {
-        this.accountNonLocked = accountNonLocked;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public User(String username, String password, boolean accountNonLocked, String role) {
-        this.username = username;
-        this.password = password;
-        this.accountNonLocked = accountNonLocked;
-        this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", password=" + password + ", username=" + username + "]";
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> list = new ArrayList<>();
-        list.add(new SimpleGrantedAuthority(rolePrefix + role));
-        return list;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
+    @Column
+    private String avatar;
 }
