@@ -1,37 +1,41 @@
 package com.banking.springboot.controller;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.util.Date;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.LockedException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.banking.springboot.auth.CustomUserDetailsService;
+import com.banking.springboot.auth.AuthenticatedUserService;
+import com.banking.springboot.auth.RegistrationDto;
 import com.banking.springboot.auth.User;
+import com.banking.springboot.auth.UserRepository;
+import com.banking.springboot.auth.UserRole;
+import com.banking.springboot.auth.UserRoleRepository;
 
 @Controller
 @RequestMapping
 public class LoginController {
 
-    private final CustomUserDetailsService userDetailsService;
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private UserRoleRepository userRoleRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public LoginController(CustomUserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
-        this.userDetailsService = userDetailsService;
-        this.passwordEncoder = passwordEncoder;
-    }
+    @Autowired
+    private AuthenticatedUserService authService;
 
     @GetMapping("/home")
     public String home(Model model) {
@@ -39,42 +43,63 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public String getLoginPage(HttpServletRequest request, HttpSession session) {
-        session.setAttribute(
-                "error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
-        return "login";
-    }
+    public ModelAndView login() {
 
-    @GetMapping("/logout-success")
-    public String getLogoutPage(Model model) {
-        return "logout";
+        ModelAndView mav = new ModelAndView();
+
+        if (!authService.isAuthenticated()) {
+            mav.setViewName("login");
+            return mav;
+        }
+
+        mav.setViewName("redirect:/home");
+        return mav;
+
     }
 
     @GetMapping("/register")
     public String register(Model model) {
+        RegistrationDto registrationDto = new RegistrationDto();
+        model.addAttribute("registrationDto", registrationDto);
         return "register";
     }
 
     @PostMapping("/register")
-    public void addUser(@RequestParam Map<String, String> body) {
-        User user = new User();
-        user.setUsername(body.get("username"));
-        user.setPassword(passwordEncoder.encode(body.get("password")));
-        user.setRole("EMPLOYEE");
-        userDetailsService.createUser(user);
-    }
+    public String addUser(Model model, @Valid @ModelAttribute("registrationDto") RegistrationDto registrationDto,
+            BindingResult bindingResult) {
 
-    private String getErrorMessage(HttpServletRequest request, String key) {
-        Exception exception = (Exception) request.getSession().getAttribute(key);
-        String error = "";
-        if (exception instanceof BadCredentialsException) {
-            error = "Invalid username and password!";
-        } else if (exception instanceof LockedException) {
-            error = exception.getMessage();
+        if (!bindingResult.hasErrors()) {
+            User user = userRepository.findUserById(registrationDto.getId());
+            if (user == null) {
+                user = new User();
+            }
+
+            String encodedPassword = passwordEncoder.encode(registrationDto.getPassword());
+
+            user.setFirstName(registrationDto.getFirstName());
+            user.setLastName(registrationDto.getLastName());
+            user.setEmail(registrationDto.getEmail());
+            user.setPassword(encodedPassword);
+            user.setAddress(registrationDto.getAddress());
+            user.setCity(registrationDto.getCity());
+            user.setState(registrationDto.getState());
+            user.setZip(registrationDto.getZip());
+            user.setPhone(registrationDto.getPhone());
+            user.setCreateDate(new Date());
+            user.setAvatar(registrationDto.getAvatar());
+
+            userRepository.save(user);
+
+            UserRole ur = new UserRole();
+            ur.setRoleName("USER");
+            ur.setUserId(user.getId());
+            userRoleRepository.save(ur);
+            return "redirect:/register?success";
         } else {
-            error = "Invalid username and password!";
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("registrationDto", registrationDto);
+            return "register";
         }
-        return error;
     }
 
 }
