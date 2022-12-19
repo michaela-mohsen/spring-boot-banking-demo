@@ -27,41 +27,192 @@
 	</head>
 
 	<body>
-		<h1>New User</h1>
-		<form th:action="@{/register}" method="post">
-			<div class="form-group">
-				<div class="col-3 col-sm-12">
-					<label for="username" class="form-label">Username</label>
+		<div class="container py-2 px-2">
+			<!-- registration successful message-->
+			<div class="card p-centered col-6 col-sm-12 px-2 py-2">
+				<div class="card-header">
+					<h3 class="card-title text-center">User Account Registration</h3>
 				</div>
-				<div class="col-9 col-sm-12">
-					<input
-						type="text"
-						id="username"
-						name="username"
-						class="form-input"
-						placeholder="Enter Username"
-						autofocus="autofocus" />
+				<div th:if="${param.success}">
+					<div class="toast toast-success">
+						You have been successfully registered. Please
+						<a th:href="@{/login}">log in.</a>
+					</div>
+				</div>
+				<div class="card-body">
+					<form
+						class="form-horizontal px-2 s-rounded"
+						th:action="@{/register}"
+						method="post"
+						th:object="${registrationDto}"
+						name="newUserForm"
+						id="newUserForm">
+						<div class="columns">
+							<div class="column col-12 pt-1">
+								<p
+									th:if="${#fields.hasAnyErrors()}"
+									th:each="error : ${#fields.errors('*')}"
+									th:text="${error}"
+									class="form-input-hint text-error"></p>
+							</div>
+							<div class="column col-12 py-2">
+								<div class="form-group">
+									<div class="column col-4">
+										<label class="form-label form-label-inline" for="firstName">
+											First Name:
+										</label>
+									</div>
+									<div class="column col-8">
+										<input
+											id="firstName"
+											class="form-input"
+											type="text"
+											th:field="*{firstName}"
+											name="firstName"
+											th:classappend="${#fields.hasErrors('firstName') ? 'is-error' : ''}" />
+									</div>
+									<div class="column col-12 pt-1">
+										<p
+											th:if="${#fields.hasErrors('firstName')}"
+											th:errors="*{firstName}"
+											class="form-input-hint text-error"
+											id="firstNameHint"></p>
+									</div>
+								</div>
+							</div>
+							<div class="column col-12 py-2">
+								<div class="form-group">
+									<div class="column col-4">
+										<label class="form-label form-label-inline" for="lastName">
+											Last Name:
+										</label>
+									</div>
+									<div class="column col-8">
+										<input
+											id="lastName"
+											class="form-input"
+											type="text"
+											th:field="*{lastName}"
+											name="lastName"
+											th:classappend="${#fields.hasErrors('lastName') ? 'is-error' : ''}" />
+									</div>
+									<div class="column col-12 pt-1">
+										<p
+											th:if="${#fields.hasErrors('lastName')}"
+											th:errors="*{lastName}"
+											class="form-input-hint text-error"
+											id="lastNameHint"></p>
+									</div>
+								</div>
+							</div>
+							<div class="column col-12 py-2">
+								<div class="form-group">
+									<div class="column col-4">
+										<label class="form-label form-label-inline" for="email">
+											Email:
+										</label>
+									</div>
+									<div class="column col-8">
+										<input
+											id="email"
+											class="form-input"
+											type="email"
+											th:field="*{email}"
+											name="email"
+											th:classappend="${#fields.hasErrors('email') ? 'is-error' : ''}" />
+									</div>
+									<div class="column col-12 pt-1">
+										<p
+											th:if="${#fields.hasErrors('email')}"
+											th:errors="*{email}"
+											class="form-input-hint text-error"
+											id="emailHint"></p>
+									</div>
+								</div>
+							</div>
+							<div class="column col-12 py-2">
+								<div class="form-group">
+									<div class="column col-4">
+										<label class="form-label form-label-inline" for="password">
+											Password:
+										</label>
+									</div>
+									<div class="column col-8">
+										<input
+											id="password"
+											class="form-input"
+											type="password"
+											th:field="*{password}"
+											name="password"
+											th:classappend="${#fields.hasErrors('password') ? 'is-error' : ''}" />
+									</div>
+									<div class="column col-12 pt-1">
+										<p
+											th:if="${#fields.hasErrors('password')}"
+											th:errors="*{password}"
+											class="form-input-hint text-error"
+											id="passwordHint"></p>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="column col-4">
+										<label
+											class="form-label form-label-inline"
+											for="confirmPassword">
+											Confirm Password:
+										</label>
+									</div>
+									<div class="column col-8">
+										<input
+											id="confirmPassword"
+											class="form-input"
+											type="password"
+											th:field="*{confirmPassword}"
+											name="confirmPassword"
+											th:classappend="${#fields.hasErrors('confirmPassword') ? 'is-error' : ''}" />
+									</div>
+									<div class="column col-12 pt-1">
+										<p
+											th:if="${#fields.hasErrors('confirmPassword')}"
+											th:errors="*{confirmPassword}"
+											class="form-input-hint text-error"
+											id="confirmPasswordHint"></p>
+									</div>
+								</div>
+								<div class="column col-12 py-2">
+									<div class="form-group">
+										<div class="column col-4">
+											<label class="form-label form-label-inline" for="avatar"
+												>Avatar:</label
+											>
+										</div>
+										<div class="column col-8">
+											<input
+												name="avatar"
+												class="form-input"
+												type="file"
+												th:field="*{avatar}"
+												th:classappend="${#fields.hasErrors('avatar') ? 'is-error' : ''}"
+												id="avatar"
+												placeholder="Upload file" />
+										</div>
+										<div class="column col-12">
+											<p
+												th:if="${#fields.hasErrors('avatar')}"
+												th:errors="*{avatar}"
+												class="form-input-hint text-error"
+												id="avatarHint"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-success p-centered">
+							Register
+						</button>
+					</form>
 				</div>
 			</div>
-			<div class="form-group">
-				<div class="col-3 col-sm-12">
-					<label for="password" class="col-sm-2 col-form-label">Password</label>
-				</div>
-				<div class="col-9 col-sm-12">
-					<input
-						type="password"
-						id="password"
-						name="password"
-						class="form-input"
-						placeholder="Enter Password"
-						autofocus="autofocus" />
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-12 col-sm-12">
-					<button type="submit" class="btn btn-primary">Register</button>
-				</div>
-			</div>
-		</form>
+		</div>
 	</body>
 </html>

@@ -41,27 +41,6 @@ public class RegistrationDto {
     @Length(max = 45, message = "Last name must be less than 45 characters.")
     private String lastName;
 
-    @NotEmpty(message = "Address is required.")
-    @Length(max = 45, message = "Address must be less than 45 characters.")
-    private String address;
-
-    @NotEmpty(message = "City is required.")
-    @Length(max = 45, message = "City must be less than 45 characters.")
-    private String city;
-
-    @NotEmpty(message = "State is required.")
-    @Length(max = 45, message = "State must be less than 45 characters.")
-    private String state;
-
-    @NotEmpty(message = "Zip code is required.")
-    @Length(max = 5, message = "Zip code must be no more than 5 characters.")
-    @Length(min = 5, message = "Zip code must be not be less than 5 characters")
-    private String zip;
-
-    @NotEmpty(message = "Phone number is required.")
-    @Length(max = 10, message = "Phone number must be no more than 10 characters.")
-    @Length(min = 10, message = "Phone number must not be less than 10 characters")
-    private String phone;
-
+    @NotEmpty(message = "Avatar is reuired.")
     private String avatar;
 }

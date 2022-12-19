@@ -85,11 +85,6 @@ public class LoginController {
             user.setLastName(registrationDto.getLastName());
             user.setEmail(registrationDto.getEmail());
             user.setPassword(encodedPassword);
-            user.setAddress(registrationDto.getAddress());
-            user.setCity(registrationDto.getCity());
-            user.setState(registrationDto.getState());
-            user.setZip(registrationDto.getZip());
-            user.setPhone(registrationDto.getPhone());
             user.setCreateDate(new Date());
             user.setAvatar(registrationDto.getAvatar());
 
