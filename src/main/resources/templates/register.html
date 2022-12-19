@@ -1,54 +1,67 @@
-<!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
+<!DOCTYPE html>
+<html
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	lang="en">
+	<head th:fragment="head-fragment">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<title>Register</title>
+	</head>
 
-<head th:fragment="head-fragment">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <title>Register</title>
-</head>
-
-<body>
-    <h1>New User</h1>
-    <form th:action="@{/register}" method="post">
-
-        <div class="form-group">
-            <div class="col-3 col-sm-12">
-                <label for="username" class="form-label">Username</label>
-            </div>
-            <div class="col-9 col-sm-12">
-                <input type="text" id="username" name="username" class="form-input" placeholder="Enter Username"
-                    autofocus="autofocus">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-3 col-sm-12">
-                <label for="password" class="col-sm-2 col-form-label">Password</label>
-            </div>
-            <div class="col-9 col-sm-12">
-                <input type="password" id="password" name="password" class="form-input" placeholder="Enter Password"
-                    autofocus="autofocus">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-3 col-sm-12">
-                <label for="role" class="col-sm-2 col-form-label">Password</label>
-            </div>
-            <div class="col-9 col-sm-12">
-                <input type="text" id="role" name="role" class="form-input" placeholder="Enter Role"
-                    autofocus="autofocus">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class=" col-12 col-sm-12">
-                <button type="submit" class="btn btn-primary">Register</button>
-            </div>
-        </div>
-    </form>
-</body>
+	<body>
+		<h1>New User</h1>
+		<form th:action="@{/register}" method="post">
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+					<label for="username" class="form-label">Username</label>
+				</div>
+				<div class="col-9 col-sm-12">
+					<input
+						type="text"
+						id="username"
+						name="username"
+						class="form-input"
+						placeholder="Enter Username"
+						autofocus="autofocus" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+					<label for="password" class="col-sm-2 col-form-label">Password</label>
+				</div>
+				<div class="col-9 col-sm-12">
+					<input
+						type="password"
+						id="password"
+						name="password"
+						class="form-input"
+						placeholder="Enter Password"
+						autofocus="autofocus" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-12 col-sm-12">
+					<button type="submit" class="btn btn-primary">Register</button>
+				</div>
+			</div>
+		</form>
+	</body>
+</html>
