@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import com.banking.springboot.auth.User;
@@ -46,21 +48,18 @@ public class Employee {
 	private String email;
 
 	@Column
-	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date startDate;
 
 	@Column
-	@NotNull
 	private String title;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "branch_id")
-	@NotNull
 	private Branch branch;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "department_id")
-	@NotNull
 	private Department department;
 
 	@ManyToOne(cascade = CascadeType.MERGE)

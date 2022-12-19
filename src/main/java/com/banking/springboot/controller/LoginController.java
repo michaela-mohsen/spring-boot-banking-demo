@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.banking.springboot.auth.AuthenticatedUserService;
 import com.banking.springboot.auth.RegistrationDto;
 import com.banking.springboot.auth.User;
 import com.banking.springboot.auth.UserRepository;
 import com.banking.springboot.auth.UserRole;
 import com.banking.springboot.auth.UserRoleRepository;
+import com.banking.springboot.config.AuthenticatedUserService;
 import com.banking.springboot.model.Employee;
 import com.banking.springboot.repository.EmployeeRepository;
 

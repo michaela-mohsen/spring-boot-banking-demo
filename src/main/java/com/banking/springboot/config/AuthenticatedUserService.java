@@ -1,4 +1,4 @@
-package com.banking.springboot.auth;
+package com.banking.springboot.config;
 
 import java.util.Collection;
 
@@ -15,6 +15,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import com.banking.springboot.auth.User;
+import com.banking.springboot.auth.UserRepository;
 
 @Service
 public class AuthenticatedUserService {

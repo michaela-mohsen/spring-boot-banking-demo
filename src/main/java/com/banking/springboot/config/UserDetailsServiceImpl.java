@@ -1,4 +1,4 @@
-package com.banking.springboot.auth;
+package com.banking.springboot.config;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,6 +11,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.banking.springboot.auth.User;
+import com.banking.springboot.auth.UserRepository;
+import com.banking.springboot.auth.UserRole;
+import com.banking.springboot.auth.UserRoleRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
