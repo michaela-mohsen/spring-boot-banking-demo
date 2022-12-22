@@ -45,20 +45,5 @@ public class User {
     private Date createDate;
 
     @Column
-    private String address;
-
-    @Column
-    private String city;
-
-    @Column
-    private String state;
-
-    @Column
-    private String zip;
-
-    @Column
-    private String phone;
-
-    @Column
     private String avatar;
 }

@@ -41,6 +41,5 @@ public class RegistrationDto {
     @Length(max = 45, message = "Last name must be less than 45 characters.")
     private String lastName;
 
-    @NotEmpty(message = "Avatar is reuired.")
     private String avatar;
 }

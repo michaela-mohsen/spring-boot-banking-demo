@@ -46,7 +46,8 @@
 						method="post"
 						th:object="${registrationDto}"
 						name="newUserForm"
-						id="newUserForm">
+						id="newUserForm"
+						enctype="multipart/form-data">
 						<div class="columns">
 							<div class="column col-12 pt-1">
 								<p
@@ -154,6 +155,8 @@
 											id="passwordHint"></p>
 									</div>
 								</div>
+							</div>
+							<div class="column col-12 py-2">
 								<div class="form-group">
 									<div class="column col-4">
 										<label
@@ -179,30 +182,31 @@
 											id="confirmPasswordHint"></p>
 									</div>
 								</div>
-								<div class="column col-12 py-2">
-									<div class="form-group">
-										<div class="column col-4">
-											<label class="form-label form-label-inline" for="avatar"
-												>Avatar:</label
-											>
-										</div>
-										<div class="column col-8">
-											<input
-												name="avatar"
-												class="form-input"
-												type="file"
-												th:field="*{avatar}"
-												th:classappend="${#fields.hasErrors('avatar') ? 'is-error' : ''}"
-												id="avatar"
-												placeholder="Upload file" />
-										</div>
-										<div class="column col-12">
-											<p
-												th:if="${#fields.hasErrors('avatar')}"
-												th:errors="*{avatar}"
-												class="form-input-hint text-error"
-												id="avatarHint"></p>
-										</div>
+							</div>
+
+							<div class="column col-12 py-2">
+								<div class="form-group">
+									<div class="column col-4">
+										<label class="form-label form-label-inline" for="avatar"
+											>Avatar:</label
+										>
+									</div>
+									<div class="column col-8">
+										<input
+											name="file"
+											class="form-input"
+											type="file"
+											th:field="*{avatar}"
+											th:classappend="${#fields.hasErrors('avatar') ? 'is-error' : ''}"
+											id="avatar"
+											placeholder="Upload file" />
+									</div>
+									<div class="column col-12">
+										<p
+											th:if="${#fields.hasErrors('avatar')}"
+											th:errors="*{avatar}"
+											class="form-input-hint text-error"
+											id="avatarHint"></p>
 									</div>
 								</div>
 							</div>

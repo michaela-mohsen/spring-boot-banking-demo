@@ -1,8 +1,11 @@
 package com.banking.springboot.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.banking.springboot.auth.RegistrationDto;
@@ -43,8 +48,12 @@ public class LoginController {
     private AuthenticatedUserService authService;
 
     @GetMapping("/home")
-    public String home(Model model) {
-        return "home";
+    public ModelAndView home(Model model) {
+        ModelAndView mav = new ModelAndView("home");
+        User user = authService.getCurrentUser();
+        mav.addObject("user", user);
+
+        return mav;
     }
 
     @GetMapping("/login")
@@ -86,8 +95,6 @@ public class LoginController {
             user.setEmail(registrationDto.getEmail());
             user.setPassword(encodedPassword);
             user.setCreateDate(new Date());
-            user.setAvatar(registrationDto.getAvatar());
-
             userRepository.save(user);
 
             UserRole ur = new UserRole();
@@ -108,7 +115,7 @@ public class LoginController {
                 newEmployee.setUser(user);
                 employeeRepository.save(newEmployee);
             }
-            return "redirect:/register?success";
+            return "redirect:/register/createavatar";
         } else {
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("registrationDto", registrationDto);
@@ -116,4 +123,22 @@ public class LoginController {
         }
     }
 
+    @GetMapping("/register/createavatar")
+    public String createAvatar(Model model) {
+        User user = authService.getCurrentUser();
+        model.addAttribute("user", user);
+        return "create_avatar";
+    }
+
+    @PostMapping("/register/createavatar")
+    public String createAvatarSubmit(Model model, @RequestParam("file") MultipartFile file,
+            @ModelAttribute("user") User user) throws IOException {
+
+        User existingUser = userRepository.findByEmail(user.getEmail());
+        existingUser.setAvatar(user.getAvatar());
+        userRepository.save(existingUser);
+
+        model.addAttribute("user", user);
+        return "redirect:/home";
+    }
 }
