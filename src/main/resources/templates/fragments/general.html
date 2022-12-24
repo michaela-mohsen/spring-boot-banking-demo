@@ -1,28 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<title>Fragments</title>
+	</head>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <title>Fragments</title>
-</head>
+	<body>
+		<div th:fragment="head">
+			<link
+				rel="stylesheet"
+				href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro" />
+			<link
+				rel="stylesheet"
+				href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
+			<link
+				rel="stylesheet"
+				href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" />
+			<link
+				rel="stylesheet"
+				href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css" />
+			<link
+				rel="stylesheet"
+				href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		</div>
 
-<body>
+		<footer th:fragment="footer">
+			<p>&copy; Michaela Drummonds, 2022</p>
+			<p>Styled by &copy;Spectre.CSS</p>
+		</footer>
 
-    <div th:fragment="content"></div>
-
-    <footer th:fragment="footer">
-        <p>&copy; Michaela Drummonds, 2022</p>
-        <p>Styled by &copy;Spectre.CSS</p>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-</body>
-
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	</body>
 </html>

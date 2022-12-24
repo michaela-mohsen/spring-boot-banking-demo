@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	lang="en">
+	<head th:fragment="head-fragment">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<th:block th:insert="~{fragments/general :: head}"></th:block>
+		<title>Create Avatar</title>
+	</head>
+
+	<body>
+		<div class="container py-2 px-2">
+			<div class="card p-centered col-6 col-sm-12 px-2 py-2">
+				<div class="card-header">
+					<h3 class="card-title text-center">Upload Avatar Photo</h3>
+				</div>
+				<div class="card-body">
+					<form
+						class="form-horizontal px-2 s-rounded"
+						th:action="@{/register/createavatar}"
+						method="post"
+						enctype="multipart/form-data"
+						th:object="${user}">
+						<div class="columns">
+							<div class="column col-12 py-2">
+								<div class="form-group">
+									<div class="column col-4">
+										<label class="form-label form-label-inline" for="avatar"
+											>Upload Photo:</label
+										>
+									</div>
+									<div class="column col-8">
+										<input
+											name="file"
+											class="form-input"
+											type="file"
+											placeholder="Upload file"
+											required />
+									</div>
+								</div>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-success p-centered">
+							Register
+						</button>
+					</form>
+				</div>
+			</div>
+
+			<img src="${filename}" alt="uploaded image" />
+		</div>
+	</body>
+</html>

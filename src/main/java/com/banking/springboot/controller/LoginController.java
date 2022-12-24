@@ -49,11 +49,17 @@ public class LoginController {
 
     @GetMapping("/home")
     public ModelAndView home(Model model) {
-        ModelAndView mav = new ModelAndView("home");
+        ModelAndView mav = new ModelAndView();
         User user = authService.getCurrentUser();
-        mav.addObject("user", user);
-
-        return mav;
+        if (user.getAvatar() == null) {
+            mav.setViewName("redirect:/register/createavatar");
+            mav.addObject("user", user);
+            return mav;
+        } else {
+            mav.setViewName("home");
+            mav.addObject("user", user);
+            return mav;
+        }
     }
 
     @GetMapping("/login")
@@ -115,7 +121,7 @@ public class LoginController {
                 newEmployee.setUser(user);
                 employeeRepository.save(newEmployee);
             }
-            return "redirect:/register/createavatar";
+            return "redirect:/login";
         } else {
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("registrationDto", registrationDto);
@@ -131,13 +137,17 @@ public class LoginController {
     }
 
     @PostMapping("/register/createavatar")
-    public String createAvatarSubmit(Model model, @RequestParam("file") MultipartFile file,
-            @ModelAttribute("user") User user) throws IOException {
+    public String createAvatarSubmit(Model model, @RequestParam("file") MultipartFile file) throws IOException {
 
-        User existingUser = userRepository.findByEmail(user.getEmail());
-        existingUser.setAvatar(user.getAvatar());
-        userRepository.save(existingUser);
+        File targetFile = new File("/src/main/resources/static/avatars/" + file.getOriginalFilename());
+        FileUtils.copyInputStreamToFile(file.getInputStream(), targetFile);
+        String avatar = "/static/avatars/" + file.getOriginalFilename();
+        User user = authService.getCurrentUser();
 
+        user.setAvatar(avatar);
+        userRepository.save(user);
+
+        model.addAttribute("filename", avatar);
         model.addAttribute("user", user);
         return "redirect:/home";
     }

@@ -40,7 +40,7 @@ public class User {
     @Column
     private String password;
 
-    @Column(name = "create_date", nullable = false, updatable = false)
+    @Column(name = "create_date", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
