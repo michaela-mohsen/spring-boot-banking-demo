@@ -144,9 +144,6 @@ public class LoginController {
         user.setAvatar(avatar);
         userRepository.save(user);
 
-        String url = "/avatars/" + file.getOriginalFilename();
-
-        model.addAttribute("filename", url);
         model.addAttribute("user", user);
         return "redirect:/home";
     }
