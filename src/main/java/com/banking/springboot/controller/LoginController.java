@@ -136,7 +136,7 @@ public class LoginController {
     @PostMapping("/register/createavatar")
     public String createAvatarSubmit(Model model, @RequestParam("file") MultipartFile file) throws IOException {
 
-        File targetFile = new File("./src/main/resources/templates/avatars/" + file.getOriginalFilename());
+        File targetFile = new File("./src/main/resources/static/avatars/" + file.getOriginalFilename());
         FileUtils.copyInputStreamToFile(file.getInputStream(), targetFile);
         String avatar = file.getOriginalFilename();
         User user = authService.getCurrentUser();
