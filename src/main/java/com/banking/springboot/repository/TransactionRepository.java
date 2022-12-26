@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.banking.springboot.model.Transaction;
 
 @Repository
-public interface TransactionRepository extends JpaRepository<Transaction, Long> {
+public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
 
 }

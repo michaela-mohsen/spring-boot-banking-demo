@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.banking.springboot.model.Individual;
 
 @Repository
-public interface IndividualRepository extends JpaRepository<Individual, Long> {
+public interface IndividualRepository extends JpaRepository<Individual, Integer> {
 
 }

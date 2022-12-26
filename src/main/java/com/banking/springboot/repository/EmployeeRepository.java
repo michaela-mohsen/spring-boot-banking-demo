@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.banking.springboot.model.Employee;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     Employee findEmployeeById(Integer id);
 
