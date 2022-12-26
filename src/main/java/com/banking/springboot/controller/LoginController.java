@@ -48,17 +48,14 @@ public class LoginController {
     private AuthenticatedUserService authService;
 
     @GetMapping("/home")
-    public ModelAndView home(Model model) {
-        ModelAndView mav = new ModelAndView();
+    public String home(Model model) {
         User user = authService.getCurrentUser();
         if (user.getAvatar() == null) {
-            mav.setViewName("redirect:/register/createavatar");
-            mav.addObject("user", user);
-            return mav;
+            model.addAttribute("user", user);
+            return "redirect:/register/createavatar";
         } else {
-            mav.setViewName("home");
-            mav.addObject("user", user);
-            return mav;
+            model.addAttribute("user", user);
+            return "home";
         }
     }
 
@@ -139,15 +136,17 @@ public class LoginController {
     @PostMapping("/register/createavatar")
     public String createAvatarSubmit(Model model, @RequestParam("file") MultipartFile file) throws IOException {
 
-        File targetFile = new File("/src/main/resources/static/avatars/" + file.getOriginalFilename());
+        File targetFile = new File("./src/main/resources/templates/avatars/" + file.getOriginalFilename());
         FileUtils.copyInputStreamToFile(file.getInputStream(), targetFile);
-        String avatar = "/static/avatars/" + file.getOriginalFilename();
+        String avatar = file.getOriginalFilename();
         User user = authService.getCurrentUser();
 
         user.setAvatar(avatar);
         userRepository.save(user);
 
-        model.addAttribute("filename", avatar);
+        String url = "/avatars/" + file.getOriginalFilename();
+
+        model.addAttribute("filename", url);
         model.addAttribute("user", user);
         return "redirect:/home";
     }

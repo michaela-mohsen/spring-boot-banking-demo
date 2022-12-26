@@ -29,8 +29,29 @@
 	<body>
 		<h1>You have been logged in.</h1>
 		<figure class="avatar avatar-xl">
-			<img th:src="${user.avatar}" alt="avatar" />
+			<img src="./avatars/20111209_163838_Android.jpg" alt="avatar" />
 		</figure>
+		<figure class="avatar avatar-xl">
+			<img
+				th:src="@{/avatars/{avatar}(avatar=${user.avatar})}"
+				alt="@{/avatars/{avatar}(avatar=${user.avatar})}" />
+		</figure>
+		<figure class="avatar avatar-xl">
+			<img
+				th:src="@{${'./avatars/' + user.avatar}}"
+				alt="@{${'./avatars/' + user.avatar}}" />
+		</figure>
+		<figure class="avatar avatar-xl">
+			<img th:src="@{${user.avatar}}" alt="@{${user.avatar}}" />
+		</figure>
+		<div>
+			<ul>
+				<li th:text="${user.email}"></li>
+				<li th:text="${user.firstName}"></li>
+				<li th:text="${user.lastName}"></li>
+				<li th:text="${user.avatar}"></li>
+			</ul>
+		</div>
 		<div class="accordion">
 			<input
 				id="accordion-1"
