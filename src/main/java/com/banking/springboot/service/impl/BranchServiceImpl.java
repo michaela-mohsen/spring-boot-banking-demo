@@ -14,7 +14,7 @@ public class BranchServiceImpl implements BranchService {
 
 	@Autowired
 	private BranchRepository branchRepository;
-	
+
 	public BranchServiceImpl(BranchRepository branchRepository) {
 		super();
 		this.branchRepository = branchRepository;
@@ -26,7 +26,7 @@ public class BranchServiceImpl implements BranchService {
 	}
 
 	@Override
-	public Branch getBranchById(Long id) {
+	public Branch getBranchById(Integer id) {
 		return branchRepository.findById(id).get();
 	}
 

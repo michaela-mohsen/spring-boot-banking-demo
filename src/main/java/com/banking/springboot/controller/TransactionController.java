@@ -55,7 +55,7 @@ public class TransactionController {
     }
 
     @GetMapping("/transactions/new/{id}")
-    public String createTransactionForm(@PathVariable Long id, Model model) {
+    public String createTransactionForm(@PathVariable Integer id, Model model) {
         Transaction transaction = new Transaction();
         Account existingAccount = accountService.getAccountById(id);
         model.addAttribute("transaction", transaction);
@@ -65,7 +65,7 @@ public class TransactionController {
     }
 
     @PutMapping("/transactions/new/{id}")
-    public String createTransaction(@PathVariable Long id, @ModelAttribute("account") Account account, Model model) {
+    public String createTransaction(@PathVariable Integer id, @ModelAttribute("account") Account account, Model model) {
         Transaction transaction = new Transaction();
         Account existingAccount = accountService.getAccountById(id);
         transaction.setAccount(existingAccount);

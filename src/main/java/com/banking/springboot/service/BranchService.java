@@ -9,5 +9,6 @@ import com.banking.springboot.model.Branch;
 @Component
 public interface BranchService {
 	List<Branch> getAllBranches();
-	Branch getBranchById(Long id);
+
+	Branch getBranchById(Integer id);
 }

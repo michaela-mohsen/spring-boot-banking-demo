@@ -37,9 +37,11 @@ public class AccountController {
 	}
 
 	@GetMapping("/accounts/product/{product}")
-	public String listAccountsByProduct(Model model, @Param("product") Long product, Account account) {
+	public String listAccountsByProduct(Model model, @Param("product") Product product,
+			Account account) {
 
-		List<Account> accountsByProduct = accountService.getAccountByProduct(product);
+		Integer productId = product.getId();
+		List<Account> accountsByProduct = accountService.getAccountByProduct(product, productId);
 		model.addAttribute("accounts", accountsByProduct);
 		model.addAttribute("product", product);
 		return "accounts_product";
@@ -63,7 +65,7 @@ public class AccountController {
 
 	// update an account object form
 	@GetMapping("/accounts/update/{id}")
-	public String updateAccountForm(@PathVariable Long id, Model model) {
+	public String updateAccountForm(@PathVariable Integer id, Model model) {
 		model.addAttribute("localDate", LocalDate.now());
 		model.addAttribute("account", accountService.getAccountById(id));
 		return "update_account";
@@ -71,7 +73,7 @@ public class AccountController {
 
 	// update an account object
 	@PostMapping("/accounts/{id}")
-	public String updateAccount(@PathVariable Long id, @ModelAttribute("account") Account account, Model model) {
+	public String updateAccount(@PathVariable Integer id, @ModelAttribute("account") Account account, Model model) {
 		// get a specific account
 		Account existingAccount = accountService.getAccountById(id);
 
@@ -93,7 +95,7 @@ public class AccountController {
 
 	// delete an account object
 	@GetMapping("/accounts/{id}")
-	public String deleteAccount(@PathVariable Long id) {
+	public String deleteAccount(@PathVariable Integer id) {
 		accountService.deleteAccountById(id);
 		return "redirect:/accounts";
 	}

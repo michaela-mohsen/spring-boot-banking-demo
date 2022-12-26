@@ -20,7 +20,6 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private IndividualRepository individualRepository;
 
-
 	public CustomerServiceImpl(CustomerRepository customerRepository, IndividualRepository individualRepository) {
 		this.customerRepository = customerRepository;
 		this.individualRepository = individualRepository;
@@ -32,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer getCustomerById(Long id) {
+	public Customer getCustomerById(Integer id) {
 		return customerRepository.findById(id).get();
 	}
 
@@ -42,7 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public void deleteCustomerById(Long id) {
+	public void deleteCustomerById(Integer id) {
 		customerRepository.deleteById(id);
 	}
 
@@ -56,11 +55,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return individualRepository.findAll();
 	}
 
-
 	@Override
 	public Individual saveIndividual(Individual individual) {
 		return individualRepository.save(individual);
 	}
-
 
 }

@@ -7,9 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.banking.springboot.model.Account;
+import com.banking.springboot.model.Product;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Query("select a from Account a where a.product = ?1")
-    List<Account> getAccountByProduct(Integer id);
+    List<Account> findByProductId(Product product, Integer id);
 }

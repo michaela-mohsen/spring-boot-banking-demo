@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.banking.springboot.model.Account;
+import com.banking.springboot.model.Product;
 import com.banking.springboot.repository.AccountRepository;
 import com.banking.springboot.service.AccountService;
 
@@ -27,7 +28,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Account getAccountById(Long id) {
+	public Account getAccountById(Integer id) {
 		return accountRepository.findById(id).get();
 	}
 
@@ -37,7 +38,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void deleteAccountById(Long id) {
+	public void deleteAccountById(Integer id) {
 		accountRepository.deleteById(id);
 	}
 
@@ -47,8 +48,8 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public List<Account> getAccountByProduct(Long id) {
-		return accountRepository.getAccountByProduct(id);
+	public List<Account> getAccountByProduct(Product product, Integer id) {
+		return accountRepository.findByProductId(product, id);
 	}
 
 }
