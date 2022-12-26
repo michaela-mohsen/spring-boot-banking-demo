@@ -1,87 +1,108 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang=en>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Transactions</title>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css" />
+	</head>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Transactions</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
-</head>
-
-<body>
-    <header>
-        <nav class="bg-secondary navbar-center">
-            <ul class="tab tab-block">
-                <li class="tab-item">
-                    <a class="text-primary" th:href="@{/accounts}">Accounts</a>
-                </li>
-                <li class="tab-item active">
-                    <a class="text-primary" th:href="@{/transactions}">Transactions</a>
-                </li>
-                <li class="tab-item">
-                    <a class="text-primary" th:href="@{/employees}">Employees</a>
-                </li>
-                <li class="tab-item">
-                    <a class="text-primary" th:href="@{/customers}">Customers</a>
-                </li>
-                <li class="tab-item">
-                    <a class="text-primary" th:href="@{/products}">Products</a>
-                </li>
-                <li class="tab-item" sec:authorize="isAuthenticated()">
-                    <a class="text-primary" th:href="@{/logout}">Logout</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <div id="transactions">
-        <h1 class="text-center">Transactions</h1>
-        <table class="table text-center table-striped table-hover">
-            <thead>
-                <tr class="text-center text-upercase">
-                    <th><a
-                            th:href="@{'/transactions/' + ${currentPage} + '?sortField=account&sortDir=' + ${reverseSortDir}}">Account
-                            ID</a></th>
-                    <th>Customer ID</th>
-                    <th>Amount</th>
-                    <th>Pending Balance</th>
-                    <th>Available Balance</th>
-                    <th><a
-                            th:href="@{'/transactions/' + ${currentPage} + '?sortField=date&sortDir=' + ${reverseSortDir}}">Transaction
-                            Date
-                        </a></th>
-                    <th>Funds Available Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="text-center" th:each="transaction : ${listTransactions}">
-                    <td th:text="${transaction.account.id}"></td>
-                    <td th:text="${transaction.account.customer.id}"></td>
-                    <td th:text="${#numbers.formatCurrency(transaction.amount)}"></td>
-                    <td th:text="${#numbers.formatCurrency(transaction.account.pendingBalance)}"></td>
-                    <td th:text="${#numbers.formatCurrency(transaction.account.availableBalance)}"></td>
-                    <td th:text="${#dates.format(transaction.date, 'MM-dd-yyyy')}"></td>
-                    <td th:text="${#dates.format(transaction.fundsAvailableDate, 'MM-dd-yyyy')}"></td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <div class="divider"></div>
-        <div th:if="${totalPages > 1}" class="text-center">
-            <ul class="pagination">
-                <li class="page-item column col-sm-12">
-                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                        <a th:if="${currentPage != i}"
-                            th:href="@{'/transactions/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-                        <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
-                    </span>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <footer th:insert="fragments/general.html :: footer"></footer>
-</body>
-
+	<body>
+		<header>
+			<nav class="bg-secondary navbar-center">
+				<ul class="tab tab-block">
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/home}">Home</a>
+					</li>
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/accounts}">Accounts</a>
+					</li>
+					<li class="tab-item active">
+						<a class="text-primary" th:href="@{/transactions}">Transactions</a>
+					</li>
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/employees}">Employees</a>
+					</li>
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/customers}">Customers</a>
+					</li>
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/products}">Products</a>
+					</li>
+					<li class="tab-item" sec:authorize="isAuthenticated()">
+						<a class="text-primary" th:href="@{/logout}">Logout</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div id="transactions">
+			<h1 class="text-center">Transactions</h1>
+			<table class="table text-center table-striped table-hover">
+				<thead>
+					<tr class="text-center text-upercase">
+						<th>
+							<a
+								th:href="@{'/transactions/' + ${currentPage} + '?sortField=account&sortDir=' + ${reverseSortDir}}"
+								>Account ID</a
+							>
+						</th>
+						<th>Customer ID</th>
+						<th>Amount</th>
+						<th>Pending Balance</th>
+						<th>Available Balance</th>
+						<th>
+							<a
+								th:href="@{'/transactions/' + ${currentPage} + '?sortField=date&sortDir=' + ${reverseSortDir}}"
+								>Transaction Date
+							</a>
+						</th>
+						<th>Funds Available Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="text-center" th:each="transaction : ${listTransactions}">
+						<td th:text="${transaction.account.id}"></td>
+						<td th:text="${transaction.account.customer.id}"></td>
+						<td th:text="${#numbers.formatCurrency(transaction.amount)}"></td>
+						<td
+							th:text="${#numbers.formatCurrency(transaction.account.pendingBalance)}"></td>
+						<td
+							th:text="${#numbers.formatCurrency(transaction.account.availableBalance)}"></td>
+						<td th:text="${#dates.format(transaction.date, 'MM-dd-yyyy')}"></td>
+						<td
+							th:text="${#dates.format(transaction.fundsAvailableDate, 'MM-dd-yyyy')}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<br />
+			<div class="divider"></div>
+			<div th:if="${totalPages > 1}" class="text-center">
+				<ul class="pagination">
+					<li class="page-item column col-sm-12">
+						<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+							<a
+								th:if="${currentPage != i}"
+								th:href="@{'/transactions/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"
+								>[[${i}]]</a
+							>
+							<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+							&nbsp;
+						</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<footer th:insert="fragments/general.html :: footer"></footer>
+	</body>
 </html>
