@@ -54,7 +54,6 @@ public class Transaction {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "account_id")
 	@NotNull
-	@JsonBackReference
 	private Account account;
 
 }

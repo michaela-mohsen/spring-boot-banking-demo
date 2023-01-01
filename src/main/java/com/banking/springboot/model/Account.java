@@ -44,7 +44,7 @@ public class Account {
 	private Date lastActivityDate;
 
 	@Column
-	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date openDate;
 
 	@Column
