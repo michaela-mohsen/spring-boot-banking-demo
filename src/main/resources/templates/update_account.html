@@ -22,6 +22,9 @@
 		<header>
 			<nav class="bg-secondary navbar-center">
 				<ul class="tab tab-block">
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/home}">Home</a>
+					</li>
 					<li class="tab-item active">
 						<a class="text-primary" th:href="@{/accounts}">Accounts</a>
 					</li>
@@ -33,9 +36,6 @@
 					</li>
 					<li class="tab-item">
 						<a class="text-primary" th:href="@{/customers}">Customers</a>
-					</li>
-					<li class="tab-item">
-						<a class="text-primary" th:href="@{/products}">Products</a>
 					</li>
 					<li class="tab-item" sec:authorize="isAuthenticated()">
 						<a class="text-primary" th:href="@{/logout}">Logout</a>
