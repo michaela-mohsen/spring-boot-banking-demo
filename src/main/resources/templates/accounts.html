@@ -47,141 +47,89 @@
 		<div>
 			<a class="btn" th:href="@{/accounts/new}">Create New Account</a>
 		</div>
-		<div class="container">
-			<ul class="tab tab-block">
-				<li class="tab-item active">
-					<a th:href="@{/accounts}">All Accounts</a>
-				</li>
-				<li class="tab-item">
-					<a th:href="@{/accounts/product/{productId}(productId = '1')}"
-						>Auto Loan</a
-					>
-				</li>
-				<li class="tab-item">
-					<a th:href="@{/accounts/product/{productId}(productId = '2')}"
-						>Business Line of Credit</a
-					>
-				</li>
-				<li class="tab-item">
-					<a th:href="@{/accounts/product/{productId}(productId = '3')}"
-						>Certificate of Deposit</a
-					>
-				</li>
-				<li class="tab-item">
-					<a th:href="@{/accounts/product/{productId}(productId = '4')}"
-						>Checking Account</a
-					>
-				</li>
-				<li class="tab-item">
-					<a th:href="@{/accounts/product/{productId}(productId = '5')}"
-						>Money Market Account</a
-					>
-				</li>
-				<li class="tab-item">
-					<a th:href="@{/accounts/product/{productId}(productId = '6')}"
-						>Home Mortgage</a
-					>
-				</li>
-				<li class="tab-item">
-					<a th:href="@{/accounts/product/{productId}(productId = '7')}"
-						>Savings Account</a
-					>
-				</li>
-				<li class="tab-item">
-					<a th:href="@{/accounts/product/{productId}(productId = '8')}"
-						>Small Business Loan</a
-					>
-				</li>
-			</ul>
-			<div class="column col-4 col-sm-12 mb-2" th:each="account: ${accounts}">
-				<div class="panel column">
-					<div class="panel-header text-center">
-						<div class="panel-title h5" th:text="${account.id}"></div>
-						<div
-							class="panel-subtitle"
-							th:text="'Customer ID: ' + ${account.customer.id}"></div>
-					</div>
-					<div class="divider"></div>
-					<div class="panel-body">
-						<div class="tile tile-centered">
-							<div class="tile-content">
-								<div class="tile-title text-bold">Available Balance:</div>
-								<div
-									class="tile-subtitle"
-									th:text="${#numbers.formatCurrency(account.availableBalance)}"></div>
-							</div>
-						</div>
-						<div class="tile tile-centered">
-							<div class="tile-content">
-								<div class="tile-title text-bold">Pending Balance:</div>
-								<div
-									class="tile-subtitle"
-									th:text="${#numbers.formatCurrency(account.pendingBalance)}"></div>
-							</div>
-						</div>
-						<div class="tile tile-centered">
-							<div class="tile-content">
-								<div class="tile-title text-bold">Account Opened on:</div>
-								<div
-									class="tile-subtitle"
-									th:text="${#dates.format(account.openDate, 'MM-dd-yyyy')}"></div>
-							</div>
-						</div>
-						<div class="tile tile-centered">
-							<div class="tile-content">
-								<div class="tile-title text-bold">Last Activity Date</div>
-								<div
-									class="tile-subtitle"
-									th:text="${#dates.format(account.lastActivityDate, 'MM-dd-yyyy')}"></div>
-							</div>
-						</div>
-						<div class="tile tile-centered">
-							<div class="tile-content">
-								<div class="tile-title text-bold">Branch:</div>
-								<div
-									class="tile-subtitle"
-									th:text="${account.branch.name}"></div>
-							</div>
-						</div>
-						<div class="tile tile-centered">
-							<div class="tile-content">
-								<div class="tile-title text-bold">Employee ID:</div>
-								<div
-									class="tile-subtitle"
-									th:text="${account.employee.id}"></div>
-							</div>
-						</div>
-						<div class="tile tile-centered">
-							<div class="tile-content">
-								<div class="tile-title text-bold">Product:</div>
-								<div
-									class="tile-subtitle"
-									th:text="${account.product.name}"></div>
-							</div>
+		<div class="columns">
+			<div
+				class="panel column col-4 col-sm-12 my-2"
+				th:each="account: ${accounts}">
+				<div class="panel-header text-center">
+					<div class="panel-title h5" th:text="${account.id}"></div>
+					<div
+						class="panel-subtitle"
+						th:text="'Customer ID: ' + ${account.customer.id}"></div>
+				</div>
+				<div class="divider"></div>
+				<div class="panel-body">
+					<div class="tile tile-centered">
+						<div class="tile-content">
+							<div class="tile-title text-bold">Available Balance:</div>
+							<div
+								class="tile-subtitle"
+								th:text="${#numbers.formatCurrency(account.availableBalance)}"></div>
 						</div>
 					</div>
-					<div class="panel-footer">
-						<div class="btn-group">
-							<a
-								class="btn"
-								th:href="@{/transactions/new/{id}(id=${account.id})}"
-								>Create Transaction</a
-							>
-							<a
-								class="btn"
-								th:href="@{/accounts/update/{id}(id=${account.id})}"
-								>Update</a
-							>
-							<a
-								class="btn btn-error"
-								th:href="@{/accounts/{id}(id=${account.id})}"
-								>Delete</a
-							>
+					<div class="tile tile-centered">
+						<div class="tile-content">
+							<div class="tile-title text-bold">Pending Balance:</div>
+							<div
+								class="tile-subtitle"
+								th:text="${#numbers.formatCurrency(account.pendingBalance)}"></div>
 						</div>
+					</div>
+					<div class="tile tile-centered">
+						<div class="tile-content">
+							<div class="tile-title text-bold">Account Opened on:</div>
+							<div
+								class="tile-subtitle"
+								th:text="${#dates.format(account.openDate, 'MM-dd-yyyy')}"></div>
+						</div>
+					</div>
+					<div class="tile tile-centered">
+						<div class="tile-content">
+							<div class="tile-title text-bold">Last Activity Date</div>
+							<div
+								class="tile-subtitle"
+								th:text="${#dates.format(account.lastActivityDate, 'MM-dd-yyyy')}"></div>
+						</div>
+					</div>
+					<div class="tile tile-centered">
+						<div class="tile-content">
+							<div class="tile-title text-bold">Branch:</div>
+							<div class="tile-subtitle" th:text="${account.branch.name}"></div>
+						</div>
+					</div>
+					<div class="tile tile-centered">
+						<div class="tile-content">
+							<div class="tile-title text-bold">Employee ID:</div>
+							<div class="tile-subtitle" th:text="${account.employee.id}"></div>
+						</div>
+					</div>
+					<div class="tile tile-centered">
+						<div class="tile-content">
+							<div class="tile-title text-bold">Product:</div>
+							<div
+								class="tile-subtitle"
+								th:text="${account.product.name}"></div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<div class="btn-group">
+						<a class="btn" th:href="@{/transactions/new/{id}(id=${account.id})}"
+							>Create Transaction</a
+						>
+						<a class="btn" th:href="@{/accounts/update/{id}(id=${account.id})}"
+							>Update</a
+						>
+						<a
+							class="btn btn-error"
+							th:href="@{/accounts/delete/{id}(id=${account.id})}"
+							>Delete</a
+						>
 					</div>
 				</div>
 			</div>
 		</div>
+
 		<footer th:insert="fragments/general.html :: footer"></footer>
 	</body>
 </html>

@@ -47,9 +47,4 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.save(account);
 	}
 
-	@Override
-	public List<Account> getAccountByProduct(Product product, Integer id) {
-		return accountRepository.findByProductId(product, id);
-	}
-
 }

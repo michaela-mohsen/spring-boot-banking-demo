@@ -3,7 +3,6 @@ package com.banking.springboot.controller;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,18 +12,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.banking.springboot.model.Account;
-import com.banking.springboot.model.Product;
+import com.banking.springboot.model.Customer;
+import com.banking.springboot.model.Employee;
 import com.banking.springboot.service.impl.AccountServiceImpl;
+import com.banking.springboot.service.impl.CustomerServiceImpl;
+import com.banking.springboot.service.impl.EmployeeServiceImpl;
 
 @Controller
 @RequestMapping
 public class AccountController {
 
 	private AccountServiceImpl accountService;
+	private CustomerServiceImpl customerService;
+	private EmployeeServiceImpl employeeService;
 
-	public AccountController(AccountServiceImpl accountService) {
+	public AccountController(AccountServiceImpl accountService, CustomerServiceImpl customerService,
+			EmployeeServiceImpl employeeService) {
 		super();
 		this.accountService = accountService;
+		this.customerService = customerService;
+		this.employeeService = employeeService;
 	}
 
 	// get all accounts
@@ -36,23 +43,15 @@ public class AccountController {
 		return "accounts";
 	}
 
-	@GetMapping("/accounts/product/{product}")
-	public String listAccountsByProduct(Model model, @Param("product") Product product,
-			Account account) {
-
-		Integer productId = product.getId();
-		List<Account> accountsByProduct = accountService.getAccountByProduct(product, productId);
-		model.addAttribute("accounts", accountsByProduct);
-		model.addAttribute("product", product);
-		return "accounts_product";
-	}
-
 	// create a new account object
 	@GetMapping("/accounts/new")
 	public String createAccount(Model model) {
 		Account account = new Account();
-		model.addAttribute("localDate", LocalDate.now());
+		List<Customer> customers = customerService.getAllCustomers();
+		List<Employee> employees = employeeService.getAllEmployees();
 		model.addAttribute("account", account);
+		model.addAttribute("customers", customers);
+		model.addAttribute("employees", employees);
 		return "create_account";
 	}
 
@@ -66,13 +65,12 @@ public class AccountController {
 	// update an account object form
 	@GetMapping("/accounts/update/{id}")
 	public String updateAccountForm(@PathVariable Integer id, Model model) {
-		model.addAttribute("localDate", LocalDate.now());
 		model.addAttribute("account", accountService.getAccountById(id));
 		return "update_account";
 	}
 
 	// update an account object
-	@PostMapping("/accounts/{id}")
+	@PostMapping("/accounts/update/{id}")
 	public String updateAccount(@PathVariable Integer id, @ModelAttribute("account") Account account, Model model) {
 		// get a specific account
 		Account existingAccount = accountService.getAccountById(id);
@@ -94,7 +92,7 @@ public class AccountController {
 	}
 
 	// delete an account object
-	@GetMapping("/accounts/{id}")
+	@GetMapping("/accounts/delete/{id}")
 	public String deleteAccount(@PathVariable Integer id) {
 		accountService.deleteAccountById(id);
 		return "redirect:/accounts";
