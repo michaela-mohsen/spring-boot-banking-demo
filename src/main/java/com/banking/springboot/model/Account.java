@@ -37,7 +37,7 @@ public class Account {
 
 	@Column
 	@NotNull
-	private double availableBalance;
+	private Double availableBalance;
 
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
@@ -49,7 +49,7 @@ public class Account {
 
 	@Column
 	@NotNull
-	private double pendingBalance;
+	private Double pendingBalance;
 
 	@Column
 	@NotNull

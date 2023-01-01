@@ -28,10 +28,6 @@ public class Product {
 
 	@Column
 	@NotNull
-	private String productCode;
-
-	@Column
-	@NotNull
 	private String name;
 
 	@Column

@@ -45,5 +45,8 @@ public class User {
     private Date createDate;
 
     @Column
+    private String title;
+
+    @Column
     private String avatar;
 }

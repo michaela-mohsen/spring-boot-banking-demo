@@ -98,6 +98,7 @@ public class LoginController {
             user.setEmail(registrationDto.getEmail());
             user.setPassword(encodedPassword);
             user.setCreateDate(new Date());
+            user.setTitle(registrationDto.getTitle());
             userRepository.save(user);
 
             UserRole ur = new UserRole();
@@ -115,6 +116,8 @@ public class LoginController {
                 newEmployee.setFirstName(user.getFirstName());
                 newEmployee.setLastName(user.getLastName());
                 newEmployee.setEmail(user.getEmail());
+                newEmployee.setTitle(user.getTitle());
+                newEmployee.setStartDate(user.getCreateDate());
                 newEmployee.setUser(user);
                 employeeRepository.save(newEmployee);
             }

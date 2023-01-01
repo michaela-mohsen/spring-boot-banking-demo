@@ -41,5 +41,9 @@ public class RegistrationDto {
     @Length(max = 45, message = "Last name must be less than 45 characters.")
     private String lastName;
 
+    @NotEmpty(message = "Title is required.")
+    @Length(max = 45, message = "Title must be less than 45 characters.")
+    private String title;
+
     private String avatar;
 }

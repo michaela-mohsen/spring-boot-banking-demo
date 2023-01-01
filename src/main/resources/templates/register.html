@@ -86,6 +86,31 @@
 							<div class="column col-12 py-2">
 								<div class="form-group">
 									<div class="column col-4">
+										<label class="form-label form-label-inline" for="title">
+											Title:
+										</label>
+									</div>
+									<div class="column col-8">
+										<input
+											id="title"
+											class="form-input"
+											type="text"
+											th:field="*{title}"
+											name="title"
+											th:classappend="${#fields.hasErrors('title') ? 'is-error' : ''}" />
+									</div>
+									<div class="column col-12 pt-1">
+										<p
+											th:if="${#fields.hasErrors('title')}"
+											th:errors="*{title}"
+											class="form-input-hint text-error"
+											id="titleHint"></p>
+									</div>
+								</div>
+							</div>
+							<div class="column col-12 py-2">
+								<div class="form-group">
+									<div class="column col-4">
 										<label class="form-label form-label-inline" for="email">
 											Email:
 										</label>

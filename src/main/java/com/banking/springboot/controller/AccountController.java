@@ -1,5 +1,6 @@
 package com.banking.springboot.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,8 @@ public class AccountController {
 	// save new or updated account object
 	@PostMapping("/accounts")
 	public String saveAccount(@ModelAttribute("account") Account account) {
+		account.setOpenDate(new Date());
+		account.setLastActivityDate(new Date());
 		accountService.saveAccount(account);
 		return "redirect:/accounts";
 	}
@@ -78,8 +81,7 @@ public class AccountController {
 		existingAccount.setId(account.getId());
 		existingAccount.setAvailableBalance(account.getAvailableBalance());
 		existingAccount.setPendingBalance(account.getPendingBalance());
-		existingAccount.setOpenDate(account.getOpenDate());
-		existingAccount.setLastActivityDate(account.getLastActivityDate());
+		existingAccount.setLastActivityDate(new Date());
 		existingAccount.setCustomer(account.getCustomer());
 		existingAccount.setBranch(account.getBranch());
 		existingAccount.setEmployee(account.getEmployee());

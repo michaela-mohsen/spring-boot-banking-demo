@@ -35,7 +35,7 @@ public class Transaction {
 
 	@Column
 	@NotNull
-	private double amount;
+	private Double amount;
 
 	@Column
 	@NotNull
@@ -47,7 +47,7 @@ public class Transaction {
 
 	@Column
 	@NotNull
-	String type;
+	private String type;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "account_id")
