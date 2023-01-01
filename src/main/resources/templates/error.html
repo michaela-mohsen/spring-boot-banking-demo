@@ -1,19 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang=en>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Error</title>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css" />
+	</head>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Error</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
-</head>
+	<body>
+		<div class="empty">
+			<div class="empty-icon">
+				<em class="icon icon-4x icon-stop"></em>
+			</div>
+			<p class="empty-title h5" th:text="'HTTP Status Code ' + ${status}">
+				Error Status Code
+			</p>
+			<div th:switch="${status}">
+				<p class="empty-subtitle" th:case="'400'">
+					Sorry, it looks like there's an error in the url. Please check it and
+					try again.
+				</p>
+				<p class="empty-subtitle" th:case="'401'">
+					Sorry, it looks like you've failed to log in. Please check your
+					username and/or password and try again.
+				</p>
+				<p class="empty-subtitle" th:case="'403'">
+					Sorry, it looks like you aren't authorized to access this resource.
+				</p>
+				<p class="empty-subtitle" th:case="'404'">
+					Sorry, it looks like we don't have what you're looking for.
+				</p>
+				<p class="empty-subtitle" th:case="'405'">
+					Sorry, it looks like this request is invalid.
+				</p>
+				<p class="empty-subtitle" th:case="'500'">
+					This is an error on our end. Please try again later.
+				</p>
+				<p class="empty-subtitle" th:case="'*'">
+					Sorry, we ran into an unexpected error.
+				</p>
+			</div>
+			<div sec:authorize="hasAnyAuthority('USER')">
+				<p class="empty-subtitle" th:text="${message}"></p>
+			</div>
 
-<body>
-    <h1>Something went wrong! </h1>
-    <p th:text="${errorMsg}"></p>
-</body>
-
+			<div class="empty-action">
+				<p sec:authorize="hasAnyAuthority('ADMIN')">
+					<code th:text="'Error: ' + ${error}"></code>
+				</p>
+				<a class="btn" th:href="@{/home}">Let's go back home.</a>
+			</div>
+		</div>
+	</body>
 </html>

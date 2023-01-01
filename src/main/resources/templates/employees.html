@@ -1,111 +1,141 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang=en>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Employees</title>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" />
+		<link type="text/css" rel="stylesheet" href="../static/css/icons.css" />
+		<link
+			type="text/css"
+			rel="stylesheet"
+			href="../static/css/spectre-icons.css" />
+		<link
+			type="text/css"
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro" />
+	</head>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Employees</title>
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link type="text/css" rel="stylesheet" href="../static/css/icons.css">
-    <link type="text/css" rel="stylesheet" href="../static/css/spectre-icons.css">
-    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
+	<body>
+		<header>
+			<nav class="bg-secondary navbar-center">
+				<ul class="tab tab-block">
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/home}">Home</a>
+					</li>
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/accounts}">Accounts</a>
+					</li>
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/transactions}">Transactions</a>
+					</li>
+					<li class="tab-item active">
+						<a class="text-primary" th:href="@{/employees}">Employees</a>
+					</li>
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/customers}">Customers</a>
+					</li>
+					<li class="tab-item" sec:authorize="isAuthenticated()">
+						<a class="text-primary" th:href="@{/logout}">Logout</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div>
+			<h1 class="text-center">Employees</h1>
+		</div>
+		<div class="divider"></div>
 
-</head>
+		<div class="m-2 text-center">
+			<div class="chip">
+				<a
+					th:href="@{'/employees/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}"
+					role="button"
+					>Last Name</a
+				>
+			</div>
+			<div class="chip">
+				<a
+					th:href="@{'/employees/' + ${currentPage} + '?sortField=title&sortDir=' + ${reverseSortDir}}"
+					role="button"
+					>Title</a
+				>
+			</div>
+			<div class="chip">
+				<a
+					th:href="@{'/employees/' + ${currentPage} + '?sortField=branch&sortDir=' + ${reverseSortDir}}"
+					role="button"
+					>Branch</a
+				>
+			</div>
+			<div class="chip">
+				<a
+					th:href="@{'/employees/' + ${currentPage} + '?sortField=startDate&sortDir=' + ${reverseSortDir}}"
+					role="button"
+					>Start Date</a
+				>
+			</div>
+			<div class="chip">
+				<a
+					th:href="@{'/employees/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}}"
+					role="button"
+					>Reset</a
+				>
+			</div>
+		</div>
 
-<body>
-    <header>
-        <nav class="bg-secondary navbar-center">
-            <ul class="tab tab-block">
-                <li class="tab-item">
-                    <a class="text-primary" th:href="@{/accounts}">Accounts</a>
-                </li>
-                <li class="tab-item">
-                    <a class="text-primary" th:href="@{/transactions}">Transactions</a>
-                </li>
-                <li class="tab-item active">
-                    <a class="text-primary" th:href="@{/employees}">Employees</a>
-                </li>
-                <li class="tab-item">
-                    <a class="text-primary" th:href="@{/customers}">Customers</a>
-                </li>
-                <li class="tab-item">
-                    <a class="text-primary" th:href="@{/products}">Products</a>
-                </li>
-                <li class="tab-item" sec:authorize="isAuthenticated()">
-                    <a class="text-primary" th:href="@{/logout}">Logout</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <div>
-        <h1 class="text-center">Employees</h1>
-    </div>
-    <div class="divider"></div>
+		<div class="container">
+			<div class="columns">
+				<div class="card column col-6" th:each="employee: ${listEmployees}">
+					<div class="card-header">
+						<div
+							class="card-title h5 text-primary text-uppercase"
+							th:text="${employee.firstName} + ' ' + ${employee.lastName}"></div>
+						<div
+							class="card-subtitle text-secondary"
+							th:text="${employee.title}"></div>
+					</div>
+					<div class="card-body">
+						<dl>
+							<dt class="text-dark">Department</dt>
+							<dd class="text-gray" th:text="${employee.department.name}"></dd>
+							<dt class="text-dark">Branch Name</dt>
+							<dd class="text-gray" th:text="${employee.branch.name}"></dd>
+							<dt class="text-dark">Branch Location</dt>
+							<dd
+								class="text-gray"
+								th:text="${employee.branch.city} + ',  ' + ${employee.branch.state}"></dd>
+							<dt class="text-dark">Start Date</dt>
+							<dd
+								class="text-gray"
+								th:text="${#dates.format(employee.startDate, 'MM-dd-yyyy')}"></dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <div class="m-2 text-center">
-        <div class="chip">
-            <a th:href="@{'/employees/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}"
-                role="button">Last Name</a>
-        </div>
-        <div class="chip">
-            <a th:href="@{'/employees/' + ${currentPage} + '?sortField=title&sortDir=' + ${reverseSortDir}}"
-                role="button">Title</a>
-        </div>
-        <div class="chip">
-            <a th:href="@{'/employees/' + ${currentPage} + '?sortField=branch&sortDir=' + ${reverseSortDir}}"
-                role="button">Branch</a>
-        </div>
-        <div class="chip">
-            <a th:href="@{'/employees/' + ${currentPage} + '?sortField=startDate&sortDir=' + ${reverseSortDir}}"
-                role="button">Start Date</a>
-        </div>
-        <div class="chip">
-            <a th:href="@{'/employees/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}}"
-                role="button">Reset</a>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="columns">
-            <div class="card column col-6" th:each="employee: ${listEmployees}">
-                <div class="card-header">
-                    <div class="card-title h5 text-primary text-uppercase"
-                        th:text="${employee.firstName} + ' ' + ${employee.lastName}"></div>
-                    <div class="card-subtitle text-secondary" th:text="${employee.title}"></div>
-                </div>
-                <div class="card-body">
-                    <dl>
-                        <dt class="text-dark">Department</dt>
-                        <dd class="text-gray" th:text="${employee.department.name}"></dd>
-                        <dt class="text-dark">Branch Name</dt>
-                        <dd class="text-gray" th:text="${employee.branch.name}"></dd>
-                        <dt class="text-dark">Branch Location</dt>
-                        <dd class="text-gray" th:text="${employee.branch.city} + ',  ' + ${employee.branch.state}"></dd>
-                        <dt class="text-dark">Start Date</dt>
-                        <dd class="text-gray" th:text="${#dates.format(employee.startDate, 'MM-dd-yyyy')}"></dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-
-    <br>
-    <div class="divider"></div>
-    <div th:if="${totalPages > 1}" class="text-center">
-        <ul class="pagination">
-            <li class="page-item column col-sm-12">
-                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                    <a th:if="${currentPage != i}"
-                        th:href="@{'/employees/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-                    <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
-                </span>
-            </li>
-        </ul>
-    </div>
-    <footer th:insert="fragments/general.html :: footer"></footer>
-</body>
-
+		<br />
+		<div class="divider"></div>
+		<div th:if="${totalPages > 1}" class="text-center">
+			<ul class="pagination">
+				<li class="page-item column col-sm-12">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a
+							th:if="${currentPage != i}"
+							th:href="@{'/employees/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"
+							>[[${i}]]</a
+						>
+						<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+					</span>
+				</li>
+			</ul>
+		</div>
+		<footer th:insert="fragments/general.html :: footer"></footer>
+	</body>
 </html>

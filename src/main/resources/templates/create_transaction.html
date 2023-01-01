@@ -1,128 +1,184 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang=en>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>New Transaction</title>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css" />
+	</head>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>New Transaction</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
-</head>
+	<body>
+		<header>
+			<nav class="bg-secondary navbar-center">
+				<ul class="tab tab-block">
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/home}">Home</a>
+					</li>
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/accounts}">Accounts</a>
+					</li>
+					<li class="tab-item active">
+						<a class="text-primary" th:href="@{/transactions}">Transactions</a>
+					</li>
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/employees}">Employees</a>
+					</li>
+					<li class="tab-item">
+						<a class="text-primary" th:href="@{/customers}">Customers</a>
+					</li>
+					<li class="tab-item" sec:authorize="isAuthenticated()">
+						<a class="text-primary" th:href="@{/logout}">Logout</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div id="new_transaction">
+			<form
+				class="form-horizontal m-2 pt-3"
+				th:action="@{/transactions}"
+				th:object="${transaction}"
+				method="POST">
+				<h2 class="text-center">Create New Transaction</h2>
+				<div class="divider"></div>
+				<br />
+				<div class="form-group">
+					<div class="col-3 col-sm-12">
+						<label class="form-label" for="account_id">Account ID:</label>
+					</div>
+					<div class="col-9 col-sm-12">
+						<input
+							class="form-input"
+							type="number"
+							id="account_id"
+							name="accountId"
+							th:field="${transaction.account.id}" />
+					</div>
+				</div>
 
-<body>
-    <header>
-        <nav class="bg-secondary navbar-center">
-            <ul class="tab tab-block">
-                <li class="tab-item">
-                    <a class="text-primary" th:href="@{/accounts}">Accounts</a>
-                </li>
-                <li class="tab-item active">
-                    <a class="text-primary" th:href="@{/transactions}">Transactions</a>
-                </li>
-                <li class="tab-item">
-                    <a class="text-primary" th:href="@{/employees}">Employees</a>
-                </li>
-                <li class="tab-item">
-                    <a class="text-primary" th:href="@{/customers}">Customers</a>
-                </li>
-                <li class="tab-item">
-                    <a class="text-primary" th:href="@{/products}">Products</a>
-                </li>
-                <li class="tab-item" sec:authorize="isAuthenticated()">
-                    <a class="text-primary" th:href="@{/logout}">Logout</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <div id="new_transaction">
-        <form class="form-horizontal m-2 pt-3" th:action="@{/transactions}" th:object="${transaction}" method="POST">
-            <h2 class="text-center">Create New Transaction</h2>
-            <div class="divider"></div>
-            <br>
-            <div class="form-group">
-                <div class="col-3 col-sm-12">
-                    <label class="form-label" for="account_id">Account ID:</label>
-                </div>
-                <div class="col-9 col-sm-12">
-                    <input class="form-input" type="number" id="account_id" name="accountId"
-                        th:field="${transaction.account.id}">
-                </div>
-            </div>
+				<div class="form-group">
+					<div class="col-3 col-sm-12">
+						<label class="form-label" for="date">Date of Transaction: </label>
+					</div>
+					<div class="col-9 col-sm-12">
+						<input
+							class="form-input"
+							type="date"
+							id="date"
+							name="date"
+							th:field="${transaction.date}"
+							placeholder="mm/dd/yyyy" />
+					</div>
+				</div>
 
-            <div class="form-group">
-                <div class="col-3 col-sm-12">
-                    <label class="form-label" for="date">Date of Transaction: </label>
-                </div>
-                <div class="col-9 col-sm-12">
-                    <input class="form-input" type="date" id="date" name="date" th:field="${transaction.date}"
-                        placeholder="mm/dd/yyyy">
-                </div>
-            </div>
+				<div class="form-group">
+					<div class="col-3 col-sm-12">
+						<label class="form-label" for="funds_available_date"
+							>Funds Available Date:</label
+						>
+					</div>
+					<div class="col-9 col-sm-12">
+						<input
+							class="form-input"
+							type="date"
+							id="funds_available_date"
+							name="fundsAvailableDate"
+							th:field="${transaction.fundsAvailableDate}"
+							placeholder="mm/dd/yyyy" />
+					</div>
+				</div>
 
-            <div class="form-group">
-                <div class="col-3 col-sm-12">
-                    <label class="form-label" for="funds_available_date">Funds Available Date:</label>
-                </div>
-                <div class="col-9 col-sm-12">
-                    <input class="form-input" type="date" id="funds_available_date" name="fundsAvailableDate"
-                        th:field="${transaction.fundsAvailableDate}" placeholder="mm/dd/yyyy">
-                </div>
-            </div>
+				<div class="form-group">
+					<div class="col-3 col-sm-12">
+						<label class="form-label" for="type">Transaction Type:</label>
+					</div>
+					<div class="col-9 col-sm-12">
+						<input
+							class="form-input"
+							type="text"
+							id="type"
+							name="type"
+							th:field="${transaction.type}"
+							placeholder="Deposit or Withdrawal" />
+					</div>
+				</div>
 
-            <div class="form-group">
-                <div class="col-3 col-sm-12">
-                    <label class="form-label" for="type">Transaction Type:</label>
-                </div>
-                <div class="col-9 col-sm-12">
-                    <input class="form-input" type="text" id="type" name="type" th:field="${transaction.type}"
-                        placeholder="Deposit or Withdrawal">
-                </div>
-            </div>
+				<div class="form-group">
+					<div class="col-3 col-sm-12">
+						<label class="form-label" for="availableBalance"
+							>Available Balance:</label
+						>
+					</div>
+					<div class="col-9 col-sm-12">
+						<input
+							class="form-input"
+							type="number"
+							id="availableBalance"
+							name="availableBalance"
+							th:field="${transaction.account.availableBalance}" />
+					</div>
+				</div>
 
-            <div class="form-group">
-                <div class="col-3 col-sm-12">
-                    <label class="form-label" for="availableBalance">Available Balance:</label>
-                </div>
-                <div class="col-9 col-sm-12">
-                    <input class="form-input" type="number" id="availableBalance" name="availableBalance"
-                        th:field="${transaction.account.availableBalance}">
-                </div>
-            </div>
+				<div class="form-group">
+					<div class="col-3 col-sm-12">
+						<label class="form-label" for="amount">Amount:</label>
+					</div>
+					<div class="col-9 col-sm-12">
+						<input
+							class="form-input"
+							type="number"
+							id="amount"
+							name="amount"
+							th:field="${transaction.amount}" />
+					</div>
+				</div>
 
-            <div class="form-group">
-                <div class="col-3 col-sm-12">
-                    <label class="form-label" for="amount">Amount:</label>
-                </div>
-                <div class="col-9 col-sm-12">
-                    <input class="form-input" type="number" id="amount" name="amount" th:field="${transaction.amount}">
-                </div>
-            </div>
+				<div class="form-group">
+					<div class="col-3 col-sm-12">
+						<label class="form-label" for="pendingBalance"
+							>Pending Balance:</label
+						>
+					</div>
+					<div class="col-9 col-sm-12">
+						<input
+							class="form-input"
+							type="number"
+							id="pendingBalance"
+							name="pendingBalance"
+							th:field="${transaction.account.pendingBalance}"
+							placeholder="Pending Balance" />
+					</div>
+				</div>
 
-            <div class="form-group">
-                <div class="col-3 col-sm-12">
-                    <label class="form-label" for="pendingBalance">Pending Balance:</label>
-                </div>
-                <div class="col-9 col-sm-12">
-                    <input class="form-input" type="number" id="pendingBalance" name="pendingBalance"
-                        th:field="${transaction.account.pendingBalance}" placeholder="Pending Balance">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-3 col-sm-12">
-                    <label class="form-label" for="lastActivityDate">Last Activity Date:</label>
-                </div>
-                <div class="col-9 col-sm-12">
-                    <input class="form-input" type="date" id="lastActivityDate" name="lastActivityDate"
-                        th:field="${transaction.account.lastActivityDate}" placeholder="mm/dd/yyyy">
-                </div>
-            </div>
-            <br>
-            <button class="btn btn-primary btn-block" type="submit">Create</button>
-        </form>
-    </div>
-</body>
-
+				<div class="form-group">
+					<div class="col-3 col-sm-12">
+						<label class="form-label" for="lastActivityDate"
+							>Last Activity Date:</label
+						>
+					</div>
+					<div class="col-9 col-sm-12">
+						<input
+							class="form-input"
+							type="date"
+							id="lastActivityDate"
+							name="lastActivityDate"
+							th:field="${transaction.account.lastActivityDate}"
+							placeholder="mm/dd/yyyy" />
+					</div>
+				</div>
+				<br />
+				<button class="btn btn-primary btn-block" type="submit">Create</button>
+			</form>
+		</div>
+	</body>
 </html>
