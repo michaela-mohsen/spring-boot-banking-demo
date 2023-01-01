@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.banking.springboot.model.Account;
-import com.banking.springboot.model.Product;
 import com.banking.springboot.repository.AccountRepository;
 import com.banking.springboot.service.AccountService;
 
