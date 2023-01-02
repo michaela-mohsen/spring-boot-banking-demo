@@ -41,7 +41,7 @@ public class Transaction {
 	@NotNull
 	private Date fundsAvailableDate;
 
-	@Column
+	@Column(updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
@@ -51,7 +51,5 @@ public class Transaction {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "account_id")
-	@NotNull
 	private Account account;
-
 }

@@ -1,5 +1,6 @@
 package com.banking.springboot.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -64,14 +64,35 @@ public class TransactionController {
         return "create_transaction";
     }
 
-    @PutMapping("/transactions/new/{id}")
-    public String createTransaction(@PathVariable Integer id, @ModelAttribute("account") Account account, Model model) {
-        Transaction transaction = new Transaction();
-        Account existingAccount = accountService.getAccountById(id);
-        transaction.setAccount(existingAccount);
+    @PostMapping("/transactions/new/{id}")
+    public String createTransaction(@PathVariable Integer id,
+            @ModelAttribute("transaction") Transaction transaction, @ModelAttribute("account") Account account,
+            Model model) {
 
-        accountService.updateAccount(existingAccount);
-        transactionService.saveTransaction(transaction);
+        Account existingAccount = accountService.getAccountById(id);
+
+        if (transaction.getType().equalsIgnoreCase("Deposit")) {
+            transactionService.saveTransaction(transaction);
+            List<Transaction> transactions = new ArrayList<>();
+            transactions.add(transaction);
+
+            Double newBalance = existingAccount.getAvailableBalance() + transaction.getAmount();
+            existingAccount.setAvailableBalance(newBalance);
+            existingAccount.setPendingBalance(newBalance);
+            existingAccount.setTransactions(transactions);
+            accountService.updateAccount(existingAccount);
+        } else if (transaction.getType().equalsIgnoreCase("Withdrawal")) {
+            transactionService.saveTransaction(transaction);
+            List<Transaction> transactions = new ArrayList<>();
+            transactions.add(transaction);
+
+            Double newBalance = existingAccount.getAvailableBalance() - transaction.getAmount();
+            existingAccount.setAvailableBalance(newBalance);
+            existingAccount.setPendingBalance(newBalance);
+            existingAccount.setTransactions(transactions);
+            accountService.saveAccount(existingAccount);
+        }
+
         return "redirect:/transactions";
     }
 

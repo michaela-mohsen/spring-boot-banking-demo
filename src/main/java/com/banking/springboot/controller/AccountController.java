@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.banking.springboot.model.Account;
 import com.banking.springboot.model.Customer;
 import com.banking.springboot.model.Employee;
+import com.banking.springboot.model.Product;
 import com.banking.springboot.service.impl.AccountServiceImpl;
 import com.banking.springboot.service.impl.CustomerServiceImpl;
 import com.banking.springboot.service.impl.EmployeeServiceImpl;
+import com.banking.springboot.service.impl.ProductServiceImpl;
 
 @Controller
 @RequestMapping
@@ -25,13 +27,15 @@ public class AccountController {
 	private AccountServiceImpl accountService;
 	private CustomerServiceImpl customerService;
 	private EmployeeServiceImpl employeeService;
+	private ProductServiceImpl productService;
 
 	public AccountController(AccountServiceImpl accountService, CustomerServiceImpl customerService,
-			EmployeeServiceImpl employeeService) {
+			EmployeeServiceImpl employeeService, ProductServiceImpl productService) {
 		super();
 		this.accountService = accountService;
 		this.customerService = customerService;
 		this.employeeService = employeeService;
+		this.productService = productService;
 	}
 
 	// get all accounts
@@ -47,9 +51,11 @@ public class AccountController {
 	@GetMapping("/accounts/new")
 	public String createAccount(Model model) {
 		Account account = new Account();
+		List<Product> products = productService.getAllProducts();
 		List<Customer> customers = customerService.getAllCustomers();
 		List<Employee> employees = employeeService.getAllEmployees();
 		model.addAttribute("account", account);
+		model.addAttribute("products", products);
 		model.addAttribute("customers", customers);
 		model.addAttribute("employees", employees);
 		return "create_account";

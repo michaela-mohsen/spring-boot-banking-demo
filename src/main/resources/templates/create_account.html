@@ -85,37 +85,6 @@
 							placeholder="Pending Balance" />
 					</div>
 				</div>
-
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="openDate">Open Date:</label>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="date"
-							id="open_date"
-							name="open_date"
-							th:field="${account.openDate}"
-							placeholder="Open Date" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="lastActivityDate"
-							>Last Activity Date:</label
-						>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="date"
-							id="last_activity_date"
-							name="last_activity_date"
-							th:field="${account.lastActivityDate}"
-							placeholder="Last Activity Date" />
-					</div>
-				</div>
 				<div class="form-group">
 					<div class="col-3 col-sm-12">
 						<label class="form-label" for="status">Status:</label>
@@ -219,18 +188,15 @@
 						<select
 							class="form-input"
 							title="products"
-							id="productList"
-							placeholder="Product"
+							id="products"
 							th:field="*{product.id}">
-							<option value="0">Select a product</option>
-							<option value="1">Auto Loan</option>
-							<option value="2">Business Line of Credit</option>
-							<option value="3">Certificate of Deposit</option>
-							<option value="4">Checking Account</option>
-							<option value="5">Money Market Account</option>
-							<option value="6">Home Mortgage</option>
-							<option value="7">Savings Account</option>
-							<option value="8">Small Business Loan</option>
+							<option value="" selected>--Select Product--</option>
+							<option
+								th:each="product : ${products}"
+								th:value="${product.id}"
+								th:text="${product.name} + ': ' + ${product.productType}">
+								Product
+							</option>
 						</select>
 					</div>
 				</div>

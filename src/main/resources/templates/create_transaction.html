@@ -54,33 +54,18 @@
 				<br />
 				<div class="form-group">
 					<div class="col-3 col-sm-12">
-						<label class="form-label" for="account_id">Account ID:</label>
+						<label class="form-label" for="account">Account:</label>
 					</div>
 					<div class="col-9 col-sm-12">
 						<input
 							class="form-input"
 							type="number"
-							id="account_id"
-							name="accountId"
-							th:field="${transaction.account.id}" />
+							id="account"
+							name="account"
+							th:field="*{account.id}"
+							placeholder="Account ID" />
 					</div>
 				</div>
-
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="date">Date of Transaction: </label>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="date"
-							id="date"
-							name="date"
-							th:field="${transaction.date}"
-							placeholder="mm/dd/yyyy" />
-					</div>
-				</div>
-
 				<div class="form-group">
 					<div class="col-3 col-sm-12">
 						<label class="form-label" for="funds_available_date"
@@ -93,7 +78,7 @@
 							type="date"
 							id="funds_available_date"
 							name="fundsAvailableDate"
-							th:field="${transaction.fundsAvailableDate}"
+							th:field="*{fundsAvailableDate}"
 							placeholder="mm/dd/yyyy" />
 					</div>
 				</div>
@@ -108,27 +93,10 @@
 							type="text"
 							id="type"
 							name="type"
-							th:field="${transaction.type}"
+							th:field="*{type}"
 							placeholder="Deposit or Withdrawal" />
 					</div>
 				</div>
-
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="availableBalance"
-							>Available Balance:</label
-						>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="number"
-							id="availableBalance"
-							name="availableBalance"
-							th:field="${transaction.account.availableBalance}" />
-					</div>
-				</div>
-
 				<div class="form-group">
 					<div class="col-3 col-sm-12">
 						<label class="form-label" for="amount">Amount:</label>
@@ -139,41 +107,7 @@
 							type="number"
 							id="amount"
 							name="amount"
-							th:field="${transaction.amount}" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="pendingBalance"
-							>Pending Balance:</label
-						>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="number"
-							id="pendingBalance"
-							name="pendingBalance"
-							th:field="${transaction.account.pendingBalance}"
-							placeholder="Pending Balance" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="lastActivityDate"
-							>Last Activity Date:</label
-						>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="date"
-							id="lastActivityDate"
-							name="lastActivityDate"
-							th:field="${transaction.account.lastActivityDate}"
-							placeholder="mm/dd/yyyy" />
+							th:field="*{amount}" />
 					</div>
 				</div>
 				<br />
