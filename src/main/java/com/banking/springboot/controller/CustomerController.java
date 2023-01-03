@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.banking.springboot.model.Customer;
-import com.banking.springboot.model.Individual;
 import com.banking.springboot.service.impl.CustomerServiceImpl;
 
 @Controller
@@ -25,16 +24,8 @@ public class CustomerController {
     @GetMapping("/customers")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public String listCustomers(Model model) {
-        model.addAttribute("individuals", customerService.getAllIndividuals());
+        model.addAttribute("customers", customerService.getAllCustomers());
         return "customers";
-    }
-
-    @GetMapping("/customers/individuals/new")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String createIndividual(Model model) {
-        Individual individual = new Individual();
-        model.addAttribute("individual", individual);
-        return "create_individual";
     }
 
     @GetMapping("/customers/new")
@@ -43,14 +34,6 @@ public class CustomerController {
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
         return "create_customer";
-    }
-
-    @PostMapping("/customers")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String saveIndividual(@ModelAttribute("individual") Individual individual, Model model) {
-        model.addAttribute("individual", individual);
-        customerService.saveIndividual(individual);
-        return "redirect:/customers";
     }
 
     @PostMapping("/customers/save")

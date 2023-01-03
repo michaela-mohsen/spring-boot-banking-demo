@@ -3,8 +3,11 @@ package com.banking.springboot.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,11 +66,27 @@ public class AccountController {
 
 	// save new or updated account object
 	@PostMapping("/accounts")
-	public String saveAccount(@ModelAttribute("account") Account account) {
-		account.setOpenDate(new Date());
-		account.setLastActivityDate(new Date());
-		accountService.saveAccount(account);
-		return "redirect:/accounts";
+	public String saveAccount(@Valid @ModelAttribute("account") Account account, BindingResult bindingResult,
+			Model model) {
+
+		if (!bindingResult.hasErrors()) {
+			account.setStatus("ACTIVE");
+			account.setOpenDate(new Date());
+			account.setLastActivityDate(new Date());
+			accountService.saveAccount(account);
+			return "redirect:/accounts";
+		} else {
+			List<Product> products = productService.getAllProducts();
+			List<Customer> customers = customerService.getAllCustomers();
+			List<Employee> employees = employeeService.getAllEmployees();
+			model.addAttribute("products", products);
+			model.addAttribute("customers", customers);
+			model.addAttribute("employees", employees);
+			model.addAttribute("account", account);
+			model.addAttribute("bindingResult", bindingResult);
+			return "create_account";
+		}
+
 	}
 
 	// update an account object form
@@ -99,9 +118,16 @@ public class AccountController {
 	}
 
 	// delete an account object
-	@GetMapping("/accounts/delete/{id}")
-	public String deleteAccount(@PathVariable Integer id) {
-		accountService.deleteAccountById(id);
+	@GetMapping("/accounts/status/{id}")
+	public String toggleAccount(@PathVariable Integer id) {
+		Account existingAccount = accountService.getAccountById(id);
+		if (existingAccount.getStatus().equalsIgnoreCase("ACTIVE")) {
+			existingAccount.setStatus("INACTIVE");
+			accountService.saveAccount(existingAccount);
+		} else if (existingAccount.getStatus().equalsIgnoreCase("INACTIVE")) {
+			existingAccount.setStatus("ACTIVE");
+			accountService.saveAccount(existingAccount);
+		}
 		return "redirect:/accounts";
 	}
 

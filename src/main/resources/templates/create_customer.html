@@ -57,64 +57,112 @@
 				<h2 class="text-center">Create New Customer</h2>
 				<div class="divider"></div>
 				<br />
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="address">Address: </label>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="text"
-							id="address"
-							name="address"
-							th:field="${customer.address}"
-							placeholder="Address" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="city">City: </label>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="text"
-							id="city"
-							name="city"
-							th:field="${customer.city}"
-							placeholder="City" />
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="firstName">First Name: </label>
+						</div>
+						<div class="col-9 col-sm-12">
+							<input
+								class="form-input"
+								type="text"
+								id="firstName"
+								th:field="*{firstName}"
+								placeholder="First Name" />
+						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="state">State: </label>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="text"
-							id="state"
-							name="state"
-							th:field="${customer.state}"
-							placeholder="State" />
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="lastName">Last Name: </label>
+						</div>
+						<div class="col-9 col-sm-12">
+							<input
+								class="form-input"
+								type="text"
+								id="lastName"
+								th:field="*{lastName}"
+								placeholder="Last Name" />
+						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="zipCode">Zip Code: </label>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="birthDate">Date of Birth: </label>
+						</div>
+						<div class="col-9 col-sm-12">
+							<input
+								class="form-input"
+								type="date"
+								id="birthDate"
+								th:field="*{birthDate}" />
+						</div>
 					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="text"
-							id="zipCode"
-							name="zipCode"
-							th:field="${customer.zipCode}"
-							placeholder="Zip Code" />
+				</div>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="address">Address: </label>
+						</div>
+						<div class="col-9 col-sm-12">
+							<input
+								class="form-input"
+								type="text"
+								id="address"
+								th:field="*{address}"
+								placeholder="Address" />
+						</div>
+					</div>
+				</div>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="city">City: </label>
+						</div>
+						<div class="col-9 col-sm-12">
+							<input
+								class="form-input"
+								type="text"
+								id="city"
+								th:field="*{city}"
+								placeholder="City" />
+						</div>
+					</div>
+				</div>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="state">State: </label>
+						</div>
+						<div class="col-9 col-sm-12">
+							<input
+								class="form-input"
+								type="text"
+								id="state"
+								th:field="*{state}"
+								placeholder="State" />
+						</div>
+					</div>
+				</div>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="zipCode">Zip Code: </label>
+						</div>
+						<div class="col-9 col-sm-12">
+							<input
+								class="form-input"
+								type="text"
+								id="zipCode"
+								th:field="*{zipCode}"
+								placeholder="ZIP Code" />
+						</div>
 					</div>
 				</div>
 				<br />
-				<button class="btn btn-primary btn-block" type="submit">Create</button>
+				<button class="btn btn-primary" type="submit">Create</button>
 			</form>
 		</div>
 	</body>

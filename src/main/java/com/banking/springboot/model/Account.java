@@ -16,7 +16,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,7 +40,10 @@ public class Account {
 	private Integer id;
 
 	@Column
-	@NotNull
+	@NotNull(message = "Available balance is required.")
+	@Positive(message = "Available balance must be positive.")
+	@Max(value = 1000000, message = "Available balance must be less than or equal to $1,000,000.")
+	@Min(value = 1, message = "Available balance must be at least $1.")
 	private Double availableBalance;
 
 	@Column
@@ -49,11 +55,13 @@ public class Account {
 	private Date openDate;
 
 	@Column
-	@NotNull
+	@NotNull(message = "Pending balance is required.")
+	@Positive(message = "Pending balance must be positive.")
+	@Max(value = 1000000, message = "Pending balance must be less than or equal to $1,000,000.")
+	@Min(value = 1, message = "Pending balance must be at least $1.")
 	private Double pendingBalance;
 
 	@Column
-	@NotNull
 	private String status;
 
 	@ManyToOne(cascade = CascadeType.MERGE)

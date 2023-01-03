@@ -64,7 +64,15 @@
 								class="form-input"
 								type="number"
 								id="availableBalance"
-								th:field="*{availableBalance}" />
+								th:field="*{availableBalance}"
+								th:classappend="${#fields.hasErrors('availableBalance') ? 'is-error' : ''}" />
+						</div>
+						<div class="column col-12">
+							<p
+								th:if="${#fields.hasErrors('availableBalance')}"
+								th:errors="*{availableBalance}"
+								class="form-input-hint text-error"
+								id="availableBalanceHint"></p>
 						</div>
 					</div>
 				</div>
@@ -80,22 +88,15 @@
 								class="form-input"
 								type="number"
 								id="pendingBalance"
-								th:field="*{pendingBalance}" />
+								th:field="*{pendingBalance}"
+								th:classappend="${#fields.hasErrors('pendingBalance') ? 'is-error' : ''}" />
 						</div>
-					</div>
-				</div>
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="col-3 col-sm-12">
-							<label class="form-label" for="status">Status:</label>
-						</div>
-						<div class="col-9 col-sm-12">
-							<input
-								class="form-input"
-								type="text"
-								id="status"
-								th:field="*{status}"
-								placeholder="Status" />
+						<div class="column col-12">
+							<p
+								th:if="${#fields.hasErrors('pendingBalance')}"
+								th:errors="*{pendingBalance}"
+								class="form-input-hint text-error"
+								id="pendingBalanceHint"></p>
 						</div>
 					</div>
 				</div>
@@ -115,8 +116,8 @@
 								<option
 									th:each="customer : ${customers}"
 									th:value="${customer.id}"
-									th:text="${customer.id}">
-									Customer ID
+									th:text="${customer.id} + ': ' + ${customer.lastName} + ', ' + ${customer.firstName}">
+									Customer ID: Last Name, First Name
 								</option>
 							</select>
 						</div>
@@ -129,35 +130,19 @@
 						</div>
 						<div class="col-9 col-sm-12">
 							<label class="form-radio">
-								<input
-									type="radio"
-									name="branch"
-									th:field="*{branch.id}"
-									th:value="1" />
+								<input type="radio" th:field="*{branch.id}" th:value="1" />
 								<em class="form-icon"></em>Headquarters
 							</label>
 							<label class="form-radio">
-								<input
-									type="radio"
-									name="branch"
-									th:field="*{branch.id}"
-									th:value="2" />
+								<input type="radio" th:field="*{branch.id}" th:value="2" />
 								<em class="form-icon"></em>Woburn
 							</label>
 							<label class="form-radio">
-								<input
-									type="radio"
-									name="branch"
-									th:field="*{branch.id}"
-									th:value="3" />
+								<input type="radio" th:field="*{branch.id}" th:value="3" />
 								<em class="form-icon"></em>Quincy
 							</label>
 							<label class="form-radio">
-								<input
-									type="radio"
-									name="branch"
-									th:field="*{branch.id}"
-									th:value="4" />
+								<input type="radio" th:field="*{branch.id}" th:value="4" />
 								<em class="form-icon"></em>South NH
 							</label>
 						</div>
