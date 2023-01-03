@@ -46,72 +46,100 @@
 		<div id="new_transaction">
 			<form
 				class="form-horizontal m-2 pt-3"
-				th:action="@{/transactions}"
+				th:action="@{/transactions/new/account/{account}(account=${account.id})}"
 				th:object="${transaction}"
 				method="POST">
 				<h2 class="text-center">Create New Transaction</h2>
 				<div class="divider"></div>
 				<br />
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="account">Account:</label>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="number"
-							id="account"
-							name="account"
-							th:field="*{account.id}"
-							placeholder="Account ID" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="funds_available_date"
-							>Funds Available Date:</label
-						>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="date"
-							id="funds_available_date"
-							name="fundsAvailableDate"
-							th:field="*{fundsAvailableDate}"
-							placeholder="mm/dd/yyyy" />
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="column col-3 col-sm-12">
+							<label class="form-label" for="account">Account:</label>
+						</div>
+						<div class="column col-9 col-sm-12">
+							<input
+								class="form-input"
+								type="number"
+								id="account"
+								name="account"
+								th:field="*{account.id}"
+								placeholder="Account ID" />
+						</div>
 					</div>
 				</div>
-
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="type">Transaction Type:</label>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="text"
-							id="type"
-							name="type"
-							th:field="*{type}"
-							placeholder="Deposit or Withdrawal" />
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="column col-3 col-sm-12">
+							<label class="form-label" for="funds_available_date"
+								>Funds Available Date:</label
+							>
+						</div>
+						<div class="column col-9 col-sm-12">
+							<input
+								class="form-input"
+								type="date"
+								id="funds_available_date"
+								name="fundsAvailableDate"
+								th:field="*{fundsAvailableDate}"
+								th:classappend="${#fields.hasErrors('fundsAvailableDate') ? 'is-error' : ''}" />
+						</div>
+						<div class="column col-12">
+							<p
+								th:if="${#fields.hasErrors('fundsAvailableDate')}"
+								th:errors="*{fundsAvailableDate}"
+								class="form-input-hint text-error"
+								id="fundsAvailableDateHint"></p>
+						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="amount">Amount:</label>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="type">Transaction Type:</label>
+						</div>
+						<div class="col-9 col-sm-12">
+							<label class="form-radio">
+								<input
+									type="radio"
+									th:field="*{type}"
+									th:value="Deposit"
+									checked />
+								<em class="form-icon"></em>Deposit
+							</label>
+							<label class="form-radio">
+								<input type="radio" th:field="*{type}" th:value="Withdrawal" />
+								<em class="form-icon"></em>Withdrawal
+							</label>
+						</div>
 					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="number"
-							id="amount"
-							name="amount"
-							th:field="*{amount}" />
+				</div>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="amount">Amount:</label>
+						</div>
+						<div class="col-9 col-sm-12">
+							<input
+								class="form-input"
+								type="number"
+								id="amount"
+								name="amount"
+								th:field="*{amount}" />
+						</div>
+						<div class="column col-12">
+							<p
+								th:if="${#fields.hasErrors('amount')}"
+								th:errors="*{amount}"
+								class="form-input-hint text-error"
+								id="amountHint"></p>
+						</div>
 					</div>
 				</div>
 				<br />
-				<button class="btn btn-primary btn-block" type="submit">Create</button>
+				<button class="btn btn-primary" type="submit">
+					Submit Transaction
+				</button>
 			</form>
 		</div>
 	</body>

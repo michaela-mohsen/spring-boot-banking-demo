@@ -1,11 +1,17 @@
 package com.banking.springboot.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,51 +60,59 @@ public class TransactionController {
         return findPaginated(1, "id", "asc", model);
     }
 
-    @GetMapping("/transactions/new/{id}")
-    public String createTransactionForm(@PathVariable Integer id, Model model) {
+    @GetMapping("/transactions/new/account/{account}")
+    public String createTransactionForm(@Param("account") Account account, Model model) {
         Transaction transaction = new Transaction();
-        Account existingAccount = accountService.getAccountById(id);
+        Account existingAccount = accountService.getAccountById(account.getId());
         model.addAttribute("transaction", transaction);
         model.addAttribute("account", existingAccount);
 
         return "create_transaction";
     }
 
-    @PostMapping("/transactions/new/{id}")
-    public String createTransaction(@PathVariable Integer id,
-            @ModelAttribute("transaction") Transaction transaction, @ModelAttribute("account") Account account,
-            Model model) {
+    @PostMapping("/transactions/new/account/{account}")
+    public String createTransaction(@ModelAttribute("account") Account account,
+            @Valid @ModelAttribute("transaction") Transaction transaction,
+            BindingResult bindingResult, Model model) {
 
-        Account existingAccount = accountService.getAccountById(id);
+        Account existingAccount = accountService.getAccountById(account.getId());
+        if (!bindingResult.hasErrors()) {
+            if (transaction.getType().equalsIgnoreCase("Deposit")) {
+                transaction.setDate(new Date());
+                transactionService.saveTransaction(transaction);
+                List<Transaction> transactions = new ArrayList<>();
+                transactions.add(transaction);
 
-        if (transaction.getType().equalsIgnoreCase("Deposit")) {
-            transactionService.saveTransaction(transaction);
-            List<Transaction> transactions = new ArrayList<>();
-            transactions.add(transaction);
+                Double newBalance = existingAccount.getAvailableBalance() + transaction.getAmount();
+                existingAccount.setAvailableBalance(newBalance);
+                existingAccount.setPendingBalance(newBalance);
+                existingAccount.setLastActivityDate(new Date());
+                existingAccount.setTransactions(transactions);
+                accountService.updateAccount(existingAccount);
+                return "redirect:/transactions";
+            } else if (transaction.getType().equalsIgnoreCase("Withdrawal")) {
+                transaction.setDate(new Date());
+                transactionService.saveTransaction(transaction);
+                List<Transaction> transactions = new ArrayList<>();
+                transactions.add(transaction);
 
-            Double newBalance = existingAccount.getAvailableBalance() + transaction.getAmount();
-            existingAccount.setAvailableBalance(newBalance);
-            existingAccount.setPendingBalance(newBalance);
-            existingAccount.setTransactions(transactions);
-            accountService.updateAccount(existingAccount);
-        } else if (transaction.getType().equalsIgnoreCase("Withdrawal")) {
-            transactionService.saveTransaction(transaction);
-            List<Transaction> transactions = new ArrayList<>();
-            transactions.add(transaction);
+                Double newBalance = existingAccount.getAvailableBalance() - transaction.getAmount();
+                existingAccount.setAvailableBalance(newBalance);
+                existingAccount.setPendingBalance(newBalance);
+                existingAccount.setLastActivityDate(new Date());
+                existingAccount.setTransactions(transactions);
+                accountService.updateAccount(existingAccount);
+                return "redirect:/transactions";
+            } else {
+                throw new DataIntegrityViolationException("Incorrect Transaction Type");
+            }
 
-            Double newBalance = existingAccount.getAvailableBalance() - transaction.getAmount();
-            existingAccount.setAvailableBalance(newBalance);
-            existingAccount.setPendingBalance(newBalance);
-            existingAccount.setTransactions(transactions);
-            accountService.saveAccount(existingAccount);
+        } else {
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("transaction", transaction);
+            model.addAttribute("account", account);
+            return "transactions";
         }
-
-        return "redirect:/transactions";
     }
 
-    @PostMapping("/transactions")
-    public String saveTransaction(@ModelAttribute("transaction") Transaction transaction) {
-        transactionService.saveTransaction(transaction);
-        return "redirect:/transactions";
-    }
 }

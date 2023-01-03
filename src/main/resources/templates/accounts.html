@@ -115,7 +115,9 @@
 				</div>
 				<div class="panel-footer">
 					<div class="btn-group">
-						<a class="btn" th:href="@{/transactions/new/{id}(id=${account.id})}"
+						<a
+							class="btn"
+							th:href="@{/transactions/new/account/{account}(account=${account.id})}"
 							>Create Transaction</a
 						>
 						<a class="btn" th:href="@{/accounts/update/{id}(id=${account.id})}"
