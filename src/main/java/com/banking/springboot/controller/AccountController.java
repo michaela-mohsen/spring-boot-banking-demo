@@ -89,35 +89,7 @@ public class AccountController {
 
 	}
 
-	// update an account object form
-	@GetMapping("/accounts/update/{id}")
-	public String updateAccountForm(@PathVariable Integer id, Model model) {
-		model.addAttribute("account", accountService.getAccountById(id));
-		return "update_account";
-	}
-
-	// update an account object
-	@PostMapping("/accounts/update/{id}")
-	public String updateAccount(@PathVariable Integer id, @ModelAttribute("account") Account account, Model model) {
-		// get a specific account
-		Account existingAccount = accountService.getAccountById(id);
-
-		// set properties
-		existingAccount.setId(account.getId());
-		existingAccount.setAvailableBalance(account.getAvailableBalance());
-		existingAccount.setPendingBalance(account.getPendingBalance());
-		existingAccount.setLastActivityDate(new Date());
-		existingAccount.setCustomer(account.getCustomer());
-		existingAccount.setBranch(account.getBranch());
-		existingAccount.setEmployee(account.getEmployee());
-		existingAccount.setProduct(account.getProduct());
-
-		// save updated account object
-		accountService.updateAccount(existingAccount);
-		return "redirect:/accounts";
-	}
-
-	// delete an account object
+	// activate/deactivate an account object
 	@GetMapping("/accounts/status/{id}")
 	public String toggleAccount(@PathVariable Integer id) {
 		Account existingAccount = accountService.getAccountById(id);
