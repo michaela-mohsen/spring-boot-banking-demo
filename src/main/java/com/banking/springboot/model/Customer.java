@@ -1,5 +1,7 @@
 package com.banking.springboot.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +27,18 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private Integer id;
+
+	@Column
+	@NotNull
+	private Date birthDate;
+
+	@Column
+	@NotNull
+	private String firstName;
+
+	@Column
+	@NotNull
+	String lastName;
 
 	@Column
 	@NotNull

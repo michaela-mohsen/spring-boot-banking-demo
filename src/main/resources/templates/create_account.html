@@ -52,156 +52,164 @@
 				<h2 class="text-center">Create New Account</h2>
 				<div class="divider"></div>
 				<br />
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="availableBalance"
-							>Available Balance:
-						</label>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="number"
-							id="availableBalance"
-							name="availableBalance"
-							th:field="${account.availableBalance}"
-							placeholder="Available Balance" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="pendingBalance"
-							>Pending Balance:</label
-						>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="number"
-							id="pending_balance"
-							name="pending_balance"
-							th:field="${account.pendingBalance}"
-							placeholder="Pending Balance" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="status">Status:</label>
-					</div>
-					<div class="col-9 col-sm-12">
-						<input
-							class="form-input"
-							type="text"
-							id="status"
-							name="status"
-							th:field="${account.status}"
-							placeholder="Status" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="column col-3 col-sm-12">
-						<label class="form-label" for="customer">Customer: </label>
-					</div>
-					<div class="column col-9 col-sm-12">
-						<select
-							class="form-select"
-							title="customer"
-							th:field="*{customer.id}"
-							id="customer"
-							name="customer">
-							<option value="" selected>--Select Customer--</option>
-							<option
-								th:each="customer : ${customers}"
-								th:value="${customer.id}"
-								th:text="${customer.id}">
-								Customer ID
-							</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="branch">Branch:</label>
-					</div>
-					<div class="col-9 col-sm-12">
-						<label class="form-radio">
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="availableBalance"
+								>Available Balance:
+							</label>
+						</div>
+						<div class="col-9 col-sm-12">
 							<input
-								type="radio"
-								name="branch"
-								th:field="*{branch.id}"
-								th:value="1" />
-							<em class="form-icon"></em>Headquarters
-						</label>
-						<label class="form-radio">
-							<input
-								type="radio"
-								name="branch"
-								th:field="*{branch.id}"
-								th:value="2" />
-							<em class="form-icon"></em>Woburn
-						</label>
-						<label class="form-radio">
-							<input
-								type="radio"
-								name="branch"
-								th:field="*{branch.id}"
-								th:value="3" />
-							<em class="form-icon"></em>Quincy
-						</label>
-						<label class="form-radio">
-							<input
-								type="radio"
-								name="branch"
-								th:field="*{branch.id}"
-								th:value="4" />
-							<em class="form-icon"></em>South NH
-						</label>
+								class="form-input"
+								type="number"
+								id="availableBalance"
+								th:field="*{availableBalance}" />
+						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<div class="column col-3 col-sm-12">
-						<label class="form-label" for="employee">Employee: </label>
-					</div>
-					<div class="column col-9 col-sm-12">
-						<select
-							class="form-select"
-							title="employee"
-							th:field="*{employee.id}"
-							id="employee"
-							name="employee">
-							<option value="" selected>--Select Employee--</option>
-							<option
-								th:each="employee : ${employees}"
-								th:value="${employee.id}"
-								th:text="${employee.id} + ': ' + ${employee.lastName} + ', ' + ${employee.firstName}">
-								Employee ID
-							</option>
-						</select>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="pendingBalance"
+								>Pending Balance:</label
+							>
+						</div>
+						<div class="col-9 col-sm-12">
+							<input
+								class="form-input"
+								type="number"
+								id="pendingBalance"
+								th:field="*{pendingBalance}" />
+						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<div class="col-3 col-sm-12">
-						<label class="form-label" for="product">Product:</label>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="status">Status:</label>
+						</div>
+						<div class="col-9 col-sm-12">
+							<input
+								class="form-input"
+								type="text"
+								id="status"
+								th:field="*{status}"
+								placeholder="Status" />
+						</div>
 					</div>
-					<div class="col-9 col-sm-12">
-						<select
-							class="form-input"
-							title="products"
-							id="products"
-							th:field="*{product.id}">
-							<option value="" selected>--Select Product--</option>
-							<option
-								th:each="product : ${products}"
-								th:value="${product.id}"
-								th:text="${product.name} + ': ' + ${product.productType}">
-								Product
-							</option>
-						</select>
+				</div>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="column col-3 col-sm-12">
+							<label class="form-label" for="customer">Customer: </label>
+						</div>
+						<div class="column col-9 col-sm-12">
+							<select
+								class="form-select"
+								title="customer"
+								th:field="*{customer.id}"
+								id="customer"
+								name="customer">
+								<option value="" selected>--Select Customer--</option>
+								<option
+									th:each="customer : ${customers}"
+									th:value="${customer.id}"
+									th:text="${customer.id}">
+									Customer ID
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="branch">Branch:</label>
+						</div>
+						<div class="col-9 col-sm-12">
+							<label class="form-radio">
+								<input
+									type="radio"
+									name="branch"
+									th:field="*{branch.id}"
+									th:value="1" />
+								<em class="form-icon"></em>Headquarters
+							</label>
+							<label class="form-radio">
+								<input
+									type="radio"
+									name="branch"
+									th:field="*{branch.id}"
+									th:value="2" />
+								<em class="form-icon"></em>Woburn
+							</label>
+							<label class="form-radio">
+								<input
+									type="radio"
+									name="branch"
+									th:field="*{branch.id}"
+									th:value="3" />
+								<em class="form-icon"></em>Quincy
+							</label>
+							<label class="form-radio">
+								<input
+									type="radio"
+									name="branch"
+									th:field="*{branch.id}"
+									th:value="4" />
+								<em class="form-icon"></em>South NH
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="column col-3 col-sm-12">
+							<label class="form-label" for="employee">Employee: </label>
+						</div>
+						<div class="column col-9 col-sm-12">
+							<select
+								class="form-select"
+								title="employee"
+								th:field="*{employee.id}"
+								id="employee"
+								name="employee">
+								<option value="" selected>--Select Employee--</option>
+								<option
+									th:each="employee : ${employees}"
+									th:value="${employee.id}"
+									th:text="${employee.id} + ': ' + ${employee.lastName} + ', ' + ${employee.firstName}">
+									Employee ID
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="column col-12 py-2">
+					<div class="form-group">
+						<div class="col-3 col-sm-12">
+							<label class="form-label" for="product">Product:</label>
+						</div>
+						<div class="col-9 col-sm-12">
+							<select
+								class="form-input"
+								title="products"
+								id="products"
+								th:field="*{product.id}">
+								<option value="" selected>--Select Product--</option>
+								<option
+									th:each="product : ${products}"
+									th:value="${product.id}"
+									th:text="${product.name} + ': ' + ${product.productType}">
+									Product
+								</option>
+							</select>
+						</div>
 					</div>
 				</div>
 				<br />
-				<button class="btn btn-primary btn-block" type="submit">Create</button>
+				<button class="btn btn-primary" type="submit">Submit</button>
 			</form>
 		</div>
 	</body>

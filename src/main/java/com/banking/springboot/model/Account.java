@@ -58,22 +58,18 @@ public class Account {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "customer_id")
-	@NotNull
 	private Customer customer;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "branch_id")
-	@NotNull
 	private Branch branch;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "employee_id")
-	@NotNull
 	private Employee employee;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "product_id")
-	@NotNull
 	private Product product;
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
