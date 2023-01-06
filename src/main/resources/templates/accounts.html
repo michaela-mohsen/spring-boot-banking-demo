@@ -19,51 +19,96 @@
 	</head>
 
 	<body>
-		<nav class="bg-secondary navbar-center">
-			<ul class="tab tab-block">
-				<li class="tab-item">
-					<a class="text-primary" th:href="@{/home}">Home</a>
-				</li>
-				<li class="tab-item active">
-					<a class="text-primary" th:href="@{/accounts}">Accounts</a>
-				</li>
-				<li class="tab-item">
-					<a class="text-primary" th:href="@{/transactions}">Transactions</a>
-				</li>
-				<li class="tab-item">
-					<a class="text-primary" th:href="@{/employees}">Employees</a>
-				</li>
-				<li class="tab-item">
-					<a class="text-primary" th:href="@{/customers}">Customers</a>
-				</li>
-
-				<li class="tab-item" sec:authorize="isAuthenticated()">
-					<a class="text-primary" th:href="@{/logout}">Logout</a>
-				</li>
-			</ul>
-		</nav>
-		<div>
+		<header class="navbar bg-secondary">
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/home}">Home</a>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item active">
+						<a class="btn btn-link text-primary" th:href="@{/accounts}"
+							>Accounts</a
+						>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/transactions}"
+							>Transactions</a
+						>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/employees}"
+							>Employees</a
+						>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/customers}"
+							>Customers</a
+						>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/logout}">Logout</a>
+					</li>
+				</ul>
+			</section>
+		</header>
+		<div id="accounts">
 			<h1 class="text-center">Accounts</h1>
 		</div>
 		<div>
-			<a class="btn" th:href="@{/accounts/new}">Create New Account</a>
+			<a
+				class="btn"
+				href="new-account-options"
+				th:href="@{/accounts#new-account-options}"
+				>Create New Account</a
+			>
 		</div>
-		<div class="modal" id="modal-id">
-			<a href="#close" class="modal-overlay" aria-label="Close"></a>
+		<div class="modal" id="new-account-options">
+			<a href="#accounts" class="modal-overlay" aria-label="Close"></a>
 			<div class="modal-container">
 				<div class="modal-header">
 					<a
-						href="#close"
+						href="#accounts"
 						class="btn btn-clear float-right"
 						aria-label="Close"></a>
-					<div class="modal-title h5">Modal title</div>
+					<div class="modal-title h5">Add New Account: Customer Type</div>
 				</div>
 				<div class="modal-body">
-					<div class="content">
-						<!-- content here -->
+					<div class="content columns text-center">
+						<div class="column col-6">
+							<a class="btn btn-link" th:href="@{/accounts/new}"
+								>Existing Customer</a
+							>
+						</div>
+						<div class="column col-6">
+							<a class="btn btn-link" th:href="@{/customers/new}"
+								>New Customer</a
+							>
+						</div>
 					</div>
 				</div>
-				<div class="modal-footer">...</div>
+				<div class="modal-footer">
+					<a href="#accounts" class="btn btn-error">Cancel</a>
+				</div>
 			</div>
 		</div>
 		<div class="columns">

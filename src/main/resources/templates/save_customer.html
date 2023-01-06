@@ -19,32 +19,63 @@
 	</head>
 
 	<body>
-		<header>
-			<nav class="bg-secondary navbar-center">
-				<ul class="tab tab-block">
-					<li class="tab-item">
-						<a class="text-primary" th:href="@{/home}">Home</a>
-					</li>
-					<li class="tab-item">
-						<a class="text-primary" th:href="@{/accounts}">Accounts</a>
-					</li>
-					<li class="tab-item">
-						<a class="text-primary" th:href="@{/transactions}">Transactions</a>
-					</li>
-					<li class="tab-item">
-						<a class="text-primary" th:href="@{/employees}">Employees</a>
-					</li>
-					<li class="tab-item active">
-						<a class="text-primary" th:href="@{/customers}">Customers</a>
-					</li>
-					<li class="tab-item" sec:authorize="isAuthenticated()">
-						<a class="text-primary" th:href="@{/logout}">Logout</a>
+		<header class="navbar bg-secondary">
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/home}">Home</a>
 					</li>
 				</ul>
-			</nav>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/accounts}"
+							>Accounts</a
+						>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/transactions}"
+							>Transactions</a
+						>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/employees}"
+							>Employees</a
+						>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item active">
+						<a class="btn btn-link text-primary" th:href="@{/customers}"
+							>Customers</a
+						>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/logout}">Logout</a>
+					</li>
+				</ul>
+			</section>
 		</header>
-		<div>
+		<div class="container">
 			<ul class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a th:href="@{/customers}" disabled>Customers</a>
+				</li>
 				<li class="breadcrumb-item">
 					<a th:href="@{/customers/new}" disabled>Create Customer</a>
 				</li>
