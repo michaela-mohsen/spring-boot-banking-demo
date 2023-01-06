@@ -38,7 +38,9 @@ public class CustomerController {
     @PreAuthorize("hasRole('USER')")
     public String createCustomer(Model model) {
         Customer customer = new Customer();
+        List<String> states = customerService.listAllStates();
         model.addAttribute("customer", customer);
+        model.addAttribute("states", states);
         return "create_customer";
     }
 
@@ -51,6 +53,8 @@ public class CustomerController {
             model.addAttribute("customer", customer);
             return "save_customer";
         } else {
+            List<String> states = customerService.listAllStates();
+            model.addAttribute("states", states);
             model.addAttribute("customer", customer);
             model.addAttribute("bindingResult", bindingResult);
             return "create_customer";

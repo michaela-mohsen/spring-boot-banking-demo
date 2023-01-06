@@ -58,7 +58,6 @@ public class Customer {
 
 	@Column
 	@NotEmpty(message = "State is required.")
-	@Length(min = 2, max = 2, message = "State must be abbreviated to 2 letters.")
 	private String state;
 
 	@Column

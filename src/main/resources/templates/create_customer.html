@@ -43,33 +43,39 @@
 				</ul>
 			</nav>
 		</header>
-		<ul class="breadcrumb">
-			<li class="breadcrumb-item">
-				<a th:href="@{/customers/new}">Create Customer</a>
-			</li>
-		</ul>
-		<div id="new_customer">
-			<form
-				class="form-horizontal m-2 pt-3"
-				th:action="@{/customers/save}"
-				th:object="${customer}"
-				method="POST">
-				<h2 class="text-center">Create New Customer</h2>
-				<div class="divider"></div>
-				<br />
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="col-3 col-sm-12">
-							<label class="form-label" for="firstName">First Name: </label>
-						</div>
-						<div class="col-9 col-sm-12">
-							<input
-								class="form-input"
-								type="text"
-								id="firstName"
-								th:field="*{firstName}"
-								th:classappend="${#fields.hasErrors('firstName') ? 'is-error' : ''}"
-								placeholder="First Name" />
+		<div class="container">
+			<ul class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a th:href="@{/customers/new}">Create Customer</a>
+				</li>
+			</ul>
+		</div>
+		<div id="new_customer" class="container">
+			<div class="card m-2">
+				<form
+					class="form-horizontal m-2 pt-3"
+					th:action="@{/customers/save}"
+					th:object="${customer}"
+					method="POST">
+					<div class="card-header">
+						<div class="card-title h2 text-center">Create New Customer</div>
+					</div>
+					<div class="card-body">
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12">
+									<label class="form-label" for="firstName">First Name: </label>
+								</div>
+								<div class="col-9 col-sm-12">
+									<input
+										class="form-input"
+										type="text"
+										id="firstName"
+										th:field="*{firstName}"
+										th:classappend="${#fields.hasErrors('firstName') ? 'is-error' : ''}"
+										placeholder="First Name" />
+								</div>
+							</div>
 						</div>
 						<div class="column col-12">
 							<p
@@ -78,21 +84,21 @@
 								class="form-input-hint text-error"
 								id="firstNameHint"></p>
 						</div>
-					</div>
-				</div>
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="col-3 col-sm-12">
-							<label class="form-label" for="lastName">Last Name: </label>
-						</div>
-						<div class="col-9 col-sm-12">
-							<input
-								class="form-input"
-								type="text"
-								id="lastName"
-								th:field="*{lastName}"
-								th:classappend="${#fields.hasErrors('lastName') ? 'is-error' : ''}"
-								placeholder="Last Name" />
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12">
+									<label class="form-label" for="lastName">Last Name: </label>
+								</div>
+								<div class="col-9 col-sm-12">
+									<input
+										class="form-input"
+										type="text"
+										id="lastName"
+										th:field="*{lastName}"
+										th:classappend="${#fields.hasErrors('lastName') ? 'is-error' : ''}"
+										placeholder="Last Name" />
+								</div>
+							</div>
 						</div>
 						<div class="column col-12">
 							<p
@@ -101,20 +107,22 @@
 								class="form-input-hint text-error"
 								id="lastNameHint"></p>
 						</div>
-					</div>
-				</div>
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="col-3 col-sm-12">
-							<label class="form-label" for="birthDate">Date of Birth: </label>
-						</div>
-						<div class="col-9 col-sm-12">
-							<input
-								class="form-input"
-								type="date"
-								id="birthDate"
-								th:field="*{birthDate}"
-								th:classappend="${#fields.hasErrors('birthDate') ? 'is-error' : ''}" />
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12">
+									<label class="form-label" for="birthDate"
+										>Date of Birth:
+									</label>
+								</div>
+								<div class="col-9 col-sm-12">
+									<input
+										class="form-input"
+										type="date"
+										id="birthDate"
+										th:field="*{birthDate}"
+										th:classappend="${#fields.hasErrors('birthDate') ? 'is-error' : ''}" />
+								</div>
+							</div>
 						</div>
 						<div class="column col-12">
 							<p
@@ -123,21 +131,21 @@
 								class="form-input-hint text-error"
 								id="birthDateHint"></p>
 						</div>
-					</div>
-				</div>
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="col-3 col-sm-12">
-							<label class="form-label" for="address">Address: </label>
-						</div>
-						<div class="col-9 col-sm-12">
-							<input
-								class="form-input"
-								type="text"
-								id="address"
-								th:field="*{address}"
-								th:classappend="${#fields.hasErrors('address') ? 'is-error' : ''}"
-								placeholder="Address" />
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12">
+									<label class="form-label" for="address">Address: </label>
+								</div>
+								<div class="col-9 col-sm-12">
+									<input
+										class="form-input"
+										type="text"
+										id="address"
+										th:field="*{address}"
+										th:classappend="${#fields.hasErrors('address') ? 'is-error' : ''}"
+										placeholder="Address" />
+								</div>
+							</div>
 						</div>
 						<div class="column col-12">
 							<p
@@ -146,21 +154,21 @@
 								class="form-input-hint text-error"
 								id="addressHint"></p>
 						</div>
-					</div>
-				</div>
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="col-3 col-sm-12">
-							<label class="form-label" for="city">City: </label>
-						</div>
-						<div class="col-9 col-sm-12">
-							<input
-								class="form-input"
-								type="text"
-								id="city"
-								th:field="*{city}"
-								th:classappend="${#fields.hasErrors('city') ? 'is-error' : ''}"
-								placeholder="City" />
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12">
+									<label class="form-label" for="city">City: </label>
+								</div>
+								<div class="col-9 col-sm-12">
+									<input
+										class="form-input"
+										type="text"
+										id="city"
+										th:field="*{city}"
+										th:classappend="${#fields.hasErrors('city') ? 'is-error' : ''}"
+										placeholder="City" />
+								</div>
+							</div>
 						</div>
 						<div class="column col-12">
 							<p
@@ -169,21 +177,27 @@
 								class="form-input-hint text-error"
 								id="cityHint"></p>
 						</div>
-					</div>
-				</div>
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="col-3 col-sm-12">
-							<label class="form-label" for="state">State: </label>
-						</div>
-						<div class="col-9 col-sm-12">
-							<input
-								class="form-input"
-								type="text"
-								id="state"
-								th:field="*{state}"
-								th:classappend="${#fields.hasErrors('state') ? 'is-error' : ''}"
-								placeholder="State" />
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12">
+									<label class="form-label" for="state">State: </label>
+								</div>
+								<div class="col-9 col-sm-12">
+									<select
+										class="form-select"
+										title="states"
+										th:field="*{state}"
+										th:classappend="${#fields.hasErrors('state') ? 'is-error' : ''}">
+										<option value="" selected>State</option>
+										<option
+											th:each="state : ${states}"
+											th:value="${state}"
+											th:text="${state}">
+											State
+										</option>
+									</select>
+								</div>
+							</div>
 						</div>
 						<div class="column col-12">
 							<p
@@ -192,21 +206,21 @@
 								class="form-input-hint text-error"
 								id="stateHint"></p>
 						</div>
-					</div>
-				</div>
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="col-3 col-sm-12">
-							<label class="form-label" for="zipCode">Zip Code: </label>
-						</div>
-						<div class="col-9 col-sm-12">
-							<input
-								class="form-input"
-								type="text"
-								id="zipCode"
-								th:field="*{zipCode}"
-								th:classappend="${#fields.hasErrors('zipCode') ? 'is-error' : ''}"
-								placeholder="#####" />
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12">
+									<label class="form-label" for="zipCode">Zip Code: </label>
+								</div>
+								<div class="col-9 col-sm-12">
+									<input
+										class="form-input"
+										type="text"
+										id="zipCode"
+										th:field="*{zipCode}"
+										th:classappend="${#fields.hasErrors('zipCode') ? 'is-error' : ''}"
+										placeholder="#####" />
+								</div>
+							</div>
 						</div>
 						<div class="column col-12">
 							<p
@@ -216,10 +230,11 @@
 								id="zipCodeHint"></p>
 						</div>
 					</div>
-				</div>
-				<br />
-				<button class="btn btn-primary" type="submit">Create</button>
-			</form>
+					<div class="card-footer text-center">
+						<button class="btn btn-primary" type="submit">Create</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</body>
 </html>
