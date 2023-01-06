@@ -68,7 +68,15 @@
 								type="text"
 								id="firstName"
 								th:field="*{firstName}"
+								th:classappend="${#fields.hasErrors('firstName') ? 'is-error' : ''}"
 								placeholder="First Name" />
+						</div>
+						<div class="column col-12">
+							<p
+								th:if="${#fields.hasErrors('firstName')}"
+								th:errors="*{firstName}"
+								class="form-input-hint text-error"
+								id="firstNameHint"></p>
 						</div>
 					</div>
 				</div>
@@ -83,7 +91,15 @@
 								type="text"
 								id="lastName"
 								th:field="*{lastName}"
+								th:classappend="${#fields.hasErrors('lastName') ? 'is-error' : ''}"
 								placeholder="Last Name" />
+						</div>
+						<div class="column col-12">
+							<p
+								th:if="${#fields.hasErrors('lastName')}"
+								th:errors="*{lastName}"
+								class="form-input-hint text-error"
+								id="lastNameHint"></p>
 						</div>
 					</div>
 				</div>
@@ -97,7 +113,15 @@
 								class="form-input"
 								type="date"
 								id="birthDate"
-								th:field="*{birthDate}" />
+								th:field="*{birthDate}"
+								th:classappend="${#fields.hasErrors('birthDate') ? 'is-error' : ''}" />
+						</div>
+						<div class="column col-12">
+							<p
+								th:if="${#fields.hasErrors('birthDate')}"
+								th:errors="*{birthDate}"
+								class="form-input-hint text-error"
+								id="birthDateHint"></p>
 						</div>
 					</div>
 				</div>
@@ -112,7 +136,15 @@
 								type="text"
 								id="address"
 								th:field="*{address}"
+								th:classappend="${#fields.hasErrors('address') ? 'is-error' : ''}"
 								placeholder="Address" />
+						</div>
+						<div class="column col-12">
+							<p
+								th:if="${#fields.hasErrors('address')}"
+								th:errors="*{address}"
+								class="form-input-hint text-error"
+								id="addressHint"></p>
 						</div>
 					</div>
 				</div>
@@ -127,7 +159,15 @@
 								type="text"
 								id="city"
 								th:field="*{city}"
+								th:classappend="${#fields.hasErrors('city') ? 'is-error' : ''}"
 								placeholder="City" />
+						</div>
+						<div class="column col-12">
+							<p
+								th:if="${#fields.hasErrors('city')}"
+								th:errors="*{city}"
+								class="form-input-hint text-error"
+								id="cityHint"></p>
 						</div>
 					</div>
 				</div>
@@ -142,7 +182,15 @@
 								type="text"
 								id="state"
 								th:field="*{state}"
+								th:classappend="${#fields.hasErrors('state') ? 'is-error' : ''}"
 								placeholder="State" />
+						</div>
+						<div class="column col-12">
+							<p
+								th:if="${#fields.hasErrors('state')}"
+								th:errors="*{state}"
+								class="form-input-hint text-error"
+								id="stateHint"></p>
 						</div>
 					</div>
 				</div>
@@ -157,7 +205,15 @@
 								type="text"
 								id="zipCode"
 								th:field="*{zipCode}"
-								placeholder="ZIP Code" />
+								th:classappend="${#fields.hasErrors('zipCode') ? 'is-error' : ''}"
+								placeholder="#####" />
+						</div>
+						<div class="column col-12">
+							<p
+								th:if="${#fields.hasErrors('zipCode')}"
+								th:errors="*{zipCode}"
+								class="form-input-hint text-error"
+								id="zipCodeHint"></p>
 						</div>
 					</div>
 				</div>

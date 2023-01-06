@@ -49,38 +49,29 @@
 		<div>
 			<a class="btn" th:href="@{/customers/new}">Create New Customer</a>
 		</div>
-		<div id="individuals">
+		<div id="customers">
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr class="text-center text-uppercase">
 						<th>Customer ID</th>
-						<th>Individual ID</th>
-						<th>Birth Date</th>
 						<th>First Name</th>
 						<th>Last Name</th>
+						<th>Birth Date</th>
 						<th>Address</th>
-						<th>City</th>
-						<th>State</th>
-						<th>Zip Code</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="text-center" th:each="individual: ${individuals}">
-						<td class="text-center" th:text="${individual.customer.id}"></td>
-						<td class="text-center" th:text="${individual.id}"></td>
+					<tr class="text-center" th:each="customer : ${customers}">
+						<td class="text-center" th:text="${customer.id}"></td>
+
+						<td class="text-center" th:text="${customer.firstName}"></td>
+						<td class="text-center" th:text="${customer.lastName}"></td>
 						<td
 							class="text-center"
-							th:text="${#dates.format(individual.birthDate, 'MM-dd-yyyy')}"></td>
-						<td class="text-center" th:text="${individual.firstName}"></td>
-						<td class="text-center" th:text="${individual.lastName}"></td>
+							th:text="${#dates.format(customer.birthDate, 'MM-dd-yyyy')}"></td>
 						<td
 							class="text-center"
-							th:text="${individual.customer.address}"></td>
-						<td class="text-center" th:text="${individual.customer.city}"></td>
-						<td class="text-center" th:text="${individual.customer.state}"></td>
-						<td
-							class="text-center"
-							th:text="${individual.customer.zipCode}"></td>
+							th:text="${customer.address} + ' ' + ${customer.city} + ', ' + ${customer.state} + ' ' + ${customer.zipCode}"></td>
 					</tr>
 				</tbody>
 			</table>

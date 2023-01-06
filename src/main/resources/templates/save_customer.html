@@ -46,19 +46,22 @@
 		<div>
 			<ul class="breadcrumb">
 				<li class="breadcrumb-item">
-					<a th:href="@{/customers/new}">Create Customer</a>
+					<a th:href="@{/customers/new}" disabled>Create Customer</a>
 				</li>
 				<li class="breadcrumb-item">
-					<a th:href="@{/customers/save}">Create Account</a>
+					<a th:href="@{/customers/save}">Options</a>
 				</li>
 			</ul>
 			<p>
-				The new customer with id <strong th:text="${customer.id}"></strong> has
-				been saved.
+				<strong
+					th:text="${customer.firstName} + ' ' + ${customer.lastName}"></strong>
+				with Customer ID <strong th:text="${customer.id}"></strong>
+				has been saved.
 			</p>
 			<p>
 				Next, continue to create
-				<a th:href="@{/accounts/new}">a new account</a>.
+				<a th:href="@{/accounts/new}">a new account</a> or
+				<a th:href="@{/customers}">view all customers</a>.
 			</p>
 		</div>
 		<footer th:insert="fragments/general.html :: footer"></footer>

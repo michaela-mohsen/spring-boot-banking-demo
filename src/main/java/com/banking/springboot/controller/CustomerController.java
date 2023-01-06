@@ -1,8 +1,13 @@
 package com.banking.springboot.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,12 +29,13 @@ public class CustomerController {
     @GetMapping("/customers")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public String listCustomers(Model model) {
-        model.addAttribute("customers", customerService.getAllCustomers());
+        List<Customer> customers = customerService.getAllCustomers();
+        model.addAttribute("customers", customers);
         return "customers";
     }
 
     @GetMapping("/customers/new")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     public String createCustomer(Model model) {
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
@@ -37,10 +43,18 @@ public class CustomerController {
     }
 
     @PostMapping("/customers/save")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String saveCustomer(@ModelAttribute("customer") Customer customer, Model model) {
-        customerService.saveCustomer(customer);
-        model.addAttribute("customer", customer);
-        return "save_customer";
+    @PreAuthorize("hasRole('USER')")
+    public String saveCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult,
+            Model model) {
+        if (!bindingResult.hasErrors()) {
+            customerService.saveCustomer(customer);
+            model.addAttribute("customer", customer);
+            return "save_customer";
+        } else {
+            model.addAttribute("customer", customer);
+            model.addAttribute("bindingResult", bindingResult);
+            return "create_customer";
+        }
+
     }
 }
