@@ -19,53 +19,86 @@
 	</head>
 
 	<body>
-		<header>
-			<nav class="bg-secondary navbar-center">
-				<ul class="tab tab-block">
-					<li class="tab-item">
-						<a class="text-primary" th:href="@{/home}">Home</a>
-					</li>
-					<li class="tab-item active">
-						<a class="text-primary" th:href="@{/accounts}">Accounts</a>
-					</li>
-					<li class="tab-item">
-						<a class="text-primary" th:href="@{/transactions}">Transactions</a>
-					</li>
-					<li class="tab-item">
-						<a class="text-primary" th:href="@{/employees}">Employees</a>
-					</li>
-					<li class="tab-item">
-						<a class="text-primary" th:href="@{/customers}">Customers</a>
-					</li>
-					<li class="tab-item" sec:authorize="isAuthenticated()">
-						<a class="text-primary" th:href="@{/logout}">Logout</a>
+		<header class="navbar bg-secondary">
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/home}">Home</a>
 					</li>
 				</ul>
-			</nav>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item active">
+						<a class="btn btn-link text-primary" th:href="@{/accounts}"
+							>Accounts</a
+						>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/transactions}"
+							>Transactions</a
+						>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/employees}"
+							>Employees</a
+						>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/customers}"
+							>Customers</a
+						>
+					</li>
+				</ul>
+			</section>
+			<section class="navbar-section">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="btn btn-link text-primary" th:href="@{/logout}">Logout</a>
+					</li>
+				</ul>
+			</section>
 		</header>
-		<div id="new_account">
-			<form
-				class="form-horizontal m-2 pt-3"
-				th:action="@{/accounts}"
-				th:object="${account}"
-				method="POST">
-				<h2 class="text-center">Create New Account</h2>
-				<div class="divider"></div>
-				<br />
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="col-3 col-sm-12">
-							<label class="form-label" for="availableBalance"
-								>Available Balance:
-							</label>
-						</div>
-						<div class="col-9 col-sm-12">
-							<input
-								class="form-input"
-								type="number"
-								id="availableBalance"
-								th:field="*{availableBalance}"
-								th:classappend="${#fields.hasErrors('availableBalance') ? 'is-error' : ''}" />
+		<div id="new_account" class="container">
+			<div class="card m-2">
+				<form
+					class="form-horizontal m-2 pt-3"
+					th:action="@{/accounts}"
+					th:object="${account}"
+					method="POST">
+					<div class="card-header">
+						<div class="card-title h2 text-center">Add New Account or Loan</div>
+					</div>
+					<div class="card-body columns">
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12">
+									<label class="form-label" for="availableBalance"
+										>Available Balance:
+									</label>
+								</div>
+								<div class="col-9 col-sm-12">
+									<input
+										class="form-input"
+										type="number"
+										id="availableBalance"
+										th:field="*{availableBalance}"
+										th:classappend="${#fields.hasErrors('availableBalance') ? 'is-error' : ''}"
+										placeholder="0" />
+								</div>
+							</div>
 						</div>
 						<div class="column col-12">
 							<p
@@ -74,22 +107,23 @@
 								class="form-input-hint text-error"
 								id="availableBalanceHint"></p>
 						</div>
-					</div>
-				</div>
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="col-3 col-sm-12">
-							<label class="form-label" for="pendingBalance"
-								>Pending Balance:</label
-							>
-						</div>
-						<div class="col-9 col-sm-12">
-							<input
-								class="form-input"
-								type="number"
-								id="pendingBalance"
-								th:field="*{pendingBalance}"
-								th:classappend="${#fields.hasErrors('pendingBalance') ? 'is-error' : ''}" />
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12">
+									<label class="form-label" for="pendingBalance"
+										>Pending Balance:</label
+									>
+								</div>
+								<div class="col-9 col-sm-12">
+									<input
+										class="form-input"
+										type="number"
+										id="pendingBalance"
+										th:field="*{pendingBalance}"
+										th:classappend="${#fields.hasErrors('pendingBalance') ? 'is-error' : ''}"
+										placeholder="0" />
+								</div>
+							</div>
 						</div>
 						<div class="column col-12">
 							<p
@@ -98,104 +132,95 @@
 								class="form-input-hint text-error"
 								id="pendingBalanceHint"></p>
 						</div>
-					</div>
-				</div>
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="column col-3 col-sm-12">
-							<label class="form-label" for="customer">Customer: </label>
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12">
+									<label class="form-label" for="customer">Customer: </label>
+								</div>
+								<div class="col-9 col-sm-12">
+									<select
+										class="form-select"
+										title="customer"
+										th:field="*{customer.id}"
+										id="customer"
+										name="customer">
+										<option value="" selected>--Select Customer--</option>
+										<option
+											th:each="customer : ${customers}"
+											th:value="${customer.id}"
+											th:text="${customer.id} + ': ' + ${customer.lastName} + ', ' + ${customer.firstName}">
+											Customer ID: Last Name, First Name
+										</option>
+									</select>
+								</div>
+							</div>
 						</div>
-						<div class="column col-9 col-sm-12">
-							<select
-								class="form-select"
-								title="customer"
-								th:field="*{customer.id}"
-								id="customer"
-								name="customer">
-								<option value="" selected>--Select Customer--</option>
-								<option
-									th:each="customer : ${customers}"
-									th:value="${customer.id}"
-									th:text="${customer.id} + ': ' + ${customer.lastName} + ', ' + ${customer.firstName}">
-									Customer ID: Last Name, First Name
-								</option>
-							</select>
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12" th:each="branch : ${branches}">
+									<label class="form-radio">
+										<input
+											type="radio"
+											th:field="*{branch.id}"
+											th:value="${branch.id}"
+											th:text="${branch.name}"
+											placeholder="branch" />
+										<em class="form-icon"></em>
+									</label>
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="col-3 col-sm-12">
-							<label class="form-label" for="branch">Branch:</label>
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12">
+									<label class="form-label" for="employee">Employee: </label>
+								</div>
+								<div class="col-9 col-sm-12">
+									<select
+										class="form-select"
+										title="employee"
+										th:field="*{employee.id}"
+										id="employee"
+										name="employee">
+										<option value="" selected>--Select Employee--</option>
+										<option
+											th:each="employee : ${employees}"
+											th:value="${employee.id}"
+											th:text="${employee.id} + ': ' + ${employee.lastName} + ', ' + ${employee.firstName}">
+											Employee ID
+										</option>
+									</select>
+								</div>
+							</div>
 						</div>
-						<div class="col-9 col-sm-12">
-							<label class="form-radio">
-								<input type="radio" th:field="*{branch.id}" th:value="1" />
-								<em class="form-icon"></em>Headquarters
-							</label>
-							<label class="form-radio">
-								<input type="radio" th:field="*{branch.id}" th:value="2" />
-								<em class="form-icon"></em>Woburn
-							</label>
-							<label class="form-radio">
-								<input type="radio" th:field="*{branch.id}" th:value="3" />
-								<em class="form-icon"></em>Quincy
-							</label>
-							<label class="form-radio">
-								<input type="radio" th:field="*{branch.id}" th:value="4" />
-								<em class="form-icon"></em>South NH
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="column col-3 col-sm-12">
-							<label class="form-label" for="employee">Employee: </label>
-						</div>
-						<div class="column col-9 col-sm-12">
-							<select
-								class="form-select"
-								title="employee"
-								th:field="*{employee.id}"
-								id="employee"
-								name="employee">
-								<option value="" selected>--Select Employee--</option>
-								<option
-									th:each="employee : ${employees}"
-									th:value="${employee.id}"
-									th:text="${employee.id} + ': ' + ${employee.lastName} + ', ' + ${employee.firstName}">
-									Employee ID
-								</option>
-							</select>
-						</div>
-					</div>
-				</div>
-				<div class="column col-12 py-2">
-					<div class="form-group">
-						<div class="col-3 col-sm-12">
-							<label class="form-label" for="product">Product:</label>
-						</div>
-						<div class="col-9 col-sm-12">
-							<select
-								class="form-input"
-								title="products"
-								id="products"
-								th:field="*{product.id}">
-								<option value="" selected>--Select Product--</option>
-								<option
-									th:each="product : ${products}"
-									th:value="${product.id}"
-									th:text="${product.name} + ': ' + ${product.productType}">
-									Product
-								</option>
-							</select>
+						<div class="column col-12 py-2">
+							<div class="form-group">
+								<div class="col-3 col-sm-12">
+									<label class="form-label" for="product">Product:</label>
+								</div>
+								<div class="col-9 col-sm-12">
+									<select
+										class="form-input"
+										title="products"
+										id="products"
+										th:field="*{product.id}">
+										<option value="" selected>--Select Product--</option>
+										<option
+											th:each="product : ${products}"
+											th:value="${product.id}"
+											th:text="${product.productType} + ': ' + ${product.name}">
+											Product
+										</option>
+									</select>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-				<br />
-				<button class="btn btn-primary" type="submit">Submit</button>
-			</form>
+					<div class="card-footer text-center">
+						<button class="btn btn-primary" type="submit">Create</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</body>
 </html>

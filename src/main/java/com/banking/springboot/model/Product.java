@@ -32,6 +32,6 @@ public class Product {
 
 	@Column
 	@NotNull
-	private String productType;
+	private String type;
 
 }

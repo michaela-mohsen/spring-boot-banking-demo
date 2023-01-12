@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.banking.springboot.model.Account;
+import com.banking.springboot.model.Branch;
 import com.banking.springboot.model.Customer;
 import com.banking.springboot.model.Employee;
 import com.banking.springboot.model.Product;
 import com.banking.springboot.service.impl.AccountServiceImpl;
+import com.banking.springboot.service.impl.BranchServiceImpl;
 import com.banking.springboot.service.impl.CustomerServiceImpl;
 import com.banking.springboot.service.impl.EmployeeServiceImpl;
 import com.banking.springboot.service.impl.ProductServiceImpl;
@@ -31,14 +34,16 @@ public class AccountController {
 	private CustomerServiceImpl customerService;
 	private EmployeeServiceImpl employeeService;
 	private ProductServiceImpl productService;
+	private BranchServiceImpl branchService;
 
 	public AccountController(AccountServiceImpl accountService, CustomerServiceImpl customerService,
-			EmployeeServiceImpl employeeService, ProductServiceImpl productService) {
+			EmployeeServiceImpl employeeService, ProductServiceImpl productService, BranchServiceImpl branchService) {
 		super();
 		this.accountService = accountService;
 		this.customerService = customerService;
 		this.employeeService = employeeService;
 		this.productService = productService;
+		this.branchService = branchService;
 	}
 
 	// get all accounts
@@ -50,6 +55,23 @@ public class AccountController {
 		return "accounts";
 	}
 
+	@GetMapping("/accounts/type/{type}")
+	public String listAccountsByProductType(@Param("type") String type, Model model) {
+		String loan = "LOAN";
+		String account = "ACCOUNT";
+
+		if (type.equals(loan)) {
+			List<Account> accountsByProductLoan = accountService.getAccountsByProductType("LOAN");
+			model.addAttribute("accounts", accountsByProductLoan);
+			model.addAttribute("type", type);
+		} else if (type.equals(account)) {
+			List<Account> accountsByProductAccount = accountService.getAccountsByProductType("ACCOUNT");
+			model.addAttribute("accounts", accountsByProductAccount);
+			model.addAttribute("type", type);
+		}
+		return "accounts";
+	}
+
 	// create a new account object
 	@GetMapping("/accounts/new")
 	public String createAccount(Model model) {
@@ -57,10 +79,13 @@ public class AccountController {
 		List<Product> products = productService.getAllProducts();
 		List<Customer> customers = customerService.getAllCustomers();
 		List<Employee> employees = employeeService.getAllEmployees();
+		List<Branch> branches = branchService.getAllBranches();
+
 		model.addAttribute("account", account);
 		model.addAttribute("products", products);
 		model.addAttribute("customers", customers);
 		model.addAttribute("employees", employees);
+		model.addAttribute("branches", branches);
 		return "create_account";
 	}
 
@@ -79,9 +104,11 @@ public class AccountController {
 			List<Product> products = productService.getAllProducts();
 			List<Customer> customers = customerService.getAllCustomers();
 			List<Employee> employees = employeeService.getAllEmployees();
+			List<Branch> branches = branchService.getAllBranches();
 			model.addAttribute("products", products);
 			model.addAttribute("customers", customers);
 			model.addAttribute("employees", employees);
+			model.addAttribute("branches", branches);
 			model.addAttribute("account", account);
 			model.addAttribute("bindingResult", bindingResult);
 			return "create_account";

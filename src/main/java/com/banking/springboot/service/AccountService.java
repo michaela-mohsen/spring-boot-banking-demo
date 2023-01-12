@@ -10,6 +10,8 @@ import com.banking.springboot.model.Account;
 public interface AccountService {
 	List<Account> getAllAccounts();
 
+	List<Account> getAccountsByProductType(String type);
+
 	Account getAccountById(Integer id);
 
 	Account updateAccount(Account account);

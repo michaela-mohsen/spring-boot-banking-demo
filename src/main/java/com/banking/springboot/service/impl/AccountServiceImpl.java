@@ -46,4 +46,9 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.save(account);
 	}
 
+	@Override
+	public List<Account> getAccountsByProductType(String type) {
+		return accountRepository.findByProductType(type);
+	}
+
 }
